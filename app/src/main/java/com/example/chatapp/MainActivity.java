@@ -10,12 +10,12 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.chatapp.MiniGame.MiniGameActivity;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
@@ -25,8 +25,6 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import com.google.firebase.iid.FirebaseInstanceId;
-import com.google.firebase.iid.InstanceIdResult;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -120,6 +118,10 @@ public class MainActivity extends AppCompatActivity {
         if (item.getItemId() == R.id.main_find_friends_option){
             SendUserToFindFriendsActivity();
         }
+
+        if (item.getItemId() == R.id.main_minigame_option){
+            SendUserToFindMiniGameActivity();
+        }
         return true;
     }
 
@@ -182,4 +184,10 @@ public class MainActivity extends AppCompatActivity {
         Intent findFriendsIntent = new Intent(MainActivity.this, FindFirendsActivity.class);
         startActivity(findFriendsIntent);
     }
+
+    private void SendUserToFindMiniGameActivity() {
+        Intent miniGameIntent = new Intent(MainActivity.this, MiniGameActivity.class);
+        startActivity(miniGameIntent);
+    }
+
 }

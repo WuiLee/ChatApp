@@ -114,7 +114,7 @@ public class SettingsActivity extends AppCompatActivity
 
 
 
-   @Override
+   /*@Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data)
     {
         super.onActivityResult(requestCode, resultCode, data);
@@ -153,7 +153,11 @@ public class SettingsActivity extends AppCompatActivity
                         {
                             Toast.makeText(SettingsActivity.this, "Profile Image uploaded Successfully...", Toast.LENGTH_SHORT).show();
 
+<<<<<<< HEAD
                             final String downloadUrl = task.getResult().getMetadata().getReference().getDownloadUrl().toString();
+=======
+                            final String downloaedUrl = task.getResult().getDownloadUrl.toString();
+>>>>>>> Announcement and Mini Game
 
                             RootRef.child("Users").child(currentUserID).child("image")
                                     .setValue(downloadUrl)
@@ -185,7 +189,7 @@ public class SettingsActivity extends AppCompatActivity
                 });
             }
         }
-    }
+    }*/
 
 
 
