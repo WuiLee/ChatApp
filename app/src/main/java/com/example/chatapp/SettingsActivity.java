@@ -29,6 +29,7 @@ import com.squareup.picasso.Picasso;
 import com.theartofdev.edmodo.cropper.CropImage;
 import com.theartofdev.edmodo.cropper.CropImageView;
 
+import java.net.URL;
 import java.util.HashMap;
 
 import de.hdodenhof.circleimageview.CircleImageView;
@@ -142,7 +143,7 @@ public class SettingsActivity extends AppCompatActivity
                 Uri resultUri = result.getUri();
 
 
-                StorageReference filePath = UserProfileImagesRef.child(currentUserID + ".jpg");
+                final StorageReference filePath = UserProfileImagesRef.child(currentUserID + ".jpg");
 
                 filePath.putFile(resultUri).addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
                     @Override
@@ -152,10 +153,10 @@ public class SettingsActivity extends AppCompatActivity
                         {
                             Toast.makeText(SettingsActivity.this, "Profile Image uploaded Successfully...", Toast.LENGTH_SHORT).show();
 
-                            final String downloaedUrl = task.getResult().getDownloadUrl().toString();
+                            final String downloadUrl = filePath.getDownloadUrl().toString();
 
                             RootRef.child("Users").child(currentUserID).child("image")
-                                    .setValue(downloaedUrl)
+                                    .setValue(downloadUrl)
                                     .addOnCompleteListener(new OnCompleteListener<Void>() {
                                         @Override
                                         public void onComplete(@NonNull Task<Void> task)
