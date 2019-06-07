@@ -122,6 +122,10 @@ public class MainActivity extends AppCompatActivity {
         if (item.getItemId() == R.id.main_minigame_option){
             SendUserToFindMiniGameActivity();
         }
+
+        if (item.getItemId() == R.id.action_add_post){
+            SendUserToAddPostActivity();
+        }
         return true;
     }
 
@@ -188,6 +192,11 @@ public class MainActivity extends AppCompatActivity {
     private void SendUserToFindMiniGameActivity() {
         Intent miniGameIntent = new Intent(MainActivity.this, MiniGameActivity.class);
         startActivity(miniGameIntent);
+    }
+
+    private void SendUserToAddPostActivity() {
+        Intent addPostIntent = new Intent(MainActivity.this, AddPostActivity.class);
+        startActivity(addPostIntent);
     }
 
 }

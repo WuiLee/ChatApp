@@ -160,7 +160,7 @@ public class AnnouncementFragment extends Fragment {
         super.onCreate(savedInstanceState);
     }
 
-    @Override
+    /*@Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         inflater.inflate(R.menu.option_menu, menu);
 
@@ -225,6 +225,6 @@ public class AnnouncementFragment extends Fragment {
             startActivity(new Intent(getActivity(), MainActivity.class));
             getActivity().finish();
         }
-    }
+    }*/
 
 }

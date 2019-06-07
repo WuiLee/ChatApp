@@ -15,7 +15,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".AddPostActivity" />
+        <activity android:name=".AddPostActivity"></activity>
         <activity android:name=".MiniGame.MiniGameActivity" />
         <activity android:name=".MainActivity" />
         <activity android:name=".LoginActivity">

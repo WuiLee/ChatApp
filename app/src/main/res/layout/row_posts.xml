@@ -20,7 +20,7 @@
             android:orientation="horizontal"
             android:layout_gravity="center_vertical">
 
-            <com.blogspot.atifsoftwares.circularimageview.CircularImageView
+            <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/uPictureIv"
                 android:scaleType="centerCrop"
                 android:src="@drawable/person"
