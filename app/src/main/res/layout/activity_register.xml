@@ -31,7 +31,7 @@
         android:layout_marginLeft="17dp"
         android:layout_marginRight="17dp"/>
 
-    <EditText
+    <android.support.design.widget.TextInputEditText
         android:id="@+id/register_password"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -44,7 +44,8 @@
         android:layout_marginTop="10dp"
         android:layout_marginLeft="17dp"
         android:layout_marginRight="17dp"
-        android:background="@drawable/inputs" />
+        android:background="@drawable/inputs"
+        app:passwordToggleEnabled="true"/>
 
     <Button
         android:id="@+id/register_button"

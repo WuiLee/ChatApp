@@ -120,11 +120,15 @@ public class MainActivity extends AppCompatActivity {
         }
 
         if (item.getItemId() == R.id.main_minigame_option){
-            SendUserToFindMiniGameActivity();
+            SendUserToMiniGameActivity();
         }
+
+        if (item.getItemId() == R.id.main_add_post_option){
+            SendUserToAddPosActivity();
+        }
+
         return true;
     }
-
     private void RegisterNewGroup() {
         AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this, R.style.AlertDialog);
         builder.setTitle("Enter Group Name :");
@@ -185,9 +189,14 @@ public class MainActivity extends AppCompatActivity {
         startActivity(findFriendsIntent);
     }
 
-    private void SendUserToFindMiniGameActivity() {
+    private void SendUserToMiniGameActivity() {
         Intent miniGameIntent = new Intent(MainActivity.this, MiniGameActivity.class);
         startActivity(miniGameIntent);
+    }
+
+    private void SendUserToAddPosActivity() {
+        Intent addPostActivity = new Intent(MainActivity.this, AddPostActivity.class);
+        startActivity(addPostActivity);
     }
 
 }

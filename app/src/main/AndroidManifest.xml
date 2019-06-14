@@ -4,7 +4,7 @@
     package="com.example.chatapp">
 
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
@@ -16,6 +16,8 @@
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
         <activity android:name=".AddPostActivity"></activity>
+        <activity android:name=".EnrolmentActivity" />
+        <activity android:name=".TimetableActivity" />
         <activity android:name=".MiniGame.MiniGameActivity" />
         <activity android:name=".MainActivity" />
         <activity android:name=".LoginActivity">

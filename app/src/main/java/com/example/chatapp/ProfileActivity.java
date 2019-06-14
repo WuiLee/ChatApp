@@ -27,7 +27,7 @@ public class ProfileActivity extends AppCompatActivity {
     private String receiverUserID, senderUserID, Current_State;
 
     private CircleImageView userProfileImage;
-    private TextView userProfileName, userProfileStatus;
+    private TextView userProfileName, userProfileStatus, userProfileID, userProfileCourse;
     private Button SendMessageRequestButton, DeclineMessageRequestsButton;
 
     private DatabaseReference UserRef, ChatRequestRef, ContactRef, NotificationRef;
@@ -47,14 +47,14 @@ public class ProfileActivity extends AppCompatActivity {
         ContactRef = FirebaseDatabase.getInstance().getReference().child("Contacts");
         NotificationRef = FirebaseDatabase.getInstance().getReference().child("Notifications");
 
-
-
         receiverUserID = getIntent().getExtras().get("visit_user_id").toString();
         senderUserID = mAuth.getCurrentUser().getUid();
 
         userProfileImage = (CircleImageView) findViewById(R.id.visit_profile_image);
         userProfileName = (TextView) findViewById(R.id.visit_user_name);
         userProfileStatus = (TextView) findViewById(R.id.visit_profile_status);
+        userProfileID = (TextView) findViewById(R.id.visit_profile_id);
+        userProfileCourse = (TextView) findViewById(R.id.visit_profile_course);
         SendMessageRequestButton = (Button) findViewById(R.id.send_message_request_button);
         DeclineMessageRequestsButton = (Button) findViewById(R.id.decline_message_request_button);
         Current_State = "new";
@@ -71,19 +71,27 @@ public class ProfileActivity extends AppCompatActivity {
                     String userImage = dataSnapshot.child("image").getValue().toString();
                     String userName = dataSnapshot.child("name").getValue().toString();
                     String userStatus = dataSnapshot.child("status").getValue().toString();
+                    String userID = dataSnapshot.child("id").getValue().toString();
+                    String courseID = dataSnapshot.child("course").getValue().toString();
 
                     Picasso.get().load(userImage).placeholder(R.drawable.profile_image).into(userProfileImage);
                     userProfileName.setText(userName);
                     userProfileStatus.setText(userStatus);
+                    userProfileID.setText(userID);
+                    userProfileCourse.setText(courseID);
 
                     ManageChatRequest();
                 }
                 else{
                     String userName = dataSnapshot.child("name").getValue().toString();
                     String userStatus = dataSnapshot.child("status").getValue().toString();
+                    String userID = dataSnapshot.child("id").getValue().toString();
+                    String courseID = dataSnapshot.child("course").getValue().toString();
 
                     userProfileName.setText(userName);
                     userProfileStatus.setText(userStatus);
+                    userProfileID.setText(userID);
+                    userProfileCourse.setText(courseID);
 
                     ManageChatRequest();
                 }
@@ -298,10 +306,23 @@ public class ProfileActivity extends AppCompatActivity {
                                         @Override
                                         public void onComplete(@NonNull Task<Void> task) {
                                             if (task.isSuccessful()){
-                                                SendMessageRequestButton.setEnabled(true);
-                                                Current_State = "request_sent";
-                                                SendMessageRequestButton.setText("Cancel Chat Request");
+                                                HashMap<String, String> chatNotificationMap = new HashMap<>();
+                                                chatNotificationMap.put("from", senderUserID);
+                                                chatNotificationMap.put("type", "request");
 
+                                                NotificationRef.child(receiverUserID).push()
+                                                        .setValue(chatNotificationMap)
+                                                        .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                                            @Override
+                                                            public void onComplete(@NonNull Task<Void> task) {
+                                                                if (task.isSuccessful()){
+
+                                                                    SendMessageRequestButton.setEnabled(true);
+                                                                    Current_State = "request_sent";
+                                                                    SendMessageRequestButton.setText("Cancel Chat Request");
+                                                                }
+                                                            }
+                                                        });
                                             }
                                         }
                                     });

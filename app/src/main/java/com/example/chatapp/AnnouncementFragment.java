@@ -1,5 +1,6 @@
 package com.example.chatapp;
 
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -43,7 +44,6 @@ public class AnnouncementFragment extends Fragment {
     RecyclerView recyclerView;
     List<ModelPost> postList;
     AdapterPosts adapterPosts;
-
 
     public AnnouncementFragment() {
         // Required empty public constructor
@@ -111,6 +111,12 @@ public class AnnouncementFragment extends Fragment {
                 Toast.makeText(getActivity(), ""+databaseError.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
+    }
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        setHasOptionsMenu(true);//to show menu option in fragment
+        super.onCreate(savedInstanceState);
     }
 
 }

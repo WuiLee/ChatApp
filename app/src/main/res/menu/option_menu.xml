@@ -32,4 +32,12 @@
         app:showAsAction="never">
     </item>
 
+    <item
+        android:title="Add Post"
+        android:id="@+id/main_add_post_option"
+        app:showAsAction="always"
+        android:icon="@drawable/ic_menu_add">
+    </item>
+
+
 </menu>

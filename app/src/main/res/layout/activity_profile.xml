@@ -44,11 +44,39 @@
         android:textSize="18sp"
         android:textStyle="bold"/>
 
+    <TextView
+        android:id="@+id/visit_profile_id"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="17069469"
+        android:layout_below="@+id/visit_profile_status"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginTop="10dp"
+        android:textAlignment="center"
+        android:textAllCaps="false"
+        android:textSize="18sp"
+        android:textStyle="bold"/>
+
+    <TextView
+        android:id="@+id/visit_profile_course"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="DIT 418"
+        android:layout_below="@+id/visit_profile_id"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginTop="10dp"
+        android:textAlignment="center"
+        android:textAllCaps="false"
+        android:textSize="18sp"
+        android:textStyle="bold"/>
+
     <Button
         android:id="@+id/send_message_request_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/visit_profile_status"
+        android:layout_below="@id/visit_profile_course"
         android:layout_marginTop="15dp"
         android:layout_marginLeft="65dp"
         android:layout_marginRight="65dp"
