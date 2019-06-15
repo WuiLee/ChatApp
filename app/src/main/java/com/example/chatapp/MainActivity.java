@@ -81,7 +81,7 @@ public class MainActivity extends AppCompatActivity {
                     Toast.makeText(MainActivity.this, "Welcome", Toast.LENGTH_SHORT).show();
                 }
                 else{
-                    SendUserToSettingsActivity();
+                    SendUserToRegisterForm();
                 }
             }
 
@@ -182,6 +182,13 @@ public class MainActivity extends AppCompatActivity {
     private void SendUserToSettingsActivity() {
         Intent settingsIntent = new Intent(MainActivity.this, SettingsActivity.class);
         startActivity(settingsIntent);
+    }
+
+    private void SendUserToRegisterForm() {
+        Intent formIntent = new Intent(MainActivity.this, RegisterForm.class);
+        formIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        startActivity(formIntent);
+        finish();
     }
 
     private void SendUserToFindFriendsActivity() {

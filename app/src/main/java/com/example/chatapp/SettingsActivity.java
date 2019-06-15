@@ -216,25 +216,19 @@ public class SettingsActivity extends AppCompatActivity{
 
 
     private void SendUserToTimetableActivity() {
-        Intent mainIntent = new Intent(SettingsActivity.this, TimetableActivity.class);
-        mainIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-        startActivity(mainIntent);
-        finish();
+        Intent timetableIntent = new Intent(SettingsActivity.this, TimetableActivity.class);
+        startActivity(timetableIntent);
     }
 
 
     private void SendUserToEnrolmentActivity() {
-        Intent mainIntent = new Intent(SettingsActivity.this, EnrolmentActivity.class);
-        mainIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-        startActivity(mainIntent);
-        finish();
+        Intent enrolmentIntent = new Intent(SettingsActivity.this, EnrolmentActivity.class);
+        startActivity(enrolmentIntent);
     }
 
     private void SendUserToUsefulContactList() {
-        Intent mainIntent = new Intent(SettingsActivity.this, UsefulContactList.class);
-        mainIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-        startActivity(mainIntent);
-        finish();
+        Intent contactIntent = new Intent(SettingsActivity.this, UsefulContactList.class);
+        startActivity(contactIntent);
     }
 
 }

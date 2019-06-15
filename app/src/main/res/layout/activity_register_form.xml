@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".RegisterForm">
+
+    <include
+        layout="@layout/app_bar_layout"
+        android:id="@+id/register_form_toolbar">
+
+    </include>
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/profile_image"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:layout_below="@id/register_form_toolbar"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="60dp"
+        android:layout_centerHorizontal="true"
+        android:src="@drawable/profile_image"
+        app:civ_border_width="3dp"
+        app:civ_border_color="@color/colorPrimaryDark"/>
+
+    <EditText
+        android:id="@+id/enter_user_name"
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:layout_below="@+id/profile_image"
+        android:inputType="textPersonName"
+        android:hint="Your Name"
+        android:textAlignment="textStart"
+        android:textColor="@color/colorPrimaryDark"
+        android:textStyle="bold"
+        android:textSize="20sp"
+        android:layout_marginStart="15dp"
+        android:layout_marginEnd="15dp"
+        android:layout_marginTop="15dp"
+        android:padding="6dp"
+        android:textColorHint="@android:color/darker_gray"
+        />
+
+    <EditText
+        android:id="@+id/enter_user_id"
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:layout_below="@+id/enter_user_name"
+        android:inputType="textVisiblePassword"
+        android:hint="Your StudentID / StaffID"
+        android:textAlignment="textStart"
+        android:textColor="@color/colorPrimaryDark"
+        android:textStyle="bold"
+        android:textSize="20sp"
+        android:layout_marginStart="15dp"
+        android:layout_marginEnd="15dp"
+        android:layout_marginTop="10dp"
+        android:padding="6dp"
+        android:textColorHint="@android:color/darker_gray"
+        />
+
+    <EditText
+        android:id="@+id/enter_user_identity"
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:layout_below="@+id/enter_user_id"
+        android:inputType="text"
+        android:hint="Lecturer / Student"
+        android:textAlignment="textStart"
+        android:textColor="@color/colorPrimaryDark"
+        android:textStyle="bold"
+        android:textSize="20sp"
+        android:layout_marginStart="15dp"
+        android:layout_marginEnd="15dp"
+        android:layout_marginTop="10dp"
+        android:padding="6dp"
+        android:textColorHint="@android:color/darker_gray"
+        />
+
+    <EditText
+        android:id="@+id/enter_email_address"
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:layout_below="@+id/enter_user_identity"
+        android:inputType="textEmailAddress"
+        android:hint="Email Address"
+        android:textAlignment="textStart"
+        android:textColor="@color/colorPrimaryDark"
+        android:textStyle="bold"
+        android:textSize="20sp"
+        android:layout_marginStart="15dp"
+        android:layout_marginEnd="15dp"
+        android:layout_marginTop="10dp"
+        android:padding="6dp"
+        android:textColorHint="@android:color/darker_gray"
+        />
+
+    <EditText
+        android:id="@+id/enter_phone_number"
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:layout_below="@+id/enter_email_address"
+        android:inputType="textPhonetic"
+        android:hint="Phone Number"
+        android:textAlignment="textStart"
+        android:textColor="@color/colorPrimaryDark"
+        android:textStyle="bold"
+        android:textSize="20sp"
+        android:layout_marginStart="15dp"
+        android:layout_marginEnd="15dp"
+        android:layout_marginTop="10dp"
+        android:padding="6dp"
+        android:textColorHint="@android:color/darker_gray"
+        />
+
+    <EditText
+        android:id="@+id/enter_course_id"
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:layout_below="@+id/enter_phone_number"
+        android:inputType="text"
+        android:hint="CourseID/ DepartmentID"
+        android:textAlignment="textStart"
+        android:textColor="@color/colorPrimaryDark"
+        android:textStyle="bold"
+        android:textSize="20sp"
+        android:layout_marginStart="15dp"
+        android:layout_marginEnd="15dp"
+        android:layout_marginTop="10dp"
+        android:padding="6dp"
+        android:textColorHint="@android:color/darker_gray"
+        />
+
+    <Button
+        android:id="@+id/register_form_button"
+        android:layout_width="120dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/enter_course_id"
+        android:text="Submit"
+        android:layout_centerHorizontal="true"
+        android:textAlignment="center"
+        android:textColor="@android:color/background_light"
+        android:textStyle="bold"
+        android:background="@drawable/button"
+        android:padding="6dp"
+        android:layout_marginTop="18dp"
+        android:textAllCaps="false"
+        android:textSize="20sp"/>
+
+</RelativeLayout>
