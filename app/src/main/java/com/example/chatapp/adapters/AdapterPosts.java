@@ -1,20 +1,36 @@
 package com.example.chatapp.adapters;
 
+import android.app.DownloadManager;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.text.format.DateFormat;
+import android.view.Gravity;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.PopupMenu;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.chatapp.R;
 import com.example.chatapp.models.ModelPost;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 import com.squareup.picasso.Picasso;
 
 import java.util.Calendar;
@@ -27,10 +43,13 @@ public class AdapterPosts extends RecyclerView.Adapter<AdapterPosts.MyHolder>
     Context context;
     List<ModelPost> postList;
 
+    String myUid;
+
     public AdapterPosts(Context context, List<ModelPost>postList)
     {
         this.context = context;
         this.postList = postList;
+        myUid = FirebaseAuth.getInstance().getCurrentUser().getUid();
     }
 
     @NonNull
@@ -44,17 +63,17 @@ public class AdapterPosts extends RecyclerView.Adapter<AdapterPosts.MyHolder>
     }
 
     @Override
-    public void onBindViewHolder(@NonNull MyHolder myHolder, int i)
+    public void onBindViewHolder(@NonNull final MyHolder myHolder, int i)
     {
         //get data
-        String uid = postList.get(i).getUid();
+        final String uid = postList.get(i).getUid();
         String uEmail = postList.get(i).getuEmail();
         String uName = postList.get(i).getuName();
         String uDp = postList.get(i).getuDp();
-        String pId = postList.get(i).getpId();
+        final String pId = postList.get(i).getpId();
         String pTitle = postList.get(i).getpTitle();
         String pDescription = postList.get(i).getpDescr();
-        String pImage = postList.get(i).getpImage();
+        final String pImage = postList.get(i).getpImage();
         String pTimeStamp = postList.get(i).getpTime();
 
         //convert timestamp to dd/mm/yyyy hh:mm: am/pm
@@ -89,6 +108,9 @@ public class AdapterPosts extends RecyclerView.Adapter<AdapterPosts.MyHolder>
         }
         else
         {
+            //show imageView
+            myHolder.pImageIv.setVisibility(View.VISIBLE);
+
             try
             {
                 Picasso.get().load(pImage).into(myHolder.pImageIv);
@@ -104,7 +126,7 @@ public class AdapterPosts extends RecyclerView.Adapter<AdapterPosts.MyHolder>
         myHolder.moreBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(context, "More", Toast.LENGTH_SHORT).show();
+                showMoreOptions(myHolder.moreBtn, uid, myUid, pId, pImage);
             }
         });
         myHolder.likeBtn.setOnClickListener(new View.OnClickListener() {
@@ -127,6 +149,127 @@ public class AdapterPosts extends RecyclerView.Adapter<AdapterPosts.MyHolder>
         });
 
     }
+
+    private void showMoreOptions(ImageButton moreBtn, String uid, String myUid, final String pId, final String pImage) {
+        //creating popup menu currently having option Delete
+        PopupMenu popupMenu = new PopupMenu(context, moreBtn, Gravity.END);
+
+        //show delete option in only posys of currently signed-in user
+        if (uid.equals(myUid))
+        {
+            //add items in menu
+            popupMenu.getMenu().add(Menu.NONE, 0, 0, "Delete");
+        }
+
+        //item click listener
+        popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem menuItem) {
+                int id = menuItem.getItemId();
+                if (id == 0)
+                {
+                    //delete is clicked
+                    beginDelete(pId,pImage);
+                }
+                return false;
+            }
+        });
+
+        //show menu
+        popupMenu.show();
+    }
+
+    private void beginDelete(String pId, String pImage)
+    {
+        //post can be with or without image
+
+        if (pImage.equals("noImage"))
+        {
+            //post is without image
+            deleteWithoutImage(pId);
+        }
+        else
+        {
+            //post is with image
+            deleteWithImage(pId,pImage);
+        }
+    }
+
+    private void deleteWithImage(final String pId, String pImage)
+    {
+        //progress bar
+        final ProgressDialog pd = new ProgressDialog(context);
+        pd.setMessage("Deleting...");
+
+        //Step
+        //1. Delete image using url
+        //2. Delete from database using post id
+
+        StorageReference picRef = FirebaseStorage.getInstance().getReferenceFromUrl(pImage);
+        picRef.delete()
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+                        //image deleted, now delete database
+
+                        Query fquery = FirebaseDatabase.getInstance().getReference("Posts").orderByChild("pId")
+                                .equalTo(pId);
+                        fquery.addListenerForSingleValueEvent(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                for (DataSnapshot ds : dataSnapshot.getChildren())
+                                {
+                                    ds.getRef().removeValue();//remove values from firebase where pid matches
+                                }
+                                //deleted
+                                Toast.makeText(context, "Deleted successfully", Toast.LENGTH_SHORT).show();
+                                pd.dismiss();
+                            }
+
+                            @Override
+                            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                            }
+                        });
+
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        //failed, cant go further
+                        pd.dismiss();
+                        Toast.makeText(context, ""+e.getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+                });
+    }
+
+    private void deleteWithoutImage(String pId)
+    {
+        final ProgressDialog pd = new ProgressDialog(context);
+        pd.setMessage("Deleting...");
+
+        Query fquery = FirebaseDatabase.getInstance().getReference("Posts").orderByChild("pId")
+                .equalTo(pId);
+        fquery.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                for (DataSnapshot ds : dataSnapshot.getChildren())
+                {
+                    ds.getRef().removeValue();//remove values from firebase where pid matches
+                }
+                //deleted
+                Toast.makeText(context, "Deleted successfully", Toast.LENGTH_SHORT).show();
+                pd.dismiss();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+    }
+
 
     @Override
     public int getItemCount() {
