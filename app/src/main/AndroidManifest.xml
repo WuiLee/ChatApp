@@ -15,8 +15,12 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".RegisterForm"
-            android:parentActivityName=".RegisterActivity"/>
+
+        <activity android:name=".EditProfileActivity"
+            android:parentActivityName=".SettingsActivity"/>
+        <activity
+            android:name=".RegisterForm"
+            android:parentActivityName=".RegisterActivity" />
         <activity
             android:name=".UsefulContactList"
             android:parentActivityName=".SettingsActivity" />
