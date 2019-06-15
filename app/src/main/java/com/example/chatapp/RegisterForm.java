@@ -46,11 +46,11 @@ public class RegisterForm extends AppCompatActivity {
         currentUserID = mAuth.getCurrentUser().getUid();
         RootRef = FirebaseDatabase.getInstance().getReference();
 
-        mToolbar = (Toolbar) findViewById(R.id.find_firends_toolbar);
+        mToolbar = (Toolbar) findViewById(R.id.register_form_toolbar);
         setSupportActionBar(mToolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
-        getSupportActionBar().setTitle("Find Friends");
+        getSupportActionBar().setTitle("Create Account");
 
         InitializeFields();
 
