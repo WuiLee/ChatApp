@@ -3,6 +3,8 @@ package com.example.chatapp.adapters;
 import android.app.DownloadManager;
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.Intent;
+import android.support.annotation.IntegerRes;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.text.format.DateFormat;
@@ -19,6 +21,7 @@ import android.widget.PopupMenu;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.chatapp.AddPostActivity;
 import com.example.chatapp.R;
 import com.example.chatapp.models.ModelPost;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -159,6 +162,7 @@ public class AdapterPosts extends RecyclerView.Adapter<AdapterPosts.MyHolder>
         {
             //add items in menu
             popupMenu.getMenu().add(Menu.NONE, 0, 0, "Delete");
+            popupMenu.getMenu().add(Menu.NONE, 1, 0, "Edit");
         }
 
         //item click listener
@@ -170,6 +174,15 @@ public class AdapterPosts extends RecyclerView.Adapter<AdapterPosts.MyHolder>
                 {
                     //delete is clicked
                     beginDelete(pId,pImage);
+                }
+                else if (id == 1)
+                {
+                    //edit is clicked
+                    //start addPostActivity with key "editPost" and the id of the post clicked
+                    Intent intent = new Intent(context, AddPostActivity.class);
+                    intent.putExtra("key","editPost");
+                    intent.putExtra("editPostId",pId);
+                    context.startActivity(intent);
                 }
                 return false;
             }
