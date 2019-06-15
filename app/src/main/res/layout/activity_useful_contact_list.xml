@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".UsefulContactList">
+
+    <include
+        layout="@layout/app_bar_layout"
+        android:id="@+id/useful_contact_toolbar">
+
+    </include>
+
+    <LinearLayout
+        android:id="@+id/mental_contact_list"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/useful_contact_toolbar"
+        android:layout_marginLeft="5dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Mental Health Crisis Hotline"
+            android:textSize="29sp"
+            android:textStyle="bold"
+            />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/mental_hotline"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="phone : 018 - 389 3220"
+        android:textSize="25sp"
+        android:layout_below="@+id/mental_contact_list"
+        android:layout_marginLeft="5dp"
+        />
+
+    <TextView
+        android:id="@+id/mental_office_hour"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="office hours : 24 hours"
+        android:textSize="25sp"
+        android:layout_below="@+id/mental_hotline"
+        android:layout_marginLeft="5dp"
+        />
+    <LinearLayout
+        android:id="@+id/security_contact_list"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/mental_office_hour"
+        android:layout_marginTop="50dp"
+        android:layout_marginLeft="5dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Sunway Security Emergency Hotline"
+            android:textSize="29sp"
+            android:textStyle="bold"
+            />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/security_hotline"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="phone : 03 - 74918777"
+        android:textSize="25sp"
+        android:layout_below="@+id/security_contact_list"
+        android:layout_marginLeft="5dp"
+        />
+
+    <TextView
+        android:id="@+id/security_office_hour"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="office hours : 24 hours"
+        android:textSize="25sp"
+        android:layout_below="@+id/security_hotline"
+        android:layout_marginLeft="5dp"
+        />
+
+    <LinearLayout
+        android:id="@+id/nurse_contact_list"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/security_office_hour"
+        android:layout_marginTop="50dp"
+        android:layout_marginLeft="5dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Nightingale Bay / Nurse"
+            android:textSize="29sp"
+            android:textStyle="bold"
+            />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/nurse_hotline"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="phone : 03 - 74918670"
+        android:textSize="25sp"
+        android:layout_below="@+id/nurse_contact_list"
+        android:layout_marginLeft="5dp"
+        />
+
+    <TextView
+        android:id="@+id/nurse_office_hour"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="office hours : 8.30 a.m. - 5.30 p.m."
+        android:textSize="25sp"
+        android:layout_below="@+id/nurse_hotline"
+        android:layout_marginLeft="5dp"
+        />
+
+
+</RelativeLayout>

@@ -72,6 +72,12 @@ public class SettingsActivity extends AppCompatActivity{
             }
         });
 
+        EmergencyContact.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                SendUserToUsefulContactList();
+            }
+        });
 
 
         RetrieveUserInfo();
@@ -219,6 +225,13 @@ public class SettingsActivity extends AppCompatActivity{
 
     private void SendUserToEnrolmentActivity() {
         Intent mainIntent = new Intent(SettingsActivity.this, EnrolmentActivity.class);
+        mainIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        startActivity(mainIntent);
+        finish();
+    }
+
+    private void SendUserToUsefulContactList() {
+        Intent mainIntent = new Intent(SettingsActivity.this, UsefulContactList.class);
         mainIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         startActivity(mainIntent);
         finish();
