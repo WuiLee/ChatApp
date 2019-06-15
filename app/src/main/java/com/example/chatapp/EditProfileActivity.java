@@ -23,7 +23,7 @@ import java.util.HashMap;
 
 public class EditProfileActivity extends AppCompatActivity {
 
-    private Button EditProfileSetting;
+    private Button UpdateProfileSetting;
     private EditText userName, userID, identity, userEmail, userPhoneNo, courseID, gender;
 
     private String currentUserID;
@@ -41,13 +41,27 @@ public class EditProfileActivity extends AppCompatActivity {
         currentUserID = mAuth.getCurrentUser().getUid();
         RootRef = FirebaseDatabase.getInstance().getReference();
 
+        mToolbar = (Toolbar) findViewById(R.id.settings_toolbar);
+        setSupportActionBar(mToolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowCustomEnabled(true);
+        getSupportActionBar().setTitle("My Profile");
+
         InitializeFields();
+
+        UpdateProfileSetting.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                UpdateSettings();
+            }
+        });
 
         RetrieveUserInfo();
     }
 
     private void InitializeFields() {
 
+        UpdateProfileSetting = (Button) findViewById(R.id.update_settings_button);
         userName = (EditText) findViewById(R.id.edit_user_name);
         userID = (EditText) findViewById(R.id.edit_user_id);
         identity = (EditText) findViewById(R.id.edit_user_identity);
@@ -56,11 +70,6 @@ public class EditProfileActivity extends AppCompatActivity {
         courseID = (EditText) findViewById(R.id.edit_course_id);
         gender = (EditText) findViewById(R.id.edit_gender);
 
-        mToolbar = (Toolbar) findViewById(R.id.settings_toolbar);
-        setSupportActionBar(mToolbar);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setDisplayShowCustomEnabled(true);
-        getSupportActionBar().setTitle("My Profile");
     }
 
     private void UpdateSettings() {
