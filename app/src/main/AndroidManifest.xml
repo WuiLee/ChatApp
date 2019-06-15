@@ -15,10 +15,15 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".UsefulContactList"></activity>
-        <activity android:name=".AddPostActivity" />
-        <activity android:name=".EnrolmentActivity" />
-        <activity android:name=".TimetableActivity" />
+
+        <activity android:name=".UsefulContactList"
+            android:parentActivityName=".SettingsActivity"/>
+        <activity android:name=".AddPostActivity"
+            android:parentActivityName=".MainActivity"/>
+        <activity android:name=".EnrolmentActivity"
+            android:parentActivityName=".SettingsActivity"/>
+        <activity android:name=".TimetableActivity"
+            android:parentActivityName=".SettingsActivity"/>
         <activity android:name=".MiniGame.MiniGameActivity" />
         <activity android:name=".MainActivity" />
         <activity android:name=".LoginActivity">
