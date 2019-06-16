@@ -75,30 +75,15 @@
         android:textStyle="bold"/>
 
     <TextView
-        android:id="@+id/visit_profile_phone_title"
-        android:layout_width="120dp"
-        android:layout_height="wrap_content"
-        android:text="Phone No: "
-        android:layout_below="@+id/visit_profile_identity"
-        android:layout_marginLeft="15dp"
-        android:layout_marginRight="15dp"
-        android:layout_marginTop="10dp"
-        android:textAlignment="textStart"
-        android:textAllCaps="false"
-        android:textSize="22sp"
-        android:textStyle="bold"/>
-
-    <TextView
         android:id="@+id/visit_phone_no"
-        android:layout_width="150dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="017- 920 1820"
-        android:layout_toEndOf="@+id/visit_profile_phone_title"
         android:layout_below="@+id/visit_profile_course"
         android:layout_marginRight="15dp"
         android:layout_marginLeft="5dp"
         android:layout_marginTop="10dp"
-        android:textAlignment="textEnd"
+        android:textAlignment="textStart"
         android:textAllCaps="false"
         android:textSize="22sp"
         android:textStyle="bold"/>
@@ -107,7 +92,7 @@
         android:id="@+id/send_message_request_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/visit_profile_phone_title"
+        android:layout_below="@id/visit_phone_no"
         android:layout_marginTop="15dp"
         android:layout_marginLeft="65dp"
         android:layout_marginRight="65dp"

@@ -76,27 +76,26 @@ public class ProfileActivity extends AppCompatActivity {
                     String phoneNo = dataSnapshot.child("phone").getValue().toString();
 
                     Picasso.get().load(userImage).placeholder(R.drawable.profile_image).into(userProfileImage);
-                    userProfileName.setText(userName);
-                    userProfileID.setText(userID);
+                    userProfileName.setText("Name : " + userName);
+                    userProfileID.setText("ID : " + userID);
                     userProfileIdentity.setText(userIdentity);
                     userProfileCourse.setText(courseID);
-                    userPhoneNo.setText(courseID);
+                    userPhoneNo.setText("Phone No :" + phoneNo);
 
                     ManageChatRequest();
                 }
                 else{
                     String userName = dataSnapshot.child("name").getValue().toString();
-                    String userStatus = dataSnapshot.child("status").getValue().toString();
                     String userID = dataSnapshot.child("id").getValue().toString();
                     String userIdentity = dataSnapshot.child("identity").getValue().toString();
                     String courseID = dataSnapshot.child("course").getValue().toString();
                     String phoneNo = dataSnapshot.child("phone").getValue().toString();
 
-                    userProfileName.setText(userName);
-                    userProfileID.setText(userID);
+                    userProfileName.setText("Name : " + userName);
+                    userProfileID.setText("ID : " + userID);
                     userProfileIdentity.setText(userIdentity);
                     userProfileCourse.setText(courseID);
-                    userPhoneNo.setText(courseID);
+                    userPhoneNo.setText("Phone No :" + phoneNo);
 
                     ManageChatRequest();
                 }
