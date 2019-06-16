@@ -1,12 +1,11 @@
 package com.example.chatapp;
 
+import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -27,7 +26,7 @@ public class ProfileActivity extends AppCompatActivity {
     private String receiverUserID, senderUserID, Current_State;
 
     private CircleImageView userProfileImage;
-    private TextView userProfileName, userProfileStatus, userProfileID, userProfileCourse;
+    private TextView userProfileName, userProfileID, userProfileIdentity, userProfileCourse, userPhoneNo;
     private Button SendMessageRequestButton, DeclineMessageRequestsButton;
 
     private DatabaseReference UserRef, ChatRequestRef, ContactRef, NotificationRef;
@@ -52,9 +51,10 @@ public class ProfileActivity extends AppCompatActivity {
 
         userProfileImage = (CircleImageView) findViewById(R.id.visit_profile_image);
         userProfileName = (TextView) findViewById(R.id.visit_user_name);
-        userProfileStatus = (TextView) findViewById(R.id.visit_profile_status);
         userProfileID = (TextView) findViewById(R.id.visit_profile_id);
+        userProfileIdentity = (TextView) findViewById(R.id.visit_profile_identity);
         userProfileCourse = (TextView) findViewById(R.id.visit_profile_course);
+        userPhoneNo = (TextView) findViewById(R.id.visit_phone_no);
         SendMessageRequestButton = (Button) findViewById(R.id.send_message_request_button);
         DeclineMessageRequestsButton = (Button) findViewById(R.id.decline_message_request_button);
         Current_State = "new";
@@ -70,15 +70,17 @@ public class ProfileActivity extends AppCompatActivity {
 
                     String userImage = dataSnapshot.child("image").getValue().toString();
                     String userName = dataSnapshot.child("name").getValue().toString();
-                    String userStatus = dataSnapshot.child("status").getValue().toString();
                     String userID = dataSnapshot.child("id").getValue().toString();
+                    String userIdentity = dataSnapshot.child("identity").getValue().toString();
                     String courseID = dataSnapshot.child("course").getValue().toString();
+                    String phoneNo = dataSnapshot.child("phone").getValue().toString();
 
                     Picasso.get().load(userImage).placeholder(R.drawable.profile_image).into(userProfileImage);
                     userProfileName.setText(userName);
-                    userProfileStatus.setText(userStatus);
                     userProfileID.setText(userID);
+                    userProfileIdentity.setText(userIdentity);
                     userProfileCourse.setText(courseID);
+                    userPhoneNo.setText(courseID);
 
                     ManageChatRequest();
                 }
@@ -86,12 +88,15 @@ public class ProfileActivity extends AppCompatActivity {
                     String userName = dataSnapshot.child("name").getValue().toString();
                     String userStatus = dataSnapshot.child("status").getValue().toString();
                     String userID = dataSnapshot.child("id").getValue().toString();
+                    String userIdentity = dataSnapshot.child("identity").getValue().toString();
                     String courseID = dataSnapshot.child("course").getValue().toString();
+                    String phoneNo = dataSnapshot.child("phone").getValue().toString();
 
                     userProfileName.setText(userName);
-                    userProfileStatus.setText(userStatus);
                     userProfileID.setText(userID);
+                    userProfileIdentity.setText(userIdentity);
                     userProfileCourse.setText(courseID);
+                    userPhoneNo.setText(courseID);
 
                     ManageChatRequest();
                 }

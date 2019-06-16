@@ -1,3 +1,4 @@
+
 package com.example.chatapp;
 
 import android.support.annotation.NonNull;
@@ -24,7 +25,7 @@ import java.util.HashMap;
 public class EditProfileActivity extends AppCompatActivity {
 
     private Button UpdateProfileSetting;
-    private EditText userName, userID, identity, userEmail, userPhoneNo, courseID, gender;
+    private EditText userName, userID, identity, userPhoneNo, courseID, gender;
 
     private String currentUserID;
     private FirebaseAuth mAuth;
@@ -41,7 +42,7 @@ public class EditProfileActivity extends AppCompatActivity {
         currentUserID = mAuth.getCurrentUser().getUid();
         RootRef = FirebaseDatabase.getInstance().getReference();
 
-        mToolbar = (Toolbar) findViewById(R.id.settings_toolbar);
+        mToolbar = (Toolbar) findViewById(R.id.edit_profile_toolbar);
         setSupportActionBar(mToolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowCustomEnabled(true);
@@ -65,7 +66,6 @@ public class EditProfileActivity extends AppCompatActivity {
         userName = (EditText) findViewById(R.id.edit_user_name);
         userID = (EditText) findViewById(R.id.edit_user_id);
         identity = (EditText) findViewById(R.id.edit_user_identity);
-        userEmail = (EditText) findViewById(R.id.edit_email_address);
         userPhoneNo = (EditText) findViewById(R.id.edit_phone_number);
         courseID = (EditText) findViewById(R.id.edit_course_id);
         gender = (EditText) findViewById(R.id.edit_gender);
@@ -76,7 +76,6 @@ public class EditProfileActivity extends AppCompatActivity {
         String setUserName = userName.getText().toString();
         String setUserID = userID.getText().toString();
         String setIdentity = identity.getText().toString();
-        String setUserEmail = userEmail.getText().toString();
         String setPhoneNo = userPhoneNo.getText().toString();
         String setCourseID = courseID.getText().toString();
         String setGender = gender.getText().toString();
@@ -90,9 +89,7 @@ public class EditProfileActivity extends AppCompatActivity {
         if (TextUtils.isEmpty(setIdentity)){
             Toast.makeText(this, "Please enter your position...", Toast.LENGTH_SHORT).show();
         }
-        if (TextUtils.isEmpty(setUserEmail)){
-            Toast.makeText(this, "Please enter your email address...", Toast.LENGTH_SHORT).show();
-        }
+
         if (TextUtils.isEmpty(setPhoneNo)){
             Toast.makeText(this, "Please enter your phoneNo...", Toast.LENGTH_SHORT).show();
         }
@@ -105,7 +102,6 @@ public class EditProfileActivity extends AppCompatActivity {
             profileMap.put("name", setUserName);
             profileMap.put("id", setUserID);
             profileMap.put("identity", setIdentity);
-            profileMap.put("email", setUserEmail);
             profileMap.put("phone", setPhoneNo);
             profileMap.put("course", setCourseID);
             profileMap.put("gender", setGender);
@@ -134,7 +130,6 @@ public class EditProfileActivity extends AppCompatActivity {
                             String retrieveUserName = dataSnapshot.child("name").getValue().toString();
                             String retrieveUserID = dataSnapshot.child("id").getValue().toString();
                             String retrieveIdentity = dataSnapshot.child("identity").getValue().toString();
-                            String retrieveUserEmail = dataSnapshot.child("email").getValue().toString();
                             String retrievePhoneNo = dataSnapshot.child("phone").getValue().toString();
                             String retrieveCourseID = dataSnapshot.child("course").getValue().toString();
                             String retrieveGender = dataSnapshot.child("gender").getValue().toString();
@@ -144,7 +139,6 @@ public class EditProfileActivity extends AppCompatActivity {
                             userName.setText(retrieveUserName);
                             userID.setText(retrieveUserID);
                             identity.setText(retrieveIdentity);
-                            userEmail.setText(retrieveUserEmail);
                             userPhoneNo.setText(retrievePhoneNo);
                             courseID.setText(retrieveCourseID);
                             gender.setText((retrieveGender));
@@ -153,14 +147,12 @@ public class EditProfileActivity extends AppCompatActivity {
                             String retrieveUserName = dataSnapshot.child("name").getValue().toString();
                             String retrieveUserID = dataSnapshot.child("id").getValue().toString();
                             String retrieveIdentity = dataSnapshot.child("identity").getValue().toString();
-                            String retrieveUserEmail = dataSnapshot.child("email").getValue().toString();
                             String retrievePhoneNo = dataSnapshot.child("phone").getValue().toString();
                             String retrieveCourseID = dataSnapshot.child("course").getValue().toString();
 
                             userName.setText(retrieveUserName);
                             userID.setText(retrieveUserID);
                             identity.setText(retrieveIdentity);
-                            userEmail.setText(retrieveUserEmail);
                             userPhoneNo.setText(retrievePhoneNo);
                             courseID.setText(retrieveCourseID);
                         }

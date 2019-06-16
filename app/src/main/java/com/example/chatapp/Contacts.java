@@ -2,14 +2,15 @@ package com.example.chatapp;
 
 public class Contacts {
 
-    public String name, status, image;
+    public String name, id, status, image;
 
-    public Contacts(){
-        
+    public Contacts() {
+
     }
 
-    public Contacts(String name, String status, String image) {
+    public Contacts(String name, String id, String status, String image) {
         this.name = name;
+        this.id = id;
         this.status = status;
         this.image = image;
     }
@@ -20,6 +21,14 @@ public class Contacts {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getStatus() {
