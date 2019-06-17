@@ -1,6 +1,7 @@
 package com.example.chatapp;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -22,6 +23,9 @@ public class WeekActivity extends AppCompatActivity {
     private Toolbar toolbar;
     private ListView listView;
 
+    public static SharedPreferences sharedPreferences;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -29,12 +33,14 @@ public class WeekActivity extends AppCompatActivity {
 
         setupUIViews();
         initToolbar();
+
         setupListView();
     }
 
     private void setupUIViews(){
         toolbar = (Toolbar) findViewById(R.id.ToolbarWeek);
         listView = (ListView) findViewById(R.id.lvWeek);
+        sharedPreferences = getSharedPreferences("MY_DAY", MODE_PRIVATE);
     }
 
     private void initToolbar(){
@@ -53,7 +59,8 @@ public class WeekActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 switch (position){
-                    case 0: break;
+                    case 0:
+                        break;
                     case 1: break;
                     case 2: break;
                     case 3: break;
