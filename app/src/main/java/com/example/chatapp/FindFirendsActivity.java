@@ -57,7 +57,6 @@ public class FindFirendsActivity extends AppCompatActivity {
                     @Override
                     protected void onBindViewHolder(@NonNull FindFriendViewHolder holder, final int position, @NonNull Contacts model) {
                         holder.userName.setText(model.getName());
-                        holder.userId.setText(model.getId());
                         Picasso.get().load(model.getImage()).placeholder(R.drawable.profile_image).into(holder.profileImage);
 
                         holder.itemView.setOnClickListener(new View.OnClickListener() {
@@ -87,14 +86,13 @@ public class FindFirendsActivity extends AppCompatActivity {
     }
 
     public static class FindFriendViewHolder extends RecyclerView.ViewHolder{
-        TextView userName, userId;
+        TextView userName;
         CircleImageView profileImage;
 
         public FindFriendViewHolder(@NonNull View itemView) {
             super(itemView);
 
             userName = itemView.findViewById(R.id.users_profile_name);
-            userId = itemView.findViewById(R.id.users_profile_id);
 
             profileImage = itemView.findViewById(R.id.users_profile_image);
         }

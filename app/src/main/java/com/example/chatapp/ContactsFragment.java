@@ -149,7 +149,6 @@ public class ContactsFragment extends Fragment {
             super(itemView);
 
             userName = itemView.findViewById(R.id.users_profile_name);
-            userId = itemView.findViewById(R.id.users_profile_id);
             userStatus = itemView.findViewById(R.id.user_status);
             onlineIcon = (ImageView) itemView.findViewById(R.id.user_online_status);
 
