@@ -1,6 +1,7 @@
 
 package com.example.chatapp;
 
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -60,6 +61,7 @@ public class EditProfileActivity extends AppCompatActivity {
         RetrieveUserInfo();
     }
 
+
     private void InitializeFields() {
 
         UpdateProfileSetting = (Button) findViewById(R.id.update_settings_button);
@@ -111,6 +113,7 @@ public class EditProfileActivity extends AppCompatActivity {
                         @Override
                         public void onComplete(@NonNull Task<Void> task) {
                             if (task.isSuccessful()){
+                                SendUserToSettingsActivity();
                                 Toast.makeText(EditProfileActivity.this, "Profile Updated Successful...", Toast.LENGTH_SHORT).show();
                             }
                             else{
@@ -167,5 +170,12 @@ public class EditProfileActivity extends AppCompatActivity {
 
                     }
                 });
+    }
+
+    private void SendUserToSettingsActivity() {
+        Intent profileIntent = new Intent(EditProfileActivity.this, SettingsActivity.class);
+        profileIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        startActivity(profileIntent);
+        finish();
     }
 }
