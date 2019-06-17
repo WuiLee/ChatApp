@@ -72,7 +72,7 @@ public class WeekActivity extends AppCompatActivity {
         private String[] week = new String[]{};
 
         public WeekAdapter(Context context, int resource, String[] objects) {
-            super(context, resource);
+            super(context, resource, objects);
             this.resource = resource;
             this.week = objects;
             layoutInflater = (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
