@@ -29,7 +29,7 @@ public class RegisterForm extends AppCompatActivity {
     private Toolbar mToolbar;
 
     private Button RegisterAccountForm;
-    private EditText userName, userID, identity, userEmail, userPhoneNo, courseID;
+    private EditText userName, userID, identity, userPhoneNo, courseID;
     private CircleImageView userProfileImage;
 
     private String currentUserID;
@@ -70,7 +70,6 @@ public class RegisterForm extends AppCompatActivity {
         userName = (EditText) findViewById(R.id.enter_user_name);
         userID = (EditText) findViewById(R.id.enter_user_id);
         identity = (EditText) findViewById(R.id.enter_user_identity);
-        userEmail = (EditText) findViewById(R.id.enter_email_address);
         userPhoneNo = (EditText) findViewById(R.id.enter_phone_number);
         courseID = (EditText) findViewById(R.id.enter_course_id);
 
@@ -82,7 +81,6 @@ public class RegisterForm extends AppCompatActivity {
         String setUserName = userName.getText().toString();
         String setUserID = userID.getText().toString();
         String setIdentity = identity.getText().toString();
-        String setUserEmail = userEmail.getText().toString();
         String setPhoneNo = userPhoneNo.getText().toString();
         String setCourseID = courseID.getText().toString();
 
@@ -95,9 +93,7 @@ public class RegisterForm extends AppCompatActivity {
         if (TextUtils.isEmpty(setIdentity)){
             Toast.makeText(this, "Please enter your position...", Toast.LENGTH_SHORT).show();
         }
-        if (TextUtils.isEmpty(setUserEmail)){
-            Toast.makeText(this, "Please enter your email address...", Toast.LENGTH_SHORT).show();
-        }
+
         if (TextUtils.isEmpty(setPhoneNo)){
             Toast.makeText(this, "Please enter your phoneNo...", Toast.LENGTH_SHORT).show();
         }
@@ -110,7 +106,6 @@ public class RegisterForm extends AppCompatActivity {
                 profileMap.put("name", setUserName);
                 profileMap.put("id", setUserID);
                 profileMap.put("identity", setIdentity);
-                profileMap.put("email", setUserEmail);
                 profileMap.put("phone", setPhoneNo);
                 profileMap.put("course", setCourseID);
             RootRef.child("Users").child(currentUserID).setValue(profileMap)
@@ -151,7 +146,6 @@ public class RegisterForm extends AppCompatActivity {
                             userName.setText(retrieveUserName);
                             userID.setText(retrieveUserID);
                             identity.setText(retrieveIdentity);
-                            userEmail.setText(retrieveUserEmail);
                             userPhoneNo.setText(retrievePhoneNo);
                             courseID.setText(retrieveCourseID);
                         }
@@ -159,14 +153,12 @@ public class RegisterForm extends AppCompatActivity {
                             String retrieveUserName = dataSnapshot.child("name").getValue().toString();
                             String retrieveUserID = dataSnapshot.child("id").getValue().toString();
                             String retrieveIdentity = dataSnapshot.child("identity").getValue().toString();
-                            String retrieveUserEmail = dataSnapshot.child("email").getValue().toString();
                             String retrievePhoneNo = dataSnapshot.child("phone").getValue().toString();
                             String retrieveCourseID = dataSnapshot.child("course").getValue().toString();
 
                             userName.setText(retrieveUserName);
                             userID.setText(retrieveUserID);
                             identity.setText(retrieveIdentity);
-                            userEmail.setText(retrieveUserEmail);
                             userPhoneNo.setText(retrievePhoneNo);
                             courseID.setText(retrieveCourseID);
                         }
