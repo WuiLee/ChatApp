@@ -56,7 +56,7 @@ public class SettingsActivity extends AppCompatActivity{
         TimetableSettings.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                SendUserToTimetableActivity();
+                SendUserToWeekActivity();
             }
         });
 
@@ -168,8 +168,8 @@ public class SettingsActivity extends AppCompatActivity{
     }
 
 
-    private void SendUserToTimetableActivity() {
-        Intent timetableIntent = new Intent(SettingsActivity.this, TimetableActivity.class);
+    private void SendUserToWeekActivity() {
+        Intent timetableIntent = new Intent(SettingsActivity.this, WeekActivity.class);
         startActivity(timetableIntent);
     }
 
