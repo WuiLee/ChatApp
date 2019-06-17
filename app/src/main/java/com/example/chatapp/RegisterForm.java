@@ -137,7 +137,6 @@ public class RegisterForm extends AppCompatActivity {
                             String retrieveUserName = dataSnapshot.child("name").getValue().toString();
                             String retrieveUserID = dataSnapshot.child("id").getValue().toString();
                             String retrieveIdentity = dataSnapshot.child("identity").getValue().toString();
-                            String retrieveUserEmail = dataSnapshot.child("email").getValue().toString();
                             String retrievePhoneNo = dataSnapshot.child("phone").getValue().toString();
                             String retrieveCourseID = dataSnapshot.child("course").getValue().toString();
 
