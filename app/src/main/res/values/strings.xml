@@ -60,7 +60,8 @@
         <item>10:00AM - 12:00PM</item>
         <item>12:00AM - 14:00PM</item>
         <item>14:00AM - 16:00PM</item>
-        <item>16:00AM - 15:30PM</item>
+        <item>16:00AM - 16:30PM</item>
+        <item>16:30AM - 18:00PM</item>
     </string-array>
 
     <string-array name="time2">
