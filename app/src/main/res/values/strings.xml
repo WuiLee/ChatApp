@@ -12,7 +12,91 @@
         <item> Thursday</item>
         <item> Friday</item>
         <item> Saturday</item>
-
     </string-array>
+
+    <string-array name="Monday">
+        <item> Advanced Programming</item>
+        <item> Break</item>
+        <item> Web Engineering</item>
+        <item> Break</item>
+        <item> Advanced Programming Lab/Tut</item>
+    </string-array>
+
+    <string-array name="Tuesday">
+        <item> Advanced Math</item>
+        <item> Break</item>
+        <item> System Analyst and Design</item>
+        <item> Database</item>
+    </string-array>
+
+    <string-array name="Wednesday">
+        <item> Advanced Math</item>
+        <item> Break</item>
+        <item> System Analyst and Design</item>
+        <item> Database</item>
+    </string-array>
+
+    <string-array name="Thursday">
+        <item> Advanced Math</item>
+        <item> Break</item>
+        <item> System Analyst and Design</item>
+        <item> Database</item>
+    </string-array>
+
+    <string-array name="Friday">
+        <item> Advanced Math</item>
+        <item> Break</item>
+        <item> System Analyst and Design</item>
+        <item> Database</item>
+    </string-array>
+
+    <string-array name="Saturday">
+        <item> Self Study</item>
+        <item> Break</item>
+        <item> Self Study</item>
+    </string-array>
+
+    <string-array name="time1">
+        <item>10:00AM - 12:00PM</item>
+        <item>12:00AM - 14:00PM</item>
+        <item>14:00AM - 16:00PM</item>
+        <item>16:00AM - 15:30PM</item>
+    </string-array>
+
+    <string-array name="time2">
+        <item>10:00AM - 12:00PM</item>
+        <item>12:00AM - 14:00PM</item>
+        <item>14:00AM - 16:00PM</item>
+        <item>16:00AM - 15:30PM</item>
+    </string-array>
+
+    <string-array name="time3">
+        <item>10:00AM - 12:00PM</item>
+        <item>12:00AM - 14:00PM</item>
+        <item>14:00AM - 16:00PM</item>
+        <item>16:00AM - 15:30PM</item>
+    </string-array>
+
+    <string-array name="time4">
+        <item>10:00AM - 12:00PM</item>
+        <item>12:00AM - 14:00PM</item>
+        <item>14:00AM - 16:00PM</item>
+        <item>16:00AM - 15:30PM</item>
+    </string-array>
+
+    <string-array name="time5">
+        <item>10:00AM - 12:00PM</item>
+        <item>12:00AM - 14:00PM</item>
+        <item>14:00AM - 16:00PM</item>
+        <item>16:00AM - 15:30PM</item>
+    </string-array>
+
+    <string-array name="time6">
+        <item>10:00AM - 12:00PM</item>
+        <item>12:00AM - 14:00PM</item>
+        <item>14:00AM - 16:00PM</item>
+    </string-array>
+
+
 
 </resources>
