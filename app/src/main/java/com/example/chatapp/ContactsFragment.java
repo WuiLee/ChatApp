@@ -98,23 +98,19 @@ public class ContactsFragment extends Fragment {
                            if (dataSnapshot.hasChild("image")){
                                String userImage = dataSnapshot.child("image").getValue().toString();
                                String profileName = dataSnapshot.child("name").getValue().toString();
-                               String profileID = dataSnapshot.child("id").getValue().toString();
-                               String profileStatus = dataSnapshot.child("state").getValue().toString();
+
 
                                holder.userName.setText(profileName);
-                               holder.userId.setText(profileID);
-                               holder.userStatus.setText(profileStatus);
+
 
                                Picasso.get().load(userImage).placeholder(R.drawable.profile_image).into(holder.profileImage);
                            }
                            else{
                                String profileName = dataSnapshot.child("name").getValue().toString();
-                               String profileID = dataSnapshot.child("id").getValue().toString();
-                               String profileStatus = dataSnapshot.child("state").getValue().toString();
+
 
                                holder.userName.setText(profileName);
-                               holder.userId.setText(profileID);
-                               holder.userStatus.setText(profileStatus);
+
                            }
                        }
                     }
@@ -141,7 +137,7 @@ public class ContactsFragment extends Fragment {
 
     public static class ContactsViewHolder extends RecyclerView.ViewHolder
     {
-        TextView userName, userId, userStatus;
+        TextView userName;
         CircleImageView profileImage;
         ImageView onlineIcon;
 
@@ -149,7 +145,6 @@ public class ContactsFragment extends Fragment {
             super(itemView);
 
             userName = itemView.findViewById(R.id.users_profile_name);
-            userStatus = itemView.findViewById(R.id.user_status);
             onlineIcon = (ImageView) itemView.findViewById(R.id.user_online_status);
 
             profileImage = itemView.findViewById(R.id.users_profile_image);
