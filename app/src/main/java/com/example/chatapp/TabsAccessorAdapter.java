@@ -54,7 +54,7 @@ public class TabsAccessorAdapter extends FragmentPagerAdapter {
                 return "Requests";
 
             case 3:
-                return "Announcement";
+                return "Broadcast";
 
             default:
                 return null;
