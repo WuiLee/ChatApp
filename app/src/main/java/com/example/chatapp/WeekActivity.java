@@ -56,6 +56,7 @@ public class WeekActivity extends AppCompatActivity {
         WeekAdapter adapter = new WeekAdapter(this, R.layout.activity_week_single_item, week);
 
         listView.setAdapter(adapter);
+
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
