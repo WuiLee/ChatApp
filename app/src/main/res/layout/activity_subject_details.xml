@@ -3,11 +3,11 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".EnrolmentActivity">
+    android:layout_height="wrap_content"
+    tools:context=".SubjectDetails">
 
     <android.support.v7.widget.Toolbar
-        android:id="@+id/ToolbarEnrolment"
+        android:id="@+id/ToolbarSubjectDetails"
         android:layout_width="match_parent"
         android:layout_height="?android:attr/actionBarSize"
         android:background="@color/colorPrimary"
@@ -18,7 +18,7 @@
 
 
     <ListView
-        android:id="@+id/lvEnrolment"
+        android:id="@+id/lvSubjectDetails"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginLeft="10dp"
@@ -26,7 +26,7 @@
         android:layout_marginTop="10dp"
         android:layout_marginBottom="10dp"
         android:dividerHeight="10dp"
-        android:layout_below="@+id/ToolbarEnrolment"
+        android:layout_below="@+id/ToolbarSubjectDetails"
         android:divider="@null"
         >
 

@@ -12,16 +12,28 @@
 
     </include>
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimary"
+        android:text="Account Setting"
+        android:textColor="@android:color/white"
+        android:textSize="25sp"
+        android:textStyle="bold"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"
+        />
+
     <Button
         android:id="@+id/update_settings_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
-        android:layout_marginRight="10dp"
-        android:padding="6dp"
+        android:layout_marginRight="6dp"
+        android:layout_marginTop="7dp"
         android:background="@drawable/button"
         android:text="SAVE"
-        android:textSize="23sp"
+        android:textSize="20sp"
         android:textColor="@android:color/white"
         />
     <Button
@@ -29,11 +41,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
-        android:layout_marginLeft="10dp"
-        android:padding="6dp"
+        android:layout_marginLeft="6dp"
+        android:layout_marginTop="7dp"
         android:background="@drawable/button"
         android:text="Cancel"
-        android:textSize="23sp"
+        android:textSize="19sp"
         android:textColor="@android:color/white"
         />
 

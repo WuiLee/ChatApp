@@ -98,5 +98,83 @@
         <item>14:00AM - 16:00PM</item>
     </string-array>
 
+    <string-array name="Subjects">
+        <item>Database Fundamental</item>
+        <item>Basic Mathematics</item>
+        <item>Advanced Mathematics</item>
+        <item>Basic Programming</item>
+        <item>Advanced Programming</item>
+        <item>Web Design </item>
+        <item>Web Engineering </item>
+        <item>System Analysis and Design</item>
+        <item>Network Technology</item>
+        <item>Object Oriented Programming and Design</item>
+    </string-array>
+
+    <string-array name="Database">
+        <item> Lecturer: Kwong Siaw Chun</item>
+        <item> Subject Code: ABC 1234</item>
+
+    </string-array>
+
+    <string-array name="BasicMath">
+        <item> Lecturer: Kwong Siaw Chun</item>
+        <item> Subject Code: ABC 1234</item>
+
+    </string-array>
+
+    <string-array name="AdvMath">
+        <item> Lecturer: Kwong Siaw Chun</item>
+        <item> Subject Code: ABC 1234</item>
+
+    </string-array>
+
+    <string-array name="BasicProgramming">
+        <item> Lecturer: Kwong Siaw Chun</item>
+        <item> Subject Code: ABC 1234</item>
+
+    </string-array>
+
+    <string-array name="AdvProgramming">
+        <item> Lecturer: Kwong Siaw Chun</item>
+        <item> Subject Code: ABC 1234</item>
+
+    </string-array>
+
+    <string-array name="WebDesign">
+        <item> Lecturer: Kwong Siaw Chun</item>
+        <item> Subject Code: ABC 1234</item>
+
+    </string-array>
+
+    <string-array name="WebEngineering">
+        <item> Lecturer: Kwong Siaw Chun</item>
+        <item> Subject Code: ABC 1234</item>
+
+    </string-array>
+
+    <string-array name="SAD">
+        <item> Lecturer: Kwong Siaw Chun</item>
+        <item> Subject Code: ABC 1234</item>
+
+    </string-array>
+
+    <string-array name="NetworkTech">
+        <item> Lecturer: Kwong Siaw Chun</item>
+        <item> Subject Code: ABC 1234</item>
+
+    </string-array>
+
+    <string-array name="OOD">
+        <item> Lecturer: Kwong Siaw Chun</item>
+        <item> Subject Code: ABC 1234</item>
+
+    </string-array>
+
+    <string-array name="titles">
+        <item> Unit1 </item>
+        <item> Unit2 </item>
+
+    </string-array>
 
 </resources>

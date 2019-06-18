@@ -15,7 +15,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".DayDetailActivity"></activity>
+        <activity android:name=".SubjectDetails"></activity>
+        <activity android:name=".DayDetailActivity" />
         <activity android:name=".WeekActivity" />
         <activity android:name=".EditProfileActivity" />
         <activity
