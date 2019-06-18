@@ -23,14 +23,10 @@ public class TabsAccessorAdapter extends FragmentPagerAdapter {
                 return groupsFragment;
 
             case 2:
-                ContactsFragment contactsFragment = new ContactsFragment();
-                return contactsFragment;
-
-            case 3:
                 RequestsFragment requestsFragment = new RequestsFragment();
                 return requestsFragment;
 
-            case 4:
+            case 3:
                 AnnouncementFragment announcementFragment = new AnnouncementFragment();
                 return announcementFragment;
 
@@ -55,12 +51,9 @@ public class TabsAccessorAdapter extends FragmentPagerAdapter {
                 return "Groups";
 
             case 2:
-                return "Contacts";
-
-            case 3:
                 return "Requests";
 
-            case 4:
+            case 3:
                 return "Announcement";
 
             default:
