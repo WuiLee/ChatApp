@@ -106,6 +106,7 @@ public class SettingsActivity extends AppCompatActivity{
         TimetableSettings = (Button) findViewById(R.id.timetable_page_button);
         EnrolmentSettings = (Button) findViewById(R.id.enrollment_page_button);
         EmergencyContact = (Button) findViewById(R.id.useful_contact_button);
+        SignOutButton = (Button) findViewById(R.id.sign_out_button);
 
         userName = (TextView) findViewById(R.id.view_user_name);
         userID = (TextView) findViewById(R.id.view_student_id);
