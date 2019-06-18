@@ -47,6 +47,7 @@ public class EditProfileActivity extends AppCompatActivity {
         setSupportActionBar(mToolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowCustomEnabled(true);
+        getSupportActionBar().setTitle(null);
 
         InitializeFields();
 

@@ -108,6 +108,7 @@ public class SettingsActivity extends AppCompatActivity{
         setSupportActionBar(SettingsToolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowCustomEnabled(true);
+        getSupportActionBar().setTitle("My Profile");
     }
 
    /* @Override
