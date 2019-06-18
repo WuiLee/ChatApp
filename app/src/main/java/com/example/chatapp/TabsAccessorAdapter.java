@@ -37,7 +37,7 @@ public class TabsAccessorAdapter extends FragmentPagerAdapter {
 
     @Override
     public int getCount() {
-        return 5  ;
+        return 4 ;
     }
 
     @Nullable

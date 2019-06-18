@@ -7,6 +7,7 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -171,14 +172,22 @@ public class SettingsActivity extends AppCompatActivity{
                     }
                 });
     }
-    
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == R.id.main_logout_option){
+            updateUserStatus("offline");
+            mAuth.signOut();
+            SendUserToLoginActivity();
+        }
+        return super.onOptionsItemSelected(item);
+    }
 
     private void SendUserToLoginActivity() {
         Intent loginIntent = new Intent(SettingsActivity.this, LoginActivity.class);
         loginIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         startActivity(loginIntent);
-        updateUserStatus("offline");
-        mAuth.signOut();
+
         finish();
     }
 
