@@ -62,37 +62,37 @@ public class WeekActivity extends AppCompatActivity {
                 switch (position){
                     case 0:
                     {
-                        startActivity(new Intent(WeekActivity.this, DayDetail.class));
+                        startActivity(new Intent(WeekActivity.this, DayDetailActivity.class));
                         sharedPreferences.edit().putString(SEL_DAY, "Monday").apply();
                         break;
                     }
                     case 1:
                     {
-                        startActivity(new Intent(WeekActivity.this, DayDetail.class));
+                        startActivity(new Intent(WeekActivity.this, DayDetailActivity.class));
                         sharedPreferences.edit().putString(SEL_DAY, "Tuesday").apply();
                         break;
                     }
                     case 2:
                     {
-                        startActivity(new Intent(WeekActivity.this, DayDetail.class));
+                        startActivity(new Intent(WeekActivity.this, DayDetailActivity.class));
                         sharedPreferences.edit().putString(SEL_DAY, "Wednesday").apply();
                         break;
                     }
                     case 3:
                     {
-                        startActivity(new Intent(WeekActivity.this, DayDetail.class));
+                        startActivity(new Intent(WeekActivity.this, DayDetailActivity.class));
                         sharedPreferences.edit().putString(SEL_DAY, "Thursday").apply();
                         break;
                     }
                     case 4:
                     {
-                        startActivity(new Intent(WeekActivity.this, DayDetail.class));
+                        startActivity(new Intent(WeekActivity.this, DayDetailActivity.class));
                         sharedPreferences.edit().putString(SEL_DAY, "Friday").apply();
                         break;
                     }
                     case 5:
                     {
-                        startActivity(new Intent(WeekActivity.this, DayDetail.class));
+                        startActivity(new Intent(WeekActivity.this, DayDetailActivity.class));
                         sharedPreferences.edit().putString(SEL_DAY, "Saturday").apply();
                         break;
                     }

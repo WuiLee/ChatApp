@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
@@ -13,7 +14,7 @@ import android.widget.TextView;
 
 import com.example.chatapp.Utils.LetterImageView;
 
-public class DayDetail extends AppCompatActivity {
+public class DayDetailActivity extends AppCompatActivity {
 
     private ListView listView;
     private Toolbar toolbar;
@@ -98,7 +99,7 @@ public class DayDetail extends AppCompatActivity {
             PrefferedDay = Saturday;
             PrefferedTime = Time6;
         }
-        SimpleAdapter simpleAdapter = new SimpleAdapter(DayDetail.this, PrefferedDay, PrefferedTime);
+        SimpleAdapter simpleAdapter = new SimpleAdapter(DayDetailActivity.this, PrefferedDay, PrefferedTime);
         listView.setAdapter(simpleAdapter);
     }
 
@@ -150,5 +151,14 @@ public class DayDetail extends AppCompatActivity {
 
             return convertView;
         }
+    }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()){
+            case android.R.id.home : {
+                onBackPressed();
+            }
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

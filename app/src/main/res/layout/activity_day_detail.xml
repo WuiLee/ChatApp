@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    tools:context=".WeekActivity">
+    tools:context=".DayDetailActivity">
+
 
     <android.support.v7.widget.Toolbar
         android:id="@+id/ToolbarDayDetail"
@@ -31,5 +32,6 @@
         >
 
     </ListView>
+
 
 </RelativeLayout>
