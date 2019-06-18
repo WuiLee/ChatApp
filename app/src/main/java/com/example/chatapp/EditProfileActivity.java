@@ -25,7 +25,7 @@ import java.util.HashMap;
 
 public class EditProfileActivity extends AppCompatActivity {
 
-    private Button UpdateProfileSetting;
+    private Button UpdateProfileSetting, CancelUpdateButton;
     private EditText userName, userID, identity, userPhoneNo, courseID, gender;
 
     private String currentUserID;
@@ -58,6 +58,13 @@ public class EditProfileActivity extends AppCompatActivity {
             }
         });
 
+        CancelUpdateButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                SendUserToSettingsActivity();
+            }
+        });
+
         RetrieveUserInfo();
     }
 
@@ -65,6 +72,7 @@ public class EditProfileActivity extends AppCompatActivity {
     private void InitializeFields() {
 
         UpdateProfileSetting = (Button) findViewById(R.id.update_settings_button);
+        CancelUpdateButton = (Button) findViewById(R.id.cancel_update_settings_button);
         userName = (EditText) findViewById(R.id.edit_user_name);
         userID = (EditText) findViewById(R.id.edit_user_id);
         identity = (EditText) findViewById(R.id.edit_user_identity);
@@ -152,12 +160,15 @@ public class EditProfileActivity extends AppCompatActivity {
                             String retrieveIdentity = dataSnapshot.child("identity").getValue().toString();
                             String retrievePhoneNo = dataSnapshot.child("phone").getValue().toString();
                             String retrieveCourseID = dataSnapshot.child("course").getValue().toString();
+                            String retrieveGender = dataSnapshot.child("gender").getValue().toString();
 
                             userName.setText(retrieveUserName);
                             userID.setText(retrieveUserID);
                             identity.setText(retrieveIdentity);
                             userPhoneNo.setText(retrievePhoneNo);
                             courseID.setText(retrieveCourseID);
+                            gender.setText((retrieveGender));
+
                         }
                         else {
                             userName.setVisibility(View.VISIBLE);
