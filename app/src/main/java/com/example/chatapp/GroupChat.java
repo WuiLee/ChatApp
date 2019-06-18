@@ -2,6 +2,7 @@ package com.example.chatapp;
 
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -105,10 +106,12 @@ public class GroupChat extends AppCompatActivity {
     }
 
     private void InitializeFields() {
-        mToolbar = (Toolbar) findViewById(R.id.group_chat_bar_layout);
+        mToolbar = (Toolbar) findViewById(R.id.group_chat_toolbar);
         setSupportActionBar(mToolbar);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setDisplayShowHomeEnabled(true);
+
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setDisplayHomeAsUpEnabled(true);
+        actionBar.setDisplayShowCustomEnabled(true);
         getSupportActionBar().setTitle(currentGroupName);
 
         SendMessageButton = (ImageButton) findViewById(R.id.send_message_button);
