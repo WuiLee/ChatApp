@@ -74,6 +74,7 @@ public class RegisterActivity extends AppCompatActivity {
         String password = UserPassword.getText().toString();
 
         if (!validateEmail(UserEmail)){
+            Toast.makeText(this, "Please enter a valid email", Toast.LENGTH_SHORT).show();
             return;
         }
         if (TextUtils.isEmpty(password)){

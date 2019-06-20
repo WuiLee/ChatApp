@@ -22,7 +22,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/register_image"
         android:layout_alignParentStart="true"
-        android:hint="Email"
+        android:hint="email@imail.sunway.edu.my"
         android:inputType="textEmailAddress"
         android:background="@drawable/inputs"
         android:padding="4dp"
