@@ -19,6 +19,9 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 public class RegisterActivity extends AppCompatActivity {
 
     private Button RegisterButton;
@@ -54,12 +57,24 @@ public class RegisterActivity extends AppCompatActivity {
         });
     }
 
+    private static boolean validateEmail(EditText userEmail){
+        try {
+            Pattern pattern = Pattern.compile("^[_0-9-]+(@imail.sunway.edu.my)$");
+            Matcher matcher = pattern.matcher(userEmail.getText());
+            return matcher.matches();
+        } catch (Exception e){
+            e.printStackTrace();
+            return false;
+        }
+
+    }
+
     private void Register() {
         String email = UserEmail.getText().toString();
         String password = UserPassword.getText().toString();
 
-        if (TextUtils.isEmpty(email)){
-            Toast.makeText(this, "Please enter email...", Toast.LENGTH_SHORT).show();
+        if (!validateEmail(UserEmail)){
+            return;
         }
         if (TextUtils.isEmpty(password)){
             Toast.makeText(this, "Please enter password...", Toast.LENGTH_SHORT).show();
