@@ -60,6 +60,10 @@ public class MainActivity extends AppCompatActivity {
 
         myTabLayout = (TabLayout) findViewById(R.id.main_tabs);
         myTabLayout.setupWithViewPager(myViewPager);
+        myTabLayout.getTabAt(0).setIcon(R.drawable.person);
+        myTabLayout.getTabAt(0).setIcon(R.drawable.group);
+        myTabLayout.getTabAt(0).setIcon(R.drawable.announcement);
+        myTabLayout.getTabAt(0).setIcon(R.drawable.request);
 
     }
 
