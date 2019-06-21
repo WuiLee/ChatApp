@@ -1,19 +1,17 @@
 package com.example.chatapp;
 
+import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ScrollView;
 import android.widget.TextView;
-import android.support.v7.widget.Toolbar;
 import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -25,11 +23,9 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Iterator;
-import java.util.List;
 
 public class GroupChat extends AppCompatActivity {
 
@@ -37,11 +33,7 @@ public class GroupChat extends AppCompatActivity {
     private ImageButton SendMessageButton;
     private EditText userMessageInput;
     private TextView displayTextMessages;
-\
-    private final List<Messages> messagesList = new ArrayList<>();
-    private LinearLayoutManager linearLayoutManager;
-    private MessageAdapter messageAdapter;
-    private RecyclerView userMessageList;
+    private ScrollView mScrollView;
 
     private FirebaseAuth mAuth;
     private DatabaseReference UserRef, GroupNameRef, GroupMessageKeyRef;
@@ -125,6 +117,8 @@ public class GroupChat extends AppCompatActivity {
         SendMessageButton = (ImageButton) findViewById(R.id.send_message_button);
         userMessageInput = (EditText) findViewById(R.id.input_group_message);
         displayTextMessages = (TextView) findViewById(R.id.group_chat_text_display);
+        mScrollView = (ScrollView) findViewById(R.id.my_scroll_view);
+
     }
 
     private void GetUserInfo() {
