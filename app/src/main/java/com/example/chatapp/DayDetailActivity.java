@@ -25,7 +25,6 @@ public class DayDetailActivity extends AppCompatActivity {
     public static String[] Thursday;
     public static String[] Friday;
     public static String[] Saturday;
-
     public static String[] Time1;
     public static String[] Time2;
     public static String[] Time3;
@@ -99,7 +98,7 @@ public class DayDetailActivity extends AppCompatActivity {
             PrefferedDay = Saturday;
             PrefferedTime = Time6;
         }
-        SimpleAdapter simpleAdapter = new SimpleAdapter(DayDetailActivity.this, PrefferedDay, PrefferedTime);
+        SimpleAdapter simpleAdapter = new SimpleAdapter(this, PrefferedDay, PrefferedTime);
         listView.setAdapter(simpleAdapter);
     }
 

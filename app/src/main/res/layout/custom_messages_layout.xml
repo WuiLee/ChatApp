@@ -22,7 +22,7 @@
         android:background="@drawable/receiver_messages_layout"
         android:text="receiver messages her"
         android:padding="10dp"
-        android:textSize="14sp"
+        android:textSize="16sp"
         android:textStyle="bold"
         android:textColor="@android:color/black"/>
 
@@ -35,10 +35,12 @@
         android:layout_alignParentTop="@+id/receiver_message_text"
         android:background="@drawable/sender_messages_layout"
         android:text="sender messages"
-        android:textSize="14sp"
+        android:textSize="16sp"
         android:padding="10dp"
         android:textStyle="bold"
         android:textColor="@android:color/black"/>
+
+
 
 
 </RelativeLayout>

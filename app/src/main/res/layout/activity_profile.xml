@@ -13,7 +13,7 @@
         android:layout_height="200dp"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="80dp"
+        android:layout_marginTop="70dp"
         android:src="@drawable/profile_image"/>
 
     <TextView
@@ -118,5 +118,24 @@
         android:textAllCaps="false"
         android:visibility="invisible"/>
 
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/send_booking_request_button"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_below="@id/decline_message_request_button"
+        android:layout_alignParentEnd="true"
+        android:layout_marginRight="32dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/appointment"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Book Appointment"
+        android:layout_alignParentEnd="true"
+        android:textSize="13sp"
+        android:layout_below="@id/send_booking_request_button"
+        android:layout_marginRight="13dp"
+        />
 
 </RelativeLayout>

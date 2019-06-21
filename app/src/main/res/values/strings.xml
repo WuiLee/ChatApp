@@ -112,68 +112,68 @@
     </string-array>
 
     <string-array name="Database">
-        <item> Lecturer: Kwong Siaw Chun</item>
-        <item> Subject Code: ABC 1234</item>
+        <item> Kwong Siaw Chun\n\n\n</item>
+        <item> DIT 1333</item>
 
     </string-array>
 
     <string-array name="BasicMath">
-        <item> Lecturer: Kwong Siaw Chun</item>
-        <item> Subject Code: ABC 1234</item>
+        <item> Kwong Siaw Chun\n\n\n</item>
+        <item> MTH 101D</item>
 
     </string-array>
 
     <string-array name="AdvMath">
-        <item> Lecturer: Kwong Siaw Chun</item>
-        <item> Subject Code: ABC 1234</item>
+        <item> Jaya Krishna\n\n\n</item>
+        <item> MTH 202D</item>
 
     </string-array>
 
     <string-array name="BasicProgramming">
-        <item> Lecturer: Kwong Siaw Chun</item>
-        <item> Subject Code: ABC 1234</item>
+        <item> Tan Kwong Hwee\n\n\n</item>
+        <item> PG 4013</item>
 
     </string-array>
 
     <string-array name="AdvProgramming">
-        <item> Lecturer: Kwong Siaw Chun</item>
-        <item> Subject Code: ABC 1234</item>
+        <item> Yeap Boon han\n\n\n</item>
+        <item> PRG 203D</item>
 
     </string-array>
 
     <string-array name="WebDesign">
-        <item> Lecturer: Kwong Siaw Chun</item>
-        <item> Subject Code: ABC 1234</item>
+        <item> Mohana Sunthari\n\n\n</item>
+        <item> WEB 101D</item>
 
     </string-array>
 
     <string-array name="WebEngineering">
-        <item> Lecturer: Kwong Siaw Chun</item>
-        <item> Subject Code: ABC 1234</item>
+        <item> Kumatha Velli Muruyandy\n\n\n</item>
+        <item> WEB 1201</item>
 
     </string-array>
 
     <string-array name="SAD">
-        <item> Lecturer: Kwong Siaw Chun</item>
-        <item> Subject Code: ABC 1234</item>
+        <item> Prof.Lee Chien Sing\n\n\n</item>
+        <item> DIT 1054</item>
 
     </string-array>
 
     <string-array name="NetworkTech">
-        <item> Lecturer: Kwong Siaw Chun</item>
-        <item> Subject Code: ABC 1234</item>
+        <item> Dharmidran Anantharsekan\n\n\n</item>
+        <item> NET 204D</item>
 
     </string-array>
 
     <string-array name="OOD">
-        <item> Lecturer: Kwong Siaw Chun</item>
-        <item> Subject Code: ABC 1234</item>
+        <item> Kumatha Velli Muruyandy\n\n\n</item>
+        <item> Cse 202D</item>
 
     </string-array>
 
     <string-array name="titles">
-        <item> Unit1 </item>
-        <item> Unit2 </item>
+        <item> Lecturer : </item>
+        <item> Subject ID :</item>
 
     </string-array>
 

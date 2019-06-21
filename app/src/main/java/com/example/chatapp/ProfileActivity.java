@@ -79,7 +79,7 @@ public class ProfileActivity extends AppCompatActivity {
                     userProfileName.setText("Name : " + userName);
                     userProfileID.setText("ID : " + userID);
                     userProfileIdentity.setText(userIdentity);
-                    userProfileCourse.setText(courseID);
+                    userProfileCourse.setText("Department : " + courseID);
                     userPhoneNo.setText("Phone No :" + phoneNo);
 
                     ManageChatRequest();
@@ -94,7 +94,7 @@ public class ProfileActivity extends AppCompatActivity {
                     userProfileName.setText("Name : " + userName);
                     userProfileID.setText("ID : " + userID);
                     userProfileIdentity.setText(userIdentity);
-                    userProfileCourse.setText(courseID);
+                    userProfileCourse.setText("Department : " + courseID);
                     userPhoneNo.setText("Phone No :" + phoneNo);
 
                     ManageChatRequest();
