@@ -3,7 +3,7 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="fcm_token">FCM Token: %s</string>
+    <string name="fcm_token" translatable="false">FCM Token: %s</string>
 
     <string-array name="Week">
         <item> Monday</item>
@@ -112,62 +112,62 @@
     </string-array>
 
     <string-array name="Database">
-        <item> Kwong Siaw Chun\n\n\n</item>
-        <item> DIT 1333</item>
+        <item> <h1>Kwong Siaw Chun\n\n</h1></item>
+        <item><h2> DIT 1333</h2></item>
 
     </string-array>
 
     <string-array name="BasicMath">
-        <item> Kwong Siaw Chun\n\n\n</item>
-        <item> MTH 101D</item>
+        <item> <h1>Kwong Siaw Chun\n\n\n</h1></item>
+        <item> <h2>MTH 101D</h2></item>
 
     </string-array>
 
     <string-array name="AdvMath">
-        <item> Jaya Krishna\n\n\n</item>
-        <item> MTH 202D</item>
+        <item> <h1>Jaya Krishna\n\n</h1></item>
+        <item><h2>MTH 202D</h2> </item>
 
     </string-array>
 
     <string-array name="BasicProgramming">
-        <item> Tan Kwong Hwee\n\n\n</item>
+        <item> Tan Kwong Hwee\n\n</item>
         <item> PG 4013</item>
 
     </string-array>
 
     <string-array name="AdvProgramming">
-        <item> Yeap Boon han\n\n\n</item>
-        <item> PRG 203D</item>
+        <item> <h1>Yeap Boon han\n\n</h1></item>
+        <item> <h2>PRG 203D</h2></item>
 
     </string-array>
 
     <string-array name="WebDesign">
-        <item> Mohana Sunthari\n\n\n</item>
-        <item> WEB 101D</item>
+        <item> <h1>Mohana Sunthari\n\n</h1></item>
+        <item> <h2>WEB 101D</h2></item>
 
     </string-array>
 
     <string-array name="WebEngineering">
-        <item> Kumatha Velli Muruyandy\n\n\n</item>
-        <item> WEB 1201</item>
+        <item><h1>Kumatha Velli Muruyandy\n\n</h1> </item>
+        <item><h2>WEB 1201</h2></item>
 
     </string-array>
 
     <string-array name="SAD">
-        <item> Prof.Lee Chien Sing\n\n\n</item>
-        <item> DIT 1054</item>
+        <item> <h1>Prof.Lee Chien Sing\n\n</h1></item>
+        <item> <h2>DIT 1054</h2></item>
 
     </string-array>
 
     <string-array name="NetworkTech">
-        <item> Dharmidran Anantharsekan\n\n\n</item>
+        <item> Dharmidran Anantharsekan\n\n</item>
         <item> NET 204D</item>
 
     </string-array>
 
     <string-array name="OOD">
-        <item> Kumatha Velli Muruyandy\n\n\n</item>
-        <item> Cse 202D</item>
+        <item> <h1>Kumatha Velli Muruyandy\n\n</h1></item>
+        <item> <h2>Cse 202D</h2></item>
 
     </string-array>
 

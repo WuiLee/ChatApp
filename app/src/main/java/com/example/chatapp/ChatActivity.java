@@ -1,13 +1,15 @@
 package com.example.chatapp;
 
 import android.content.Context;
+import android.content.Intent;
+import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,7 +17,6 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
-import android.support.v7.widget.Toolbar;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -70,6 +71,13 @@ public class ChatActivity extends AppCompatActivity {
 
         InitializeControllers();
 
+        userImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                SendUserToProfileActivity();
+            }
+        });
+
         userName.setText(messageReceiverName);
         Picasso.get().load(messageReceiverImage).placeholder(R.drawable.profile_image).into(userImage);
 
@@ -80,6 +88,7 @@ public class ChatActivity extends AppCompatActivity {
             }
         });
     }
+
 
     private void InitializeControllers() {
 
@@ -214,5 +223,10 @@ public class ChatActivity extends AppCompatActivity {
                 }
             });
         }
+    }
+
+    private void SendUserToProfileActivity() {
+        Intent miniGameIntent = new Intent(ChatActivity.this, ProfileActivity.class);
+        startActivity(miniGameIntent);
     }
 }
