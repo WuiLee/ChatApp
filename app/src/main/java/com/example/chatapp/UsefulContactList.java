@@ -23,7 +23,7 @@ public class UsefulContactList extends AppCompatActivity {
         setContentView(R.layout.activity_useful_contact_list);
 
         mSlideViewPager = (ViewPager) findViewById(R.id.view_useful_contact);
-        mDotLayout = (LinearLayout) findViewById(R.id.contact_linear_layout);
+        mDotLayout = (LinearLayout) findViewById(R.id.dotsLayout);
 
         sliderAdapter = new SliderAdapter(this);
         mSlideViewPager.setAdapter(sliderAdapter);
