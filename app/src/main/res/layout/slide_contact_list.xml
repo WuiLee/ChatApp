@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <ImageView
+        android:id="@+id/slide_image"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="100dp"
+        android:layout_marginTop="50dp"
+        app:srcCompat="@drawable/doctor" />
+
+    <TextView
+        android:id="@+id/slide_headings"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/slide_image"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="50dp"
+        android:text="Mental Health Crisis Hotline"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        android:textColor="#A8A9B2"
+
+        />
+
+    <TextView
+        android:id="@+id/slide_phone_no"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/slide_headings"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="25dp"
+        android:text="Phone No : "
+        android:textSize="25sp"
+        android:textStyle="bold"
+        android:textColor="#A8A9B2"
+        />
+
+    <TextView
+        android:id="@+id/slide_office_hours"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/slide_phone_no"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="25dp"
+        android:text="Office Hours : 24 hours"
+        android:textSize="25sp"
+        android:textStyle="bold"
+        android:textColor="#A8A9B2"
+        />
+
+</RelativeLayout>
