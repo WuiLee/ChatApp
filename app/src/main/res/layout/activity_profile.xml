@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/profile_activity"
+    android:background="@drawable/main_background"
     tools:context=".ProfileActivity">
 
     <de.hdodenhof.circleimageview.CircleImageView
@@ -13,8 +13,8 @@
         android:layout_height="200dp"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="70dp"
-        android:src="@drawable/profile_image"/>
+        android:layout_marginTop="80dp"
+        android:src="@drawable/profile_icon"/>
 
     <TextView
         android:id="@+id/visit_user_name"
@@ -24,11 +24,12 @@
         android:layout_below="@+id/visit_profile_image"
         android:layout_marginLeft="15dp"
         android:layout_marginRight="15dp"
-        android:layout_marginTop="5dp"
+        android:layout_marginTop="30dp"
         android:textAlignment="textStart"
         android:textAllCaps="false"
         android:textSize="23sp"
-        android:textStyle="bold"/>
+        android:textStyle="bold"
+        android:textColor="@color/colorTransparentWhite"/>
 
     <TextView
         android:id="@+id/visit_profile_id"
@@ -38,11 +39,12 @@
         android:layout_below="@+id/visit_user_name"
         android:layout_marginLeft="15dp"
         android:layout_marginRight="15dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="15dp"
         android:textAlignment="textStart"
         android:textAllCaps="false"
         android:textSize="22sp"
-        android:textStyle="bold"/>
+        android:textStyle="bold"
+        android:textColor="@color/colorTransparentWhite"/>
 
     <TextView
         android:id="@+id/visit_profile_identity"
@@ -53,11 +55,12 @@
         android:layout_below="@+id/visit_user_name"
         android:layout_marginLeft="50dp"
         android:layout_marginRight="15dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="15dp"
         android:textAlignment="textStart"
         android:textAllCaps="false"
         android:textSize="23sp"
-        android:textStyle="bold"/>
+        android:textStyle="bold"
+        android:textColor="@color/colorTransparentWhite"/>
 
     <TextView
         android:id="@+id/visit_profile_course"
@@ -67,11 +70,12 @@
         android:layout_below="@+id/visit_profile_identity"
         android:layout_marginLeft="15dp"
         android:layout_marginRight="15dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="15dp"
         android:textAlignment="textStart"
         android:textAllCaps="false"
         android:textSize="22sp"
-        android:textStyle="bold"/>
+        android:textStyle="bold"
+        android:textColor="@color/colorTransparentWhite"/>
 
     <TextView
         android:id="@+id/visit_phone_no"
@@ -81,11 +85,12 @@
         android:layout_below="@+id/visit_profile_course"
         android:layout_marginRight="15dp"
         android:layout_marginLeft="15dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="15dp"
         android:textAlignment="textStart"
         android:textAllCaps="false"
         android:textSize="22sp"
-        android:textStyle="bold"/>
+        android:textStyle="bold"
+        android:textColor="@color/colorTransparentWhite"/>
 
     <Button
         android:id="@+id/send_message_request_button"
@@ -118,24 +123,5 @@
         android:textAllCaps="false"
         android:visibility="invisible"/>
 
-    <de.hdodenhof.circleimageview.CircleImageView
-        android:id="@+id/send_booking_request_button"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
-        android:layout_below="@id/decline_message_request_button"
-        android:layout_alignParentEnd="true"
-        android:layout_marginRight="32dp"
-        android:layout_marginTop="10dp"
-        android:background="@drawable/appointment"/>
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Book Appointment"
-        android:layout_alignParentEnd="true"
-        android:textSize="13sp"
-        android:layout_below="@id/send_booking_request_button"
-        android:layout_marginRight="13dp"
-        />
 
 </RelativeLayout>
