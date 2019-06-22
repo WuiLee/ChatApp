@@ -64,6 +64,12 @@ public class SliderAdapter extends PagerAdapter {
         TextView slidePhoneNo = (TextView) view.findViewById(R.id.slide_phone_no);
         TextView slideOfficeHour = (TextView) view.findViewById(R.id.slide_office_hours);
 
+        slideImageView.setImageResource(slide_images[position]);
+        slideHeading.setText(slide_headings[position]);
+        slidePhoneNo.setText(slide_phone_no[position]);
+        slideOfficeHour.setText(slide_office_hours[position]);
+
+
         container.addView(view);
 
         return view;

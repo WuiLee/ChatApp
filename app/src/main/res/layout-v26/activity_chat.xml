@@ -33,7 +33,6 @@
         android:layout_alignParentStart="true"
         android:layout_alignParentBottom="true"
         android:orientation="horizontal"
-        android:background="@android:color/white"
         >
 
 
@@ -41,11 +40,11 @@
             android:id="@+id/send_files_btn"
             android:layout_width="60dp"
             android:layout_height="wrap_content"
-            android:src="@drawable/attachment"
+            android:src="@drawable/attachment_id"
             android:layout_alignParentStart="true"
             android:layout_centerInParent="true"
-            android:background="@android:color/white"
-            />
+            android:background=""
+            android:contentDescription="@string/todo" />
 
 
         <EditText
@@ -53,22 +52,23 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/type_message_here"
+            android:textColorHint="@android:color/white"
             android:padding="15dp"
             android:maxLines="5"
             android:layout_toEndOf="@+id/send_files_btn"
             android:layout_toStartOf="@+id/send_message_btn"
-
-            />
+            android:inputType=""
+            android:autofillHints="" />
 
 
         <ImageButton
             android:id="@+id/send_message_btn"
             android:layout_width="60dp"
             android:layout_height="wrap_content"
-            android:src="@drawable/send"
+            android:src="@drawable/send_id"
             android:layout_alignParentEnd="true"
+            android:background=""
             android:layout_centerInParent="true"
-            android:background="@android:color/white"
             />
 
     </RelativeLayout>

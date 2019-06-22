@@ -10,9 +10,10 @@
         android:id="@+id/slide_image"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="100dp"
-        android:layout_marginTop="50dp"
-        app:srcCompat="@drawable/doctor" />
+        android:layout_marginStart="100dp"
+        android:layout_marginTop="100dp"
+        app:srcCompat="@drawable/doctor"
+        android:contentDescription="@string/todo" />
 
     <TextView
         android:id="@+id/slide_headings"
@@ -21,7 +22,7 @@
         android:layout_below="@+id/slide_image"
         android:layout_centerInParent="true"
         android:layout_marginTop="50dp"
-        android:text="Mental Health Crisis Hotline"
+        android:text="@string/heading"
         android:textSize="30sp"
         android:textStyle="bold"
         android:textColor="#A8A9B2"
@@ -35,9 +36,8 @@
         android:layout_below="@+id/slide_headings"
         android:layout_centerInParent="true"
         android:layout_marginTop="25dp"
-        android:text="Phone No : "
+        android:text="@string/phone_no"
         android:textSize="25sp"
-        android:textStyle="bold"
         android:textColor="#A8A9B2"
         />
 
@@ -48,9 +48,8 @@
         android:layout_below="@+id/slide_phone_no"
         android:layout_centerInParent="true"
         android:layout_marginTop="25dp"
-        android:text="Office Hours : 24 hours"
+        android:text="@string/office_hours_24_hours"
         android:textSize="25sp"
-        android:textStyle="bold"
         android:textColor="#A8A9B2"
         />
 
