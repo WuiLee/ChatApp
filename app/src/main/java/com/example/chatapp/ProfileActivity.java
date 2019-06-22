@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.support.v7.widget.Toolbar;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -31,6 +32,8 @@ public class ProfileActivity extends AppCompatActivity {
 
     private DatabaseReference UserRef, ChatRequestRef, ContactRef, NotificationRef;
     private FirebaseAuth mAuth;
+
+    private Toolbar mToolbar;
 
     public ProfileActivity() {
     }
@@ -58,6 +61,11 @@ public class ProfileActivity extends AppCompatActivity {
         SendMessageRequestButton = (Button) findViewById(R.id.send_message_request_button);
         DeclineMessageRequestsButton = (Button) findViewById(R.id.decline_message_request_button);
         Current_State = "new";
+
+        mToolbar = (Toolbar) findViewById(R.id.view_profile_toolbar);
+        setSupportActionBar(mToolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
 
         RetrieveUserInfo();
     }

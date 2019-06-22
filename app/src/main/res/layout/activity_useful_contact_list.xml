@@ -17,12 +17,13 @@
         android:id="@+id/view_useful_contact"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_above="@+id/contact_linear_layout">
+        android:layout_above="@+id/dotsLayout"
+        android:layout_below="@+id/useful_contact_toolbar">
 
     </android.support.v4.view.ViewPager>
 
     <LinearLayout
-        android:id="@+id/contact_linear_layout"
+        android:id="@+id/dotsLayout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:padding="20dp"

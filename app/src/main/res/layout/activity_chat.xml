@@ -5,8 +5,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@android:color/darker_gray"
-    tools:context=".ChatActivity">
+    android:background="@drawable/main_background"
+    tools:context=".ChatActivity"
+    >
 
     <include
         android:id="@+id/chat_toolbar"
@@ -31,7 +32,6 @@
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:layout_alignParentBottom="true"
-        android:background="@android:color/background_light"
         android:orientation="horizontal"
         >
 
@@ -39,10 +39,11 @@
         <ImageButton
             android:id="@+id/send_files_btn"
             android:layout_width="60dp"
-            android:layout_height="50dp"
-            android:src="@drawable/attachment"
+            android:layout_height="wrap_content"
+            android:src="@drawable/attachment_id"
             android:layout_alignParentStart="true"
-            android:backgroundTint="@android:color/white"
+            android:layout_centerInParent="true"
+            android:background=""
             />
 
 
@@ -51,6 +52,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="type message here..."
+            android:textColorHint="@android:color/white"
             android:padding="15dp"
             android:maxLines="5"
             android:layout_toEndOf="@+id/send_files_btn"
@@ -62,9 +64,10 @@
             android:id="@+id/send_message_btn"
             android:layout_width="60dp"
             android:layout_height="wrap_content"
-            android:src="@drawable/send"
+            android:src="@drawable/send_id"
             android:layout_alignParentEnd="true"
-            android:backgroundTint="@android:color/white"
+            android:background=""
+            android:layout_centerInParent="true"
             />
 
     </RelativeLayout>

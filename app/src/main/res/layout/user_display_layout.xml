@@ -2,7 +2,8 @@
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+   >
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -14,7 +15,7 @@
             android:id="@+id/users_profile_image"
             android:layout_width="70dp"
             android:layout_height="70dp"
-            android:src="@drawable/profile_image"/>
+            android:src="@drawable/profile_icon"/>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -35,7 +36,8 @@
                     android:textAlignment="textStart"
                     android:textStyle="bold"
                     android:textSize="18sp"
-                    android:layout_marginLeft="10dp"/>
+                    android:layout_marginLeft="10dp"
+                    android:textColor="@color/colorTransparentWhite"/>
 
                 <ImageView
                     android:id="@+id/user_online_status"
@@ -54,7 +56,8 @@
                 android:text="Status"
                 android:textAlignment="textStart"
                 android:textSize="16sp"
-                android:layout_marginLeft="10dp"/>
+                android:layout_marginLeft="10dp"
+                android:textColor="@color/colorTransparentWhite"/>
 
             <LinearLayout
                 android:layout_width="match_parent"
