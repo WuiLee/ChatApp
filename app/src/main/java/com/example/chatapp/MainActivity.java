@@ -16,6 +16,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.chatapp.MiniGame.MiniGameActivity;
+import com.example.chatapp.forms.RegisterFormActivity;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
@@ -215,7 +216,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void SendUserToRegisterForm() {
-        Intent formIntent = new Intent(MainActivity.this, RegisterForm.class);
+        Intent formIntent = new Intent(MainActivity.this, RegisterFormActivity.class);
         formIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         startActivity(formIntent);
         finish();
