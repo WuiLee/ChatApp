@@ -13,8 +13,6 @@
     <string name="dbnode_users_identity">identity</string>
     <string name="dbnode_users_phoneNo">phoneNumber</string>
     <string name="dbnode_users_courseId">courseId</string>
-
-
     <!-- End Firebase Database Nodes -->
 
     <!-- Register Form -->
