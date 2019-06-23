@@ -1,5 +1,6 @@
 package com.example.chatapp;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
@@ -23,6 +24,7 @@ public class UsefulContactList extends AppCompatActivity {
 
     private int mCurrentPage;
 
+    @SuppressLint("CutPasteId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -30,6 +32,9 @@ public class UsefulContactList extends AppCompatActivity {
 
         mSlideViewPager = (ViewPager) findViewById(R.id.view_useful_contact);
         mDotLayout = (LinearLayout) findViewById(R.id.dotsLayout);
+
+        mBackBtn = (Button) findViewById((R.id.back_btn));
+        mNextBtn = (Button) findViewById(R.id.next_btn);
 
         sliderAdapter = new SliderAdapter(this);
         mSlideViewPager.setAdapter(sliderAdapter);
@@ -76,7 +81,7 @@ public class UsefulContactList extends AppCompatActivity {
 
         }
         if (mDots.length > 0){
-            mDots[position].setTextColor(getResources().getColor(R.color.colorTransparentWhite));
+            mDots[position].setTextColor(getResources().getColor(R.color.colorWhite));
         }
     }
 
@@ -91,6 +96,7 @@ public class UsefulContactList extends AppCompatActivity {
         public void onPageSelected(int i) {
 
             addDotsIndicator(i);
+
             mCurrentPage = i;
 
             if (i == 0){

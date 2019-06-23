@@ -4,7 +4,7 @@
     <color name="colorPrimaryDark">#181A24</color>
     <color name="colorAccent">#FF4081</color>
     <color name="colorTransparentWhite">#cccccc</color>
-    <color name="colorMessage">#4B0082</color>
+    <color name="colorWhite">#FFFFFF</color>
 
     <string-array name="colors" translatable="false">
         <item>#99cc00</item>

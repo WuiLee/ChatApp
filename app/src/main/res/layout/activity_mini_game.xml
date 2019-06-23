@@ -19,13 +19,13 @@
         android:paddingVertical="14dp"
         android:layout_marginBottom="20dp"
         android:gravity="center"
-        android:background="@color/colorAccent"/>
+        android:background="@color/colorTransparentWhite"/>
 
     <FrameLayout
         android:id="@+id/gameFrame"
         android:layout_width="260dp"
         android:layout_height="match_parent"
-        android:background="@color/colorAccent"
+        android:background="@color/colorTransparentWhite"
         android:layout_gravity="center_horizontal">
 
         <ImageView
