@@ -60,6 +60,7 @@ public class RegisterActivity extends AppCompatActivity {
     private static boolean validateEmail(EditText userEmail){
         try {
             Pattern pattern = Pattern.compile("^[_0-9-]+(@imail.sunway.edu.my)$");
+            // Shouldn't it be "^[\d]{8}(@imail.sunway.edu.my)$" ? since a student id has only 8 numeric digits?
             Matcher matcher = pattern.matcher(userEmail.getText());
             return matcher.matches();
         } catch (Exception e){
@@ -100,7 +101,7 @@ public class RegisterActivity extends AppCompatActivity {
                             }
                             else{
                                 String message = task.getException().toString();
-                                Toast.makeText(RegisterActivity.this, "Error : "+ message, Toast.LENGTH_SHORT).show();
+                                Toast.makeText(RegisterActivity.this, "Error : "+ message, Toast.LENGTH_LONG).show();
                                 loadingBar.dismiss();
                             }
                         }
