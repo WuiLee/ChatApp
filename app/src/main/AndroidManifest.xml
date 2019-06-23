@@ -21,7 +21,7 @@
         <activity android:name=".WeekActivity" />
         <activity android:name=".EditProfileActivity" />
         <activity
-            android:name=".RegisterForm"
+            android:name=".forms.RegisterFormActivity"
             android:parentActivityName=".RegisterActivity" />
         <activity
             android:name=".UsefulContactList"
