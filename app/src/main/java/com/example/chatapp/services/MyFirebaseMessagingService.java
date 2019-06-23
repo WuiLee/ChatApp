@@ -33,7 +33,6 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
     public void onNewToken(String s) {
         super.onNewToken(s);
         Log.d(TAG, "Refreshed token: " + s);
-
     }
 
     // Called when there was an error sending an upstream message.
