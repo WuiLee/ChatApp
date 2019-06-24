@@ -1,6 +1,13 @@
 package com.example.chatapp.services;
 
+import android.annotation.TargetApi;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
+import android.content.Context;
+import android.graphics.Color;
+import android.os.Build;
 import android.support.annotation.NonNull;
+import android.support.v4.app.NotificationCompat;
 import android.util.Log;
 
 import com.example.chatapp.R;
@@ -25,6 +32,72 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
     @Override
     public void onMessageReceived(RemoteMessage remoteMessage) {
         super.onMessageReceived(remoteMessage);
+
+        String notificationBody = "";
+        String notificationTitle = "";
+        String dataPayload = "";
+        try {
+            notificationBody = remoteMessage.getNotification().getBody();
+            notificationTitle = remoteMessage.getNotification().getTitle();
+            dataPayload = remoteMessage.getData().toString();
+        } catch (NullPointerException e) {
+            Log.e(TAG, "Null Pointer Exception: " + e.getMessage());
+        }
+
+        Log.d(TAG, "Notification title: " + notificationTitle);
+        Log.d(TAG, "Notification body: " + notificationBody);
+        Log.d(TAG, "Notification payload: " + dataPayload);
+
+        String dataType = remoteMessage.getData().get(getString(R.string.fcm_data_type));
+        try {
+            if (dataType.equals(getString(R.string.fcm_data_type_direct_message))) {
+                Log.d(TAG, "Incoming new message");
+                String messageId = remoteMessage.getData().get(getString(R.string.fcm_data_message_id));
+                String title = remoteMessage.getData().get(getString(R.string.fcm_data_title));
+                String messageBody = remoteMessage.getData().get(getString(R.string.fcm_data_message_body));
+                sendMessageNotification(messageId, title, messageBody);
+            }
+        } catch (NullPointerException e) {
+            Log.e(TAG, "Null Pointer Exception: " + e.getMessage());
+        }
+
+    }
+
+    private void sendMessageNotification(String messageId, String title, String messageBody) {
+        Log.d(TAG, "Building a notification");
+        int notificationId = buildNotificationId(messageId);
+
+        NotificationCompat.Builder builder = new NotificationCompat.Builder(
+                this,
+                getString(R.string.notification_channel_id));
+
+//        Intent i = new Intent(this, MainActivity.class);
+//        i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+//        PendingIntent p = PendingIntent.getActivity(
+//                this,
+//                0,
+//                i,
+//                0);
+        builder.setSmallIcon(R.drawable.profile_icon)
+        .setColor(Color.BLUE)
+        .setContentTitle(title)
+        .setContentText(messageBody);
+
+        NotificationManager n = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+        n.notify(notificationId, builder.build());
+    }
+
+    private int buildNotificationId(String messageId) {
+        Log.d(TAG, "Building a notification id");
+
+        int notificationId = 0;
+        for (int i = 0; i < 8; i++) {
+            notificationId += messageId.charAt(0);
+        }
+
+        Log.d(TAG, "Message id: " + messageId);
+        Log.d(TAG, "Built notification id: " + notificationId);
+        return notificationId;
     }
 
     // Called when an upstream message is sent to the server.
@@ -37,6 +110,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
     // This is invoked after app install when a token is first generated, and again if the token changes.
     @Override
     public void onNewToken(String s) {
+        createNotificationChannel();
         super.onNewToken(s);
         Log.d(TAG, "Refreshed token: " + s);
 
@@ -55,6 +129,21 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
                         }
                     }
                 });
+    }
+
+    @TargetApi(Build.VERSION_CODES.O)
+    private void createNotificationChannel() {
+        CharSequence name = getString(R.string.notification_channel_name);
+        String description = getString(R.string.notification_channel_description);
+        int importance = NotificationManager.IMPORTANCE_DEFAULT;
+        NotificationChannel n = new NotificationChannel(
+                getString(R.string.notification_channel_id),
+                name,
+                importance
+        );
+        n.setDescription(description);
+        NotificationManager nm = getSystemService(NotificationManager.class);
+        nm.createNotificationChannel(n);
     }
 
     // Called when there was an error sending an upstream message.

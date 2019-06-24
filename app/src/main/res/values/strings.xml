@@ -15,6 +15,17 @@
     <string name="dbnode_users_courseId">courseId</string>
     <!-- End Firebase Database Nodes -->
 
+    <!-- FCM and Notification Related -->
+    <string name="fcm_data_type">data_type</string>
+    <string name="fcm_data_type_direct_message">direct_message</string>
+    <string name="fcm_data_message_id">message_id</string>
+    <string name="fcm_data_title">title</string>
+    <string name="fcm_data_message_body">message</string>
+
+    <string name="notification_channel_id">my_notification_channel</string>
+    <string name="notification_channel_name"></string>
+    <string name="notification_channel_description"></string>
+
     <!-- Register Form -->
     <string name="register_form_not_completed">Please fill in every required field to proceed</string>
     <string name="register_form_completed">You have successfully updated your information!</string>
@@ -28,6 +39,7 @@
     <string name="todo">TODO</string>
     <string name="type_message_here">type message here...</string>
 
+    <string name="msg_token_fmt">Current Firebase registration token: %s</string>
 
 
     <string-array name="Week">
@@ -201,10 +213,5 @@
         <item> Subject ID :</item>
 
     </string-array>
-
-    <string name="msg_token_fmt">Current Firebase registration token: %s</string>
-    <string name="default_notification_channel_id">default_notification_channel</string>
-    <string name="channel_name"></string>
-    <string name="channel_description"></string>
 
 </resources>
