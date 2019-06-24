@@ -12,6 +12,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.chatapp.forms.RegisterFormActivity;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -59,8 +60,7 @@ public class RegisterActivity extends AppCompatActivity {
 
     private static boolean validateEmail(EditText userEmail){
         try {
-            Pattern pattern = Pattern.compile("^[_0-9-]+(@imail.sunway.edu.my)$");
-            // Shouldn't it be "^[\d]{8}(@imail.sunway.edu.my)$" ? since a student id has only 8 numeric digits?
+            Pattern pattern = Pattern.compile("^[\\d]{8}(@imail.sunway.edu.my)$");
             Matcher matcher = pattern.matcher(userEmail.getText());
             return matcher.matches();
         } catch (Exception e){
@@ -95,8 +95,8 @@ public class RegisterActivity extends AppCompatActivity {
                                 String currentUserID = mAuth.getCurrentUser().getUid();
                                 RootRef.child("Users").child(currentUserID).setValue("");
 
-                                SendUserToMainActivity();
-                                Toast.makeText(RegisterActivity.this, "Account Created Successfully...", Toast.LENGTH_SHORT).show();
+                                SendUserToRegisterFormActivity();
+                                Toast.makeText(RegisterActivity.this, "Please fill up the form...", Toast.LENGTH_SHORT).show();
                                 loadingBar.dismiss();
                             }
                             else{
@@ -122,8 +122,8 @@ public class RegisterActivity extends AppCompatActivity {
         Intent loginIntent = new Intent(RegisterActivity.this, LoginActivity.class);
         startActivity(loginIntent);
     }
-    private void SendUserToMainActivity() {
-        Intent mainIntent = new Intent(RegisterActivity.this, MainActivity.class);
+    private void SendUserToRegisterFormActivity() {
+        Intent mainIntent = new Intent(RegisterActivity.this, RegisterFormActivity.class);
         mainIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         startActivity(mainIntent);
         finish();
