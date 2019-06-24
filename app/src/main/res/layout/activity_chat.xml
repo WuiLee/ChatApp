@@ -59,6 +59,7 @@
             android:layout_toEndOf="@+id/send_files_btn"
             android:layout_toStartOf="@+id/send_message_btn"
             android:background="@android:color/white"
+            android:textColor="@color/colorTransparentWhite"
 
             />
 

@@ -5,7 +5,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/main_background"
     tools:context=".ChatActivity"
     >
 
@@ -22,6 +21,7 @@
         android:layout_below="@+id/chat_toolbar"
         android:layout_above="@+id/chat_linear_layout"
         android:layout_marginBottom="6dp"
+        android:background="@drawable/main_background"
         >
     </android.support.v7.widget.RecyclerView>
 
@@ -33,6 +33,7 @@
         android:layout_alignParentStart="true"
         android:layout_alignParentBottom="true"
         android:orientation="horizontal"
+        android:background="@android:color/white"
         >
 
 
@@ -40,10 +41,12 @@
             android:id="@+id/send_files_btn"
             android:layout_width="60dp"
             android:layout_height="wrap_content"
-            android:src="@drawable/attachment_id"
+            android:src="@drawable/attachment"
             android:layout_alignParentStart="true"
             android:layout_centerInParent="true"
-            android:contentDescription="@string/todo" />
+            android:background="@android:color/white"
+
+            />
 
 
         <EditText
@@ -51,22 +54,23 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/type_message_here"
-            android:textColorHint="@android:color/white"
             android:padding="15dp"
             android:maxLines="5"
             android:layout_toEndOf="@+id/send_files_btn"
             android:layout_toStartOf="@+id/send_message_btn"
-            android:inputType=""
-            android:autofillHints="" />
+            android:background="@android:color/white"
+
+            />
 
 
         <ImageButton
             android:id="@+id/send_message_btn"
             android:layout_width="60dp"
             android:layout_height="wrap_content"
-            android:src="@drawable/send_id"
+            android:src="@drawable/send"
             android:layout_alignParentEnd="true"
             android:layout_centerInParent="true"
+            android:background="@android:color/white"
             />
 
     </RelativeLayout>
