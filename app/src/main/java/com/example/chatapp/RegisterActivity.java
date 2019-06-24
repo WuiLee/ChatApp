@@ -60,7 +60,8 @@ public class RegisterActivity extends AppCompatActivity {
 
     private static boolean validateEmail(EditText userEmail){
         try {
-            Pattern pattern = Pattern.compile("^[\\d]{8}(@imail.sunway.edu.my)$");
+            String stringPattern = "^[0-9]{8}(@imail.sunway.edu.my)$";
+            Pattern pattern = Pattern.compile(stringPattern);
             Matcher matcher = pattern.matcher(userEmail.getText());
             return matcher.matches();
         } catch (Exception e){
