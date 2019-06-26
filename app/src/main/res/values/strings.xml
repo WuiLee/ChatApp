@@ -23,8 +23,8 @@
     <string name="fcm_data_message_body">message</string>
 
     <string name="notification_channel_id">my_notification_channel</string>
-    <string name="notification_channel_name"></string>
-    <string name="notification_channel_description"></string>
+    <string name="notification_channel_name">my_channel_name</string>
+    <string name="notification_channel_description">this is a test notification channel</string>
 
     <!-- Register Form -->
     <string name="register_form_not_completed">Please fill in every required field to proceed</string>

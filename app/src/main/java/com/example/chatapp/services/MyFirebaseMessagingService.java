@@ -31,21 +31,16 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
     // Called when a message is received.
     @Override
     public void onMessageReceived(RemoteMessage remoteMessage) {
+        createNotificationChannel();
         super.onMessageReceived(remoteMessage);
 
-        String notificationBody = "";
-        String notificationTitle = "";
         String dataPayload = "";
         try {
-            notificationBody = remoteMessage.getNotification().getBody();
-            notificationTitle = remoteMessage.getNotification().getTitle();
             dataPayload = remoteMessage.getData().toString();
         } catch (NullPointerException e) {
             Log.e(TAG, "Null Pointer Exception: " + e.getMessage());
         }
 
-        Log.d(TAG, "Notification title: " + notificationTitle);
-        Log.d(TAG, "Notification body: " + notificationBody);
         Log.d(TAG, "Notification payload: " + dataPayload);
 
         String dataType = remoteMessage.getData().get(getString(R.string.fcm_data_type));
@@ -110,7 +105,6 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
     // This is invoked after app install when a token is first generated, and again if the token changes.
     @Override
     public void onNewToken(String s) {
-        createNotificationChannel();
         super.onNewToken(s);
         Log.d(TAG, "Refreshed token: " + s);
 
