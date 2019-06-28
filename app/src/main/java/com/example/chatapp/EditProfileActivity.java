@@ -108,10 +108,10 @@ public class EditProfileActivity extends AppCompatActivity {
             HashMap<String, String> profileMap = new HashMap<>();
             profileMap.put("uid", currentUserID);
             profileMap.put("name", setUserName);
-            profileMap.put("id", setUserID);
+            profileMap.put("userId", setUserID);
             profileMap.put("identity", setIdentity);
-            profileMap.put("phone", setPhoneNo);
-            profileMap.put("course", setCourseID);
+            profileMap.put("phoneNumber", setPhoneNo);
+            profileMap.put("courseId", setCourseID);
 
             RootRef.child("Users").child(currentUserID).setValue(profileMap)
                     .addOnCompleteListener(new OnCompleteListener<Void>() {
@@ -136,10 +136,10 @@ public class EditProfileActivity extends AppCompatActivity {
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                         if ((dataSnapshot.exists()) && (dataSnapshot.hasChild("name") && (dataSnapshot.hasChild("image")))){
                             String retrieveUserName = dataSnapshot.child("name").getValue().toString();
-                            String retrieveUserID = dataSnapshot.child("id").getValue().toString();
+                            String retrieveUserID = dataSnapshot.child("userId").getValue().toString();
                             String retrieveIdentity = dataSnapshot.child("identity").getValue().toString();
-                            String retrievePhoneNo = dataSnapshot.child("phone").getValue().toString();
-                            String retrieveCourseID = dataSnapshot.child("course").getValue().toString();
+                            String retrievePhoneNo = dataSnapshot.child("phoneNumber").getValue().toString();
+                            String retrieveCourseID = dataSnapshot.child("courseId").getValue().toString();
 
                             String retrieveProfileImage = dataSnapshot.child("image").getValue().toString();
 
@@ -151,10 +151,10 @@ public class EditProfileActivity extends AppCompatActivity {
                         }
                         else if ((dataSnapshot.exists()) && (dataSnapshot.hasChild("name"))){
                             String retrieveUserName = dataSnapshot.child("name").getValue().toString();
-                            String retrieveUserID = dataSnapshot.child("id").getValue().toString();
+                            String retrieveUserID = dataSnapshot.child("userId").getValue().toString();
                             String retrieveIdentity = dataSnapshot.child("identity").getValue().toString();
-                            String retrievePhoneNo = dataSnapshot.child("phone").getValue().toString();
-                            String retrieveCourseID = dataSnapshot.child("course").getValue().toString();
+                            String retrievePhoneNo = dataSnapshot.child("phoneNumber").getValue().toString();
+                            String retrieveCourseID = dataSnapshot.child("courseId").getValue().toString();
 
                             userName.setText(retrieveUserName);
                             userID.setText(retrieveUserID);

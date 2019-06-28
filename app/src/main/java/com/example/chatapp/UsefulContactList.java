@@ -14,7 +14,7 @@ import android.widget.TextView;
 public class UsefulContactList extends AppCompatActivity {
 
     private Toolbar mToolbar;
-    private ViewPager mSlideViewPager;
+    ViewPager mSlideViewPager;
     private LinearLayout mDotLayout;
     private TextView[] mDots;
     private SliderAdapter sliderAdapter;
