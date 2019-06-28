@@ -295,7 +295,7 @@ public class AdapterPosts extends RecyclerView.Adapter<AdapterPosts.MyHolder>
 
         //views from row_posts.xml
         ImageView uPictureIv, pImageIv;
-        TextView uNameTv, pTimeTv, pTitleTv, pDescriptionTv, pLikesTv;
+        TextView uNameTv, pTimeTv, pTitleTv, pDescriptionTv;
         ImageButton moreBtn;
         Button likeBtn, commentBtn, shareBtn;
 
