@@ -63,17 +63,6 @@
             />
 
 
-        <ImageButton
-            android:id="@+id/send_files_button"
-            android:layout_width="60dp"
-            android:layout_height="wrap_content"
-            android:src="@drawable/attachment"
-            android:layout_alignParentStart="true"
-            android:layout_centerInParent="true"
-            android:background="@android:color/white"
-
-            />
-
         <EditText
             android:id="@+id/input_group_message"
             android:layout_width="match_parent"
@@ -84,7 +73,7 @@
             android:layout_toEndOf="@+id/send_files_button"
             android:layout_toStartOf="@+id/send_message_button"
             android:background="@android:color/white"
-            android:textColor="@color/colorTransparentWhite"
+            android:textColor="@color/colorPrimaryDark"
 
             />
 

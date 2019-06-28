@@ -6,7 +6,6 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import android.provider.ContactsContract;
 import android.provider.DocumentsContract;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -65,7 +64,7 @@ public class ChatActivity extends AppCompatActivity {
     private ImageButton SendMessageButton, SendFilesButton;
     private EditText MessageInputText;
 
-    private List<Messages> messagesList = new ArrayList<>();
+    private final List<Messages> messagesList = new ArrayList<>();
     private LinearLayoutManager linearLayoutManager;
     private MessageAdapter messageAdapter;
     private RecyclerView userMessageList;
@@ -76,7 +75,6 @@ public class ChatActivity extends AppCompatActivity {
     private Uri fileUri;
     private ProgressDialog loadingBar;
 
-    private ValueEventListener seenListener;
 
 
     @Override
@@ -303,7 +301,7 @@ public class ChatActivity extends AppCompatActivity {
                             messageTextBody.put("messageID", messagePushID);
                             messageTextBody.put("time", saveCurrentTime);
                             messageTextBody.put("date", saveCurrentDate);
-                            messageTextBody.put("isSeen", false);
+                            //messageTextBody.put("isSeen", false);
 
 
                             Map messageBodyDetails = new HashMap();
