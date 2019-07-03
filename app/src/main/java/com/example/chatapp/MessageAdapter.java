@@ -47,6 +47,7 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.MessageV
         public MessageViewHolder(@NonNull View itemView) {
             super(itemView);
 
+            //isSeenTv = (TextView) itemView.findViewById(R.id.isSeenTv);
             senderMessageText = (TextView) itemView.findViewById(R.id.sender_message_text);
             receiverMessageText = (TextView) itemView.findViewById(R.id.receiver_message_text);
             receiverProfileImage = (CircleImageView) itemView.findViewById(R.id.message_profile_image);
@@ -93,13 +94,30 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.MessageV
             }
         });
 
-
-
         messageViewHolder.receiverMessageText.setVisibility(View.GONE);
         messageViewHolder.receiverProfileImage.setVisibility(View.GONE);
         messageViewHolder.senderMessageText.setVisibility(View.GONE);
         messageViewHolder.messageSenderPicture.setVisibility(View.GONE);
         messageViewHolder.messageReceiverPicture.setVisibility(View.GONE);
+
+        /*
+        //set seen/delivered status of message
+        if (position==userMessageList.size()-1)
+        {
+            if (userMessageList.get(position).isSeen())
+            {
+                messageViewHolder.isSeenTv.setText("Seen");
+            }
+            else
+            {
+                messageViewHolder.isSeenTv.setText("Delivered");
+            }
+        }
+        else
+        {
+            messageViewHolder.isSeenTv.setVisibility(View.GONE);
+        }
+        */
 
 
         if (fromMessageType.equals("text"))

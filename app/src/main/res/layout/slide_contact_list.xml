@@ -8,12 +8,12 @@
 
     <ImageView
         android:id="@+id/slide_image"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
         android:layout_marginStart="100dp"
-        android:layout_marginTop="100dp"
+        android:layout_marginTop="60dp"
         app:srcCompat="@drawable/doctor"
-        android:contentDescription="@string/todo" />
+        android:layout_centerHorizontal="true"/>
 
     <TextView
         android:id="@+id/slide_headings"
@@ -23,7 +23,8 @@
         android:layout_centerInParent="true"
         android:layout_marginTop="50dp"
         android:text="@string/heading"
-        android:textSize="30sp"
+        android:textAlignment="center"
+        android:textSize="25sp"
         android:textStyle="bold"
         android:textColor="#A8A9B2"
 
@@ -52,5 +53,6 @@
         android:textSize="25sp"
         android:textColor="#A8A9B2"
         />
+
 
 </RelativeLayout>

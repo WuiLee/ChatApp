@@ -145,8 +145,8 @@ public class SettingsActivity extends AppCompatActivity{
                         if ((dataSnapshot.exists()) && (dataSnapshot.hasChild("name") && (dataSnapshot.hasChild("image"))))
                         {
                             String retrieveUserName = dataSnapshot.child("name").getValue().toString();
-                            String retrieveUserID = dataSnapshot.child("id").getValue().toString();
-                            String retrieveCourseID = dataSnapshot.child("course").getValue().toString();
+                            String retrieveUserID = dataSnapshot.child("userId").getValue().toString();
+                            String retrieveCourseID = dataSnapshot.child("courseId").getValue().toString();
                             String retrieveProfileImage = dataSnapshot.child("image").getValue().toString();
 
                             userName.setText(retrieveUserName);
@@ -155,8 +155,8 @@ public class SettingsActivity extends AppCompatActivity{
                         }
                         else if ((dataSnapshot.exists()) && (dataSnapshot.hasChild("name"))){
                             String retrieveUserName = dataSnapshot.child("name").getValue().toString();
-                            String retrieveUserID = dataSnapshot.child("id").getValue().toString();
-                            String retrieveCourseID = dataSnapshot.child("course").getValue().toString();
+                            String retrieveUserID = dataSnapshot.child("userId").getValue().toString();
+                            String retrieveCourseID = dataSnapshot.child("courseId").getValue().toString();
 
                             userName.setText(retrieveUserName);
                             userID.setText(retrieveUserID);

@@ -132,25 +132,6 @@ public class AdapterPosts extends RecyclerView.Adapter<AdapterPosts.MyHolder>
                 showMoreOptions(myHolder.moreBtn, uid, myUid, pId, pImage);
             }
         });
-        myHolder.likeBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(context, "Like", Toast.LENGTH_SHORT).show();
-            }
-        });
-        myHolder.commentBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(context, "Comment", Toast.LENGTH_SHORT).show();
-            }
-        });
-        myHolder.shareBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(context, "Share", Toast.LENGTH_SHORT).show();
-            }
-        });
-
     }
 
     private void showMoreOptions(ImageButton moreBtn, String uid, String myUid, final String pId, final String pImage) {
@@ -295,12 +276,10 @@ public class AdapterPosts extends RecyclerView.Adapter<AdapterPosts.MyHolder>
 
         //views from row_posts.xml
         ImageView uPictureIv, pImageIv;
-        TextView uNameTv, pTimeTv, pTitleTv, pDescriptionTv, pLikesTv;
+        TextView uNameTv, pTimeTv, pTitleTv, pDescriptionTv;
         ImageButton moreBtn;
-        Button likeBtn, commentBtn, shareBtn;
 
-        public MyHolder(@NonNull View itemView)
-        {
+        public MyHolder(@NonNull View itemView) {
             super(itemView);
 
             //init views
@@ -310,13 +289,7 @@ public class AdapterPosts extends RecyclerView.Adapter<AdapterPosts.MyHolder>
             pTimeTv = itemView.findViewById(R.id.pTimeTv);
             pTitleTv = itemView.findViewById(R.id.pTitileTv);
             pDescriptionTv = itemView.findViewById(R.id.pDescriptionTv);
-            pLikesTv = itemView.findViewById(R.id.pLikesTv);
             moreBtn = itemView.findViewById(R.id.moreBtn);
-            likeBtn = itemView.findViewById(R.id.likeBtn);
-            commentBtn = itemView.findViewById(R.id.commentBtn);
-            shareBtn = itemView.findViewById(R.id.shareBtn);
-
-
         }
     }
 }
