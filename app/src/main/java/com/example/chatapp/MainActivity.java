@@ -1,7 +1,11 @@
 package com.example.chatapp;
 
+import android.annotation.TargetApi;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.os.Build;
 import android.support.annotation.NonNull;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
@@ -61,7 +65,7 @@ public class MainActivity extends AppCompatActivity {
 
         myTabLayout = (TabLayout) findViewById(R.id.main_tabs);
         myTabLayout.setupWithViewPager(myViewPager);
-
+        createNotificationChannel();
     }
 
     @Override
@@ -100,6 +104,21 @@ public class MainActivity extends AppCompatActivity {
         if (currentUser != null){
             updateUserStatus("offline");
         }
+    }
+
+    @TargetApi(Build.VERSION_CODES.O)
+    private void createNotificationChannel() {
+        CharSequence name = getString(R.string.notification_channel_name);
+        String description = getString(R.string.notification_channel_description);
+        int importance = NotificationManager.IMPORTANCE_DEFAULT;
+        NotificationChannel n = new NotificationChannel(
+                getString(R.string.notification_channel_id),
+                name,
+                importance
+        );
+        n.setDescription(description);
+        NotificationManager nm = getSystemService(NotificationManager.class);
+        nm.createNotificationChannel(n);
     }
 
     private void VerifyUserExistance() {

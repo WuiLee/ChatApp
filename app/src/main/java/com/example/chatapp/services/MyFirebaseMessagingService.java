@@ -1,11 +1,8 @@
 package com.example.chatapp.services;
 
-import android.annotation.TargetApi;
-import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.content.Context;
 import android.graphics.Color;
-import android.os.Build;
 import android.support.annotation.NonNull;
 import android.support.v4.app.NotificationCompat;
 import android.util.Log;
@@ -31,9 +28,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
     // Called when a message is received.
     @Override
     public void onMessageReceived(RemoteMessage remoteMessage) {
-        createNotificationChannel();
         super.onMessageReceived(remoteMessage);
-
         String dataPayload = "";
         try {
             dataPayload = remoteMessage.getData().toString();
@@ -123,21 +118,6 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
                         }
                     }
                 });
-    }
-
-    @TargetApi(Build.VERSION_CODES.O)
-    private void createNotificationChannel() {
-        CharSequence name = getString(R.string.notification_channel_name);
-        String description = getString(R.string.notification_channel_description);
-        int importance = NotificationManager.IMPORTANCE_DEFAULT;
-        NotificationChannel n = new NotificationChannel(
-                getString(R.string.notification_channel_id),
-                name,
-                importance
-        );
-        n.setDescription(description);
-        NotificationManager nm = getSystemService(NotificationManager.class);
-        nm.createNotificationChannel(n);
     }
 
     // Called when there was an error sending an upstream message.
