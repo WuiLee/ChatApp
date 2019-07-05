@@ -47,7 +47,7 @@ import com.squareup.picasso.Picasso;
 import java.io.ByteArrayOutputStream;
 import java.util.HashMap;
 
-public class AddPostActivity extends AppCompatActivity {
+public class AddPostFormActivity extends AppCompatActivity {
 
     FirebaseAuth firebaseAuth;
     DatabaseReference userDbRef;
@@ -171,12 +171,12 @@ public class AddPostActivity extends AppCompatActivity {
                 String description = descriptionEt.getText().toString().trim();
                 if (TextUtils.isEmpty(title))
                 {
-                    Toast.makeText(AddPostActivity.this, "Enter title...", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(AddPostFormActivity.this, "Enter title...", Toast.LENGTH_SHORT).show();
                     return;
                 }
                 if (TextUtils.isEmpty(description))
                 {
-                    Toast.makeText(AddPostActivity.this, "Enter description...", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(AddPostFormActivity.this, "Enter description...", Toast.LENGTH_SHORT).show();
                     return;
                 }
                 if (isUpdateKey.equals("editPost"))
@@ -232,14 +232,14 @@ public class AddPostActivity extends AppCompatActivity {
                     @Override
                     public void onSuccess(Void aVoid) {
                         pd.dismiss();
-                        Toast.makeText(AddPostActivity.this, "Updated...", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(AddPostFormActivity.this, "Updated...", Toast.LENGTH_SHORT).show();
                     }
                 })
                 .addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception e) {
                         pd.dismiss();
-                        Toast.makeText(AddPostActivity.this, ""+e.getMessage(), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(AddPostFormActivity.this, ""+e.getMessage(), Toast.LENGTH_SHORT).show();
                     }
                 });
     }
@@ -294,14 +294,14 @@ public class AddPostActivity extends AppCompatActivity {
                                                         @Override
                                                         public void onSuccess(Void aVoid) {
                                                             pd.dismiss();
-                                                            Toast.makeText(AddPostActivity.this, "Updated...", Toast.LENGTH_SHORT).show();
+                                                            Toast.makeText(AddPostFormActivity.this, "Updated...", Toast.LENGTH_SHORT).show();
                                                         }
                                                     })
                                                     .addOnFailureListener(new OnFailureListener() {
                                                         @Override
                                                         public void onFailure(@NonNull Exception e) {
                                                             pd.dismiss();
-                                                            Toast.makeText(AddPostActivity.this, ""+e.getMessage(), Toast.LENGTH_SHORT).show();
+                                                            Toast.makeText(AddPostFormActivity.this, ""+e.getMessage(), Toast.LENGTH_SHORT).show();
                                                         }
                                                     });
 
@@ -313,7 +313,7 @@ public class AddPostActivity extends AppCompatActivity {
                                     @Override
                                     public void onFailure(@NonNull Exception e) {
                                         pd.dismiss();
-                                        Toast.makeText(AddPostActivity.this, ""+e.getMessage(), Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(AddPostFormActivity.this, ""+e.getMessage(), Toast.LENGTH_SHORT).show();
                                     }
                                 });
 
@@ -323,7 +323,7 @@ public class AddPostActivity extends AppCompatActivity {
                     @Override
                     public void onFailure(@NonNull Exception e) {
                         pd.dismiss();
-                        Toast.makeText(AddPostActivity.this, ""+e.getMessage(), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(AddPostFormActivity.this, ""+e.getMessage(), Toast.LENGTH_SHORT).show();
                     }
                 });
     }
@@ -370,14 +370,14 @@ public class AddPostActivity extends AppCompatActivity {
                                         @Override
                                         public void onSuccess(Void aVoid) {
                                             pd.dismiss();
-                                            Toast.makeText(AddPostActivity.this, "Updated...", Toast.LENGTH_SHORT).show();
+                                            Toast.makeText(AddPostFormActivity.this, "Updated...", Toast.LENGTH_SHORT).show();
                                         }
                                     })
                                     .addOnFailureListener(new OnFailureListener() {
                                         @Override
                                         public void onFailure(@NonNull Exception e) {
                                             pd.dismiss();
-                                            Toast.makeText(AddPostActivity.this, ""+e.getMessage(), Toast.LENGTH_SHORT).show();
+                                            Toast.makeText(AddPostFormActivity.this, ""+e.getMessage(), Toast.LENGTH_SHORT).show();
                                         }
                                     });
 
@@ -389,7 +389,7 @@ public class AddPostActivity extends AppCompatActivity {
                     @Override
                     public void onFailure(@NonNull Exception e) {
                         pd.dismiss();
-                        Toast.makeText(AddPostActivity.this, ""+e.getMessage(), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(AddPostFormActivity.this, ""+e.getMessage(), Toast.LENGTH_SHORT).show();
                     }
                 });
     }
@@ -494,7 +494,7 @@ public class AddPostActivity extends AppCompatActivity {
                                             {
                                                 //added in database
                                                 pd.dismiss();
-                                                Toast.makeText(AddPostActivity.this, "Post published", Toast.LENGTH_SHORT).show();
+                                                Toast.makeText(AddPostFormActivity.this, "Post published", Toast.LENGTH_SHORT).show();
                                                 //reset views
                                                 titleEt.setText("");
                                                 descriptionEt.setText("");
@@ -509,7 +509,7 @@ public class AddPostActivity extends AppCompatActivity {
                                             {
                                                 //failed adding post in database
                                                 pd.dismiss();
-                                                Toast.makeText(AddPostActivity.this, ""+e.getMessage(), Toast.LENGTH_SHORT).show();
+                                                Toast.makeText(AddPostFormActivity.this, ""+e.getMessage(), Toast.LENGTH_SHORT).show();
                                             }
                                         });
                             }
@@ -522,7 +522,7 @@ public class AddPostActivity extends AppCompatActivity {
                         {
                             //failed uploading image
                             pd.dismiss();
-                            Toast.makeText(AddPostActivity.this, ""+e.getMessage(), Toast.LENGTH_SHORT).show();
+                            Toast.makeText(AddPostFormActivity.this, ""+e.getMessage(), Toast.LENGTH_SHORT).show();
                         }
                     });
         }
@@ -555,7 +555,7 @@ public class AddPostActivity extends AppCompatActivity {
                             {
                                 //added in database
                                 pd.dismiss();
-                                Toast.makeText(AddPostActivity.this, "Post published", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(AddPostFormActivity.this, "Post published", Toast.LENGTH_SHORT).show();
                                 titleEt.setText("");
                                 descriptionEt.setText("");
                                 imageIv.setImageURI(null);
@@ -569,7 +569,7 @@ public class AddPostActivity extends AppCompatActivity {
                             {
                                 //failed adding post in database
                                 pd.dismiss();
-                                Toast.makeText(AddPostActivity.this, ""+e.getMessage(), Toast.LENGTH_SHORT).show();
+                                Toast.makeText(AddPostFormActivity.this, ""+e.getMessage(), Toast.LENGTH_SHORT).show();
                             }
                         });
             }

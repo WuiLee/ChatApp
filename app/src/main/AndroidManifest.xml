@@ -19,23 +19,22 @@
         <activity android:name=".SubjectDetails" />
         <activity android:name=".DayDetailActivity" />
         <activity android:name=".WeekActivity" />
-        <activity android:name=".EditProfileActivity" />
         <activity
-            android:name=".forms.RegisterFormActivity"
+            android:name=".forms.EditProfileFormActivity"
             android:parentActivityName=".RegisterActivity" />
         <activity
             android:name=".UsefulContactList"
-            android:parentActivityName=".SettingsActivity" />
-        <activity android:name=".AddPostActivity" />
+            android:parentActivityName=".ProfileMenuActivity" />
+        <activity android:name=".AddPostFormActivity" />
         <activity
             android:name=".EnrolmentActivity"
-            android:parentActivityName=".SettingsActivity" />
+            android:parentActivityName=".ProfileMenuActivity" />
         <activity
             android:name=".TimetableActivity"
-            android:parentActivityName=".SettingsActivity" />
-        <activity android:name=".MiniGame.MiniGameActivity" />
+            android:parentActivityName=".ProfileMenuActivity" />
+        <activity android:name=".MiniGame.ArcadeMenuActivity" />
         <activity android:name=".MainActivity" />
-        <activity android:name=".LoginActivity">
+        <activity android:name=".LoginFormActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -44,17 +43,17 @@
         </activity>
         <activity android:name=".RegisterActivity" />
         <activity
-            android:name=".SettingsActivity"
+            android:name=".ProfileMenuActivity"
             android:parentActivityName=".MainActivity" />
         <activity android:name=".GroupChat" />
         <activity
             android:name="com.theartofdev.edmodo.cropper.CropImageActivity"
             android:theme="@style/Base.Theme.AppCompat" />
         <activity
-            android:name=".FindFirendsActivity"
+            android:name=".FriendListActivity"
             android:parentActivityName=".MainActivity" />
         <activity android:name=".ProfileActivity"
-            android:parentActivityName=".FindFirendsActivity"/>
+            android:parentActivityName=".FriendListActivity"/>
         <activity
             android:name=".ChatActivity"
             android:parentActivityName=".MainActivity" />

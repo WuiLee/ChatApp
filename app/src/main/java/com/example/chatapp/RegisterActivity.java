@@ -12,7 +12,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.chatapp.forms.RegisterFormActivity;
+import com.example.chatapp.forms.EditProfileFormActivity;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -46,7 +46,7 @@ public class RegisterActivity extends AppCompatActivity {
         AlreadyHaveAccountLink.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                SendUserToLoginActivity();
+                showLoginForm();
             }
         });
 
@@ -96,7 +96,7 @@ public class RegisterActivity extends AppCompatActivity {
                                 String currentUserID = mAuth.getCurrentUser().getUid();
                                 RootRef.child("Users").child(currentUserID).setValue("");
 
-                                SendUserToRegisterFormActivity();
+                                showEditProfileForm();
                                 Toast.makeText(RegisterActivity.this, "Please fill up the form...", Toast.LENGTH_SHORT).show();
                                 loadingBar.dismiss();
                             }
@@ -111,20 +111,21 @@ public class RegisterActivity extends AppCompatActivity {
     }
 
     private void InitializeFields() {
-        RegisterButton = (Button) findViewById(R.id.register_button);
-        UserEmail = (EditText) findViewById(R.id.register_email);
-        UserPassword = (EditText) findViewById(R.id.register_password);
-        AlreadyHaveAccountLink = (TextView) findViewById(R.id.already_have_an_account_link);
+        RegisterButton = findViewById(R.id.register_button);
+        UserEmail = findViewById(R.id.register_email);
+        UserPassword = findViewById(R.id.register_password);
+        AlreadyHaveAccountLink = findViewById(R.id.already_have_an_account_link);
 
         loadingBar = new ProgressDialog(this);
     }
 
-    private void SendUserToLoginActivity() {
-        Intent loginIntent = new Intent(RegisterActivity.this, LoginActivity.class);
+    private void showLoginForm() {
+        Intent loginIntent = new Intent(RegisterActivity.this, LoginFormActivity.class);
         startActivity(loginIntent);
     }
-    private void SendUserToRegisterFormActivity() {
-        Intent mainIntent = new Intent(RegisterActivity.this, RegisterFormActivity.class);
+
+    private void showEditProfileForm() {
+        Intent mainIntent = new Intent(RegisterActivity.this, EditProfileFormActivity.class);
         mainIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         startActivity(mainIntent);
         finish();

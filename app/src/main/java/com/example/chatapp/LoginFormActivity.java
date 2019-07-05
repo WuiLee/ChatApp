@@ -23,13 +23,12 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.iid.FirebaseInstanceId;
 import com.google.firebase.iid.InstanceIdResult;
 
-public class LoginActivity extends AppCompatActivity {
+public class LoginFormActivity extends AppCompatActivity {
 
-    private final static String TAG = "LoginActivity";
+    private final static String TAG = "LoginFormActivity";
 
     private FirebaseAuth mAuth;
     private ProgressDialog loadingBar;
@@ -45,25 +44,6 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
 
         mAuth = FirebaseAuth.getInstance();
-
-        FirebaseInstanceId.getInstance().getInstanceId()
-                .addOnCompleteListener(new OnCompleteListener<InstanceIdResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<InstanceIdResult> task) {
-                        if (!task.isSuccessful()) {
-                            Log.w(TAG, "getInstanceId failed", task.getException());
-                            return;
-                        }
-
-                        // Get new Instance ID token
-                        String token = task.getResult().getToken();
-
-                        // Log and toast
-                        String msg = getString(R.string.msg_token_fmt, token);
-                        Log.d(TAG, msg);
-                        Toast.makeText(getApplicationContext(), msg, Toast.LENGTH_SHORT).show();
-                    }
-                });
 
         ForgetPasswordLink = findViewById(R.id.forget_password_link);
 
@@ -114,12 +94,12 @@ public class LoginActivity extends AppCompatActivity {
                             if (task.isSuccessful()){
 
                                 SendUserToMainActivity();
-                                Toast.makeText(LoginActivity.this, "Logged in Successful..", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(LoginFormActivity.this, "Logged in Successful..", Toast.LENGTH_SHORT).show();
                                 loadingBar.dismiss();
                             }
                             else{
                                 String message = task.getException().toString();
-                                Toast.makeText(LoginActivity.this, "Error : "+ message, Toast.LENGTH_SHORT).show();
+                                Toast.makeText(LoginFormActivity.this, "Error : "+ message, Toast.LENGTH_SHORT).show();
                                 loadingBar.dismiss();
                             }
                         }
@@ -138,14 +118,14 @@ public class LoginActivity extends AppCompatActivity {
 
 
     private void SendUserToMainActivity() {
-        Intent mainIntent = new Intent(LoginActivity.this, MainActivity.class);
+        Intent mainIntent = new Intent(LoginFormActivity.this, MainActivity.class);
         mainIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         startActivity(mainIntent);
         finish();
     }
 
     private void SendUserToRegisterActivity() {
-        Intent registerIntent = new Intent(LoginActivity.this, RegisterActivity.class);
+        Intent registerIntent = new Intent(LoginFormActivity.this, RegisterActivity.class);
         startActivity(registerIntent);
     }
 
@@ -199,13 +179,13 @@ public class LoginActivity extends AppCompatActivity {
                 {
                     FirebaseUser user = mAuth.getCurrentUser();
 
-                    Toast.makeText(LoginActivity.this, "Email sent", Toast.LENGTH_SHORT).show();
-                    startActivity(new Intent(LoginActivity.this, TabsAccessorAdapter.class));
+                    Toast.makeText(LoginFormActivity.this, "Email sent", Toast.LENGTH_SHORT).show();
+                    startActivity(new Intent(LoginFormActivity.this, TabsAccessorAdapter.class));
                     finish();
                 }
                 else
                 {
-                    Toast.makeText(LoginActivity.this, "Failed...", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(LoginFormActivity.this, "Failed...", Toast.LENGTH_SHORT).show();
                 }
             }
         }).addOnFailureListener(new OnFailureListener() {
@@ -213,7 +193,7 @@ public class LoginActivity extends AppCompatActivity {
             public void onFailure(@NonNull Exception e) {
                 //get and show proper error message
                 loadingBar.dismiss();
-                Toast.makeText(LoginActivity.this, ""+e.getMessage(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(LoginFormActivity.this, ""+e.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
     }

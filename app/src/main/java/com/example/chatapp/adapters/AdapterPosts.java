@@ -1,10 +1,8 @@
 package com.example.chatapp.adapters;
 
-import android.app.DownloadManager;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
-import android.support.annotation.IntegerRes;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.text.format.DateFormat;
@@ -14,14 +12,13 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.PopupMenu;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.chatapp.AddPostActivity;
+import com.example.chatapp.AddPostFormActivity;
 import com.example.chatapp.R;
 import com.example.chatapp.models.ModelPost;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -160,7 +157,7 @@ public class AdapterPosts extends RecyclerView.Adapter<AdapterPosts.MyHolder>
                 {
                     //edit is clicked
                     //start addPostActivity with key "editPost" and the id of the post clicked
-                    Intent intent = new Intent(context, AddPostActivity.class);
+                    Intent intent = new Intent(context, AddPostFormActivity.class);
                     intent.putExtra("key","editPost");
                     intent.putExtra("editPostId",pId);
                     context.startActivity(intent);
