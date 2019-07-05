@@ -21,7 +21,7 @@ import java.util.Timer;
 import java.util.TimerTask;
 import java.util.concurrent.TimeUnit;
 
-public class MiniGameActivity extends AppCompatActivity
+public class ArcadeMenuActivity extends AppCompatActivity
 {
     //Frame
     private FrameLayout gameFrame;

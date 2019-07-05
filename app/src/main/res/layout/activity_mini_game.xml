@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MiniGame.MiniGameActivity"
+    tools:context=".MiniGame.ArcadeMenuActivity"
     android:orientation="vertical"
     android:background="@drawable/bg">
 
@@ -19,13 +19,13 @@
         android:paddingVertical="14dp"
         android:layout_marginBottom="20dp"
         android:gravity="center"
-        android:background="@color/colorAccent"/>
+        android:background="@color/colorTransparentWhite"/>
 
     <FrameLayout
         android:id="@+id/gameFrame"
         android:layout_width="260dp"
         android:layout_height="match_parent"
-        android:background="@color/colorAccent"
+        android:background="@color/colorTransparentWhite"
         android:layout_gravity="center_horizontal">
 
         <ImageView
@@ -70,6 +70,7 @@
                 android:layout_height="wrap_content"
                 android:text="Catch the Ball"
                 android:textSize="24sp"
+                android:textStyle="bold"
                 android:layout_marginTop="20dp"/>
 
             <TextView

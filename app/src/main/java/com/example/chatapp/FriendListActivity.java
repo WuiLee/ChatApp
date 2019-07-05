@@ -20,7 +20,7 @@ import com.squareup.picasso.Picasso;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
-public class FindFirendsActivity extends AppCompatActivity {
+public class FriendListActivity extends AppCompatActivity {
 
     private Toolbar mToolbar;
     private RecyclerView FindFriendsRecyclerList;
@@ -64,7 +64,7 @@ public class FindFirendsActivity extends AppCompatActivity {
                             public void onClick(View v) {
                                 String visit_user_id = getRef(position).getKey();
 
-                                Intent profileIntent = new Intent (FindFirendsActivity.this, ProfileActivity.class);
+                                Intent profileIntent = new Intent (FriendListActivity.this, ProfileActivity.class);
                                 profileIntent.putExtra("visit_user_id", visit_user_id);
                                 startActivity(profileIntent);
 

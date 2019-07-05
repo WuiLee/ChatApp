@@ -1,10 +1,8 @@
 package com.example.chatapp.adapters;
 
-import android.app.DownloadManager;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
-import android.support.annotation.IntegerRes;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.text.format.DateFormat;
@@ -14,14 +12,13 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.PopupMenu;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.chatapp.AddPostActivity;
+import com.example.chatapp.AddPostFormActivity;
 import com.example.chatapp.R;
 import com.example.chatapp.models.ModelPost;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -132,25 +129,6 @@ public class AdapterPosts extends RecyclerView.Adapter<AdapterPosts.MyHolder>
                 showMoreOptions(myHolder.moreBtn, uid, myUid, pId, pImage);
             }
         });
-        myHolder.likeBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(context, "Like", Toast.LENGTH_SHORT).show();
-            }
-        });
-        myHolder.commentBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(context, "Comment", Toast.LENGTH_SHORT).show();
-            }
-        });
-        myHolder.shareBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(context, "Share", Toast.LENGTH_SHORT).show();
-            }
-        });
-
     }
 
     private void showMoreOptions(ImageButton moreBtn, String uid, String myUid, final String pId, final String pImage) {
@@ -179,7 +157,7 @@ public class AdapterPosts extends RecyclerView.Adapter<AdapterPosts.MyHolder>
                 {
                     //edit is clicked
                     //start addPostActivity with key "editPost" and the id of the post clicked
-                    Intent intent = new Intent(context, AddPostActivity.class);
+                    Intent intent = new Intent(context, AddPostFormActivity.class);
                     intent.putExtra("key","editPost");
                     intent.putExtra("editPostId",pId);
                     context.startActivity(intent);
@@ -295,12 +273,10 @@ public class AdapterPosts extends RecyclerView.Adapter<AdapterPosts.MyHolder>
 
         //views from row_posts.xml
         ImageView uPictureIv, pImageIv;
-        TextView uNameTv, pTimeTv, pTitleTv, pDescriptionTv, pLikesTv;
+        TextView uNameTv, pTimeTv, pTitleTv, pDescriptionTv;
         ImageButton moreBtn;
-        Button likeBtn, commentBtn, shareBtn;
 
-        public MyHolder(@NonNull View itemView)
-        {
+        public MyHolder(@NonNull View itemView) {
             super(itemView);
 
             //init views
@@ -310,13 +286,7 @@ public class AdapterPosts extends RecyclerView.Adapter<AdapterPosts.MyHolder>
             pTimeTv = itemView.findViewById(R.id.pTimeTv);
             pTitleTv = itemView.findViewById(R.id.pTitileTv);
             pDescriptionTv = itemView.findViewById(R.id.pDescriptionTv);
-            pLikesTv = itemView.findViewById(R.id.pLikesTv);
             moreBtn = itemView.findViewById(R.id.moreBtn);
-            likeBtn = itemView.findViewById(R.id.likeBtn);
-            commentBtn = itemView.findViewById(R.id.commentBtn);
-            shareBtn = itemView.findViewById(R.id.shareBtn);
-
-
         }
     }
 }

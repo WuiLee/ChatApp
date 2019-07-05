@@ -78,10 +78,10 @@ public class ProfileActivity extends AppCompatActivity {
 
                     String userImage = dataSnapshot.child("image").getValue().toString();
                     String userName = dataSnapshot.child("name").getValue().toString();
-                    String userID = dataSnapshot.child("id").getValue().toString();
+                    String userID = dataSnapshot.child("userId").getValue().toString();
                     String userIdentity = dataSnapshot.child("identity").getValue().toString();
-                    String courseID = dataSnapshot.child("course").getValue().toString();
-                    String phoneNo = dataSnapshot.child("phone").getValue().toString();
+                    String courseID = dataSnapshot.child("courseId").getValue().toString();
+                    String phoneNo = dataSnapshot.child("phoneNumber").getValue().toString();
 
                     Picasso.get().load(userImage).placeholder(R.drawable.profile_image).into(userProfileImage);
                     userProfileName.setText("Name : " + userName);
@@ -94,10 +94,10 @@ public class ProfileActivity extends AppCompatActivity {
                 }
                 else{
                     String userName = dataSnapshot.child("name").getValue().toString();
-                    String userID = dataSnapshot.child("id").getValue().toString();
+                    String userID = dataSnapshot.child("userId").getValue().toString();
                     String userIdentity = dataSnapshot.child("identity").getValue().toString();
-                    String courseID = dataSnapshot.child("course").getValue().toString();
-                    String phoneNo = dataSnapshot.child("phone").getValue().toString();
+                    String courseID = dataSnapshot.child("courseId").getValue().toString();
+                    String phoneNo = dataSnapshot.child("phoneNumber").getValue().toString();
 
                     userProfileName.setText("Name : " + userName);
                     userProfileID.setText("ID : " + userID);

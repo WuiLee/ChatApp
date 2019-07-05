@@ -5,31 +5,62 @@
     <!-- Users Related -->
     <string name="dbnode_users">Users</string>
     <string name="dbnode_users_userState">userState</string>
-
     <string name="dbnode_users_userToken">userToken</string>
     <string name="dbnode_users_uid">uid</string>
     <string name="dbnode_users_name">name</string>
     <string name="dbnode_users_userId">userId</string>
     <string name="dbnode_users_identity">identity</string>
+    <string name="dbnode_users_identity_student">Student</string>
+    <string name="dbnode_users_identity_lecturer">Lecturer</string>
     <string name="dbnode_users_phoneNo">phoneNumber</string>
     <string name="dbnode_users_courseId">courseId</string>
-
-
+    <!-- End Users Related -->
     <!-- End Firebase Database Nodes -->
 
+    <!-- FCM and Notification Related -->
+    <string name="fcm_data_type">data_type</string>
+    <string name="fcm_data_type_direct_message">direct_message</string>
+    <string name="fcm_data_message_id">message_id</string>
+    <string name="fcm_data_title">title</string>
+    <string name="fcm_data_message_body">message</string>
+    <string name="notification_channel_id">my_notification_channel</string>
+    <string name="notification_channel_name">my_channel_name</string>
+    <string name="notification_channel_description">this is a test notification channel</string>
+    <!-- End FCM and Notification Related -->
+
     <!-- Register Form -->
-    <string name="register_form_not_completed">Please fill in every required field to proceed</string>
+    <string name="register_form_not_completed">Please fill in every required field to proceed.</string>
     <string name="register_form_completed">You have successfully updated your information!</string>
+    <!-- End Register Form -->
+
+    <!-- Main Activity -->
+    <!-- Online Status -->
+    <string name="welcome_message">Welcome, %s</string>
+    <string name="status_online">online</string>
+    <string name="status_offline">offline</string>
+    <!-- End Online Status -->
+
+    <!-- Options Menu -->
+    <string name="view_friends_option">View Friends</string>
+    <string name="create_group_option">Create Group</string>
+    <string name="view_profile_option">View Profile</string>
+    <string name="arcade_option">Arcade</string>
+    <string name="logout_option">Log Out</string>
+    <!-- End Options Menu -->
+    <!-- End Main Activity -->
+
+    <!-- Shared Preferences Related -->
+    <string name="shared_pref_file_key">com.example.ChatApp.PREFERENCE_FILE_KEY</string>
+    <string name="shared_pref_profile_key">Profile</string>
+    <!-- End Shared Preferences Related -->
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="fcm_token" translatable="false">FCM Token: %s</string>
     <string name="office_hours_24_hours">Office Hours : 24 hours</string>
     <string name="phone_no">Phone No :</string>
     <string name="heading">Heading</string>
     <string name="todo">TODO</string>
     <string name="type_message_here">type message here...</string>
-
 
 
     <string-array name="Week">
@@ -203,10 +234,5 @@
         <item> Subject ID :</item>
 
     </string-array>
-
-    <string name="msg_token_fmt">Current Firebase registration token: %s</string>
-    <string name="default_notification_channel_id">default_notification_channel</string>
-    <string name="channel_name"></string>
-    <string name="channel_description"></string>
 
 </resources>

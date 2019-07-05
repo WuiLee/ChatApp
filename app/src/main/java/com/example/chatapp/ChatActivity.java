@@ -76,6 +76,7 @@ public class ChatActivity extends AppCompatActivity {
     private ProgressDialog loadingBar;
 
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -161,8 +162,63 @@ public class ChatActivity extends AppCompatActivity {
                 builder.show();
             }
         });
+        
+        //readMessages();
+        
+        //seenMessages();
     }
 
+    /*
+    private void seenMessages()
+    {
+        RootRef = FirebaseDatabase.getInstance().getReference("Messages");
+        seenListener = RootRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                for (DataSnapshot ds: dataSnapshot.getChildren())
+                {
+                   Messages messages = ds.getValue(Messages.class);
+                   if (messages.getMessage().equals(messageReceiverID) && messages.getFrom().equals(messageSenderID))
+                   {
+                       HashMap<String , Object> hasSeenHashMap = new HashMap<>();
+                       hasSeenHashMap.put("isSeen", true);
+                       ds.getRef().updateChildren(hasSeenHashMap);
+                   }
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+    }
+
+    private void readMessages()
+    {
+        messagesList = new ArrayList<>();
+        DatabaseReference dbRef = FirebaseDatabase.getInstance().getReference("Messages");
+        dbRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                for (DataSnapshot ds: dataSnapshot.getChildren())
+                {
+                    Messages messages = ds.getValue(Messages.class);
+                    if (messages.getMessage().equals(messageReceiverID) && messages.getFrom().equals(messageSenderID) ||
+                            messages.getMessage().equals(messageSenderID) && messages.getFrom().equals(messageReceiverID))
+                    {
+                        messagesList.add(messages);
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+    }
+*/
 
     private void InitializeControllers() {
 
@@ -180,6 +236,7 @@ public class ChatActivity extends AppCompatActivity {
         userImage = (CircleImageView) findViewById(R.id.custom_profile_IMAGE);
         userName = (TextView) findViewById(R.id.custom_profile_name);
         userLastSeen = (TextView) findViewById(R.id.custom_user_last_seen);
+
 
         SendMessageButton = (ImageButton) findViewById(R.id.send_message_btn);
         SendFilesButton = (ImageButton) findViewById(R.id.send_files_btn);
@@ -244,6 +301,7 @@ public class ChatActivity extends AppCompatActivity {
                             messageTextBody.put("messageID", messagePushID);
                             messageTextBody.put("time", saveCurrentTime);
                             messageTextBody.put("date", saveCurrentDate);
+                            //messageTextBody.put("isSeen", false);
 
 
                             Map messageBodyDetails = new HashMap();
@@ -254,10 +312,10 @@ public class ChatActivity extends AppCompatActivity {
                             loadingBar.dismiss();
                         }
                     }
-                }).addOnFailureListener(new OnFailureListener() 
+                }).addOnFailureListener(new OnFailureListener()
                 {
                     @Override
-                    public void onFailure(@NonNull Exception e) 
+                    public void onFailure(@NonNull Exception e)
                     {
                         loadingBar.dismiss();
                         Toast.makeText(ChatActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
@@ -316,6 +374,7 @@ public class ChatActivity extends AppCompatActivity {
                             messageTextBody.put("messageID", messagePushID);
                             messageTextBody.put("time", saveCurrentTime);
                             messageTextBody.put("date", saveCurrentDate);
+                            //messageTextBody.put("isSeen", false);
 
 
                             Map messageBodyDetails = new HashMap();
@@ -340,7 +399,7 @@ public class ChatActivity extends AppCompatActivity {
                     }
                 });
             }
-            else 
+            else
             {
                 loadingBar.dismiss();
                 Toast.makeText(this, "Nothing Selected, Error.", Toast.LENGTH_SHORT).show();
@@ -417,6 +476,14 @@ public class ChatActivity extends AppCompatActivity {
                 });
     }
 
+    /*
+    @Override
+    protected void onPause() {
+        super.onPause();
+        RootRef.removeEventListener(seenListener);
+    }
+    */
+
     private void SendMessage(){
         String messageText = MessageInputText.getText().toString();
 
@@ -440,6 +507,7 @@ public class ChatActivity extends AppCompatActivity {
             messageTextBody.put("messageID", messagePushID);
             messageTextBody.put("time", saveCurrentTime);
             messageTextBody.put("date", saveCurrentDate);
+           // messageTextBody.put("isSeen", false);
 
 
             Map messageBodyDetails = new HashMap();

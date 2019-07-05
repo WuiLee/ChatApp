@@ -3,6 +3,7 @@ package com.example.chatapp;
 public class Messages
 {
     private String from, message, type, to, messageID, time, date, name;
+    //boolean isSeen;
 
     public Messages()
     {
@@ -18,6 +19,7 @@ public class Messages
         this.time = time;
         this.date = date;
         this.name = name;
+        //this.isSeen = isSeen;
     }
 
     public String getFrom() {
@@ -83,4 +85,12 @@ public class Messages
     public void setName(String name) {
         this.name = name;
     }
+
+    /*public boolean isSeen() {
+        return isSeen;
+    }
+
+    public void setSeen(boolean seen) {
+        isSeen = seen;
+    }*/
 }
