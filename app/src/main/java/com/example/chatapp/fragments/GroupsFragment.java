@@ -1,4 +1,4 @@
-package com.example.chatapp;
+package com.example.chatapp.fragments;
 
 
 import android.content.Intent;
@@ -12,6 +12,8 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
+import com.example.chatapp.GroupChat;
+import com.example.chatapp.R;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;

@@ -1,4 +1,4 @@
-package com.example.chatapp;
+package com.example.chatapp.fragments;
 
 
 import android.app.AlertDialog;
@@ -15,6 +15,8 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.chatapp.models.Contacts;
+import com.example.chatapp.R;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.android.gms.tasks.OnCompleteListener;

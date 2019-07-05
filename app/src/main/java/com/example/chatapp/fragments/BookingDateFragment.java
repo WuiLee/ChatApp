@@ -1,4 +1,4 @@
-package com.example.chatapp;
+package com.example.chatapp.fragments;
 
 import android.app.DatePickerDialog;
 import android.app.Dialog;

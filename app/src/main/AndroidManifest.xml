@@ -25,7 +25,7 @@
         <activity
             android:name=".UsefulContactList"
             android:parentActivityName=".ProfileMenuActivity" />
-        <activity android:name=".AddPostFormActivity" />
+        <activity android:name=".forms.AddPostFormActivity" />
         <activity
             android:name=".EnrolmentActivity"
             android:parentActivityName=".ProfileMenuActivity" />
@@ -34,7 +34,7 @@
             android:parentActivityName=".ProfileMenuActivity" />
         <activity android:name=".MiniGame.ArcadeMenuActivity" />
         <activity android:name=".MainActivity" />
-        <activity android:name=".LoginFormActivity">
+        <activity android:name=".forms.LoginFormActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

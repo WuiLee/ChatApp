@@ -1,4 +1,4 @@
-package com.example.chatapp;
+package com.example.chatapp.adapters;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
@@ -6,7 +6,6 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.net.Uri;
 import android.support.annotation.NonNull;
-import android.support.transition.Transition;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,6 +14,10 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.chatapp.ImageViewerActivity;
+import com.example.chatapp.MainActivity;
+import com.example.chatapp.models.Messages;
+import com.example.chatapp.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
@@ -203,7 +206,7 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.MessageV
                                 {
                                     deleteSentMessages(position, messageViewHolder);
 
-                                    Intent intent = new Intent(messageViewHolder.itemView.getContext(),MainActivity.class);
+                                    Intent intent = new Intent(messageViewHolder.itemView.getContext(), MainActivity.class);
                                     messageViewHolder.itemView.getContext().startActivity(intent);
                                 }
                                 else if (i == 1)
@@ -285,7 +288,7 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.MessageV
                                 }
                                 else if (i == 1)
                                 {
-                                    Intent intent = new Intent(messageViewHolder.itemView.getContext(),ImageViewerActivity.class);
+                                    Intent intent = new Intent(messageViewHolder.itemView.getContext(), ImageViewerActivity.class);
                                     intent.putExtra("url",userMessageList.get(position).getMessage());
                                     messageViewHolder.itemView.getContext().startActivity(intent);
                                 }

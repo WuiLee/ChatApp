@@ -1,4 +1,4 @@
-package com.example.chatapp;
+package com.example.chatapp.forms;
 
 import android.Manifest;
 import android.app.ProgressDialog;
@@ -28,6 +28,8 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.example.chatapp.MainActivity;
+import com.example.chatapp.R;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;

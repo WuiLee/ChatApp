@@ -1,4 +1,4 @@
-package com.example.chatapp;
+package com.example.chatapp.adapters;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
@@ -9,6 +9,8 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+
+import com.example.chatapp.R;
 
 public class SliderAdapter extends PagerAdapter {
 

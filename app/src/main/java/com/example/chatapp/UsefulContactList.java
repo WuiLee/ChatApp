@@ -11,6 +11,8 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.example.chatapp.adapters.SliderAdapter;
+
 public class UsefulContactList extends AppCompatActivity {
 
     private Toolbar mToolbar;

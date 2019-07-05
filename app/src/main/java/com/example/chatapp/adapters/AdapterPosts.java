@@ -18,7 +18,7 @@ import android.widget.PopupMenu;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.chatapp.AddPostFormActivity;
+import com.example.chatapp.forms.AddPostFormActivity;
 import com.example.chatapp.R;
 import com.example.chatapp.models.ModelPost;
 import com.google.android.gms.tasks.OnFailureListener;

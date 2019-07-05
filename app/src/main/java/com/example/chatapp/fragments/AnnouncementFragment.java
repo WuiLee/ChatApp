@@ -1,4 +1,4 @@
-package com.example.chatapp;
+package com.example.chatapp.fragments;
 
 
 import android.content.Intent;
@@ -19,6 +19,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import com.example.chatapp.R;
 import com.example.chatapp.adapters.AdapterPosts;
 import com.example.chatapp.models.ModelPost;
 import com.google.firebase.auth.FirebaseAuth;

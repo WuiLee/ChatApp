@@ -23,7 +23,8 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.chatapp.MiniGame.ArcadeMenuActivity;
-import com.example.chatapp.forms.EditProfileFormActivity;
+import com.example.chatapp.forms.AddPostFormActivity;
+import com.example.chatapp.forms.LoginFormActivity;
 import com.example.chatapp.models.Profile;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
