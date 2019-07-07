@@ -8,6 +8,7 @@ public class Profile {
     public String identity;
     public String name;
     public String phoneNumber;
+    public String imageUrl;
 
     public Profile(){}
 
@@ -17,7 +18,8 @@ public class Profile {
                    String courseId,
                    String identity,
                    String name,
-                   String phoneNumber) {
+                   String phoneNumber,
+                   String imageUrl) {
         this.uid = uid;
         this.userId = userId;
         this.userToken = userToken;
@@ -25,5 +27,6 @@ public class Profile {
         this.identity = identity;
         this.name = name;
         this.phoneNumber = phoneNumber;
+        this.imageUrl = imageUrl;
     }
 }
