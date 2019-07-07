@@ -256,7 +256,7 @@ public class EditProfileFormActivity extends AppCompatActivity {
         String json = gson.toJson(profile);
         editor.putString
                 (getString(R.string.shared_pref_profile_key), json);
-        editor.commit();
+        editor.apply();
         Log.d(TAG, "Successfully updated profile cache");
     }
 

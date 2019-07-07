@@ -19,22 +19,18 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.gson.Gson;
+import com.squareup.picasso.Picasso;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
 public class ProfileMenuActivity extends AppCompatActivity{
 
-    private String currentUserID;
     private FirebaseAuth mAuth;
-    private DatabaseReference RootRef;
-
     private static String TAG = "ProfileMenuActivity";
 
     private Button EditProfileSettings, TimetableSettings, EnrolmentSettings, EmergencyContact;
     private TextView userName, userID, courseID;
     private CircleImageView userProfileImage;
-
-    private static final int GalleryPick = 1;
 
     private Profile userProfile;
 
@@ -46,8 +42,6 @@ public class ProfileMenuActivity extends AppCompatActivity{
         setContentView(R.layout.activity_profile_menu);
 
         mAuth = FirebaseAuth.getInstance();
-        currentUserID = mAuth.getCurrentUser().getUid();
-        RootRef = FirebaseDatabase.getInstance().getReference();
 
         initializeFields();
 
@@ -78,16 +72,6 @@ public class ProfileMenuActivity extends AppCompatActivity{
                 showUsefulContacts();
             }
         });
-
-        /*userProfileImage.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent galleryIntent = new Intent();
-                galleryIntent.setAction(Intent.ACTION_GET_CONTENT);
-                galleryIntent.setType("image/*");
-                startActivityForResult(galleryIntent, GalleryPick);
-            }
-        });*/
     }
 
 
@@ -100,6 +84,7 @@ public class ProfileMenuActivity extends AppCompatActivity{
         userName = findViewById(R.id.view_user_name);
         userID = findViewById(R.id.view_student_id);
         courseID = findViewById(R.id.view_course_id);
+        userProfileImage = findViewById(R.id.view_profile_image);
 
         SettingsToolbar = findViewById(R.id.settings_toolbar);
         setSupportActionBar(SettingsToolbar);
@@ -123,37 +108,22 @@ public class ProfileMenuActivity extends AppCompatActivity{
             userName.setText(userProfile.name);
             userID.setText(userProfile.userId);
             courseID.setText(userProfile.courseId);
+            Log.d(TAG, json);
+            if (!userProfile.imageUrl.isEmpty()) {
+                Picasso.get().load(userProfile.imageUrl).into(userProfileImage);
+            }
         }
     }
-
-   /* @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-
-        if (requestCode == GalleryPick && resultCode == RESULT_OK && data != null){
-            Uri ImageUri = data.getData();
-
-            CropImage.activity()
-                    .setGuidelines(CropImageView.Guidelines.ON)
-                    .setAspectRatio(1,1)
-                    .start(this);
-        }
-        if (requestCode == CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE){
-            CropImage.ActivityResult result = CropImage.getActivityResult(data);
-        }
-    }*/
 
     private void showEditProfileForm() {
         Intent mainIntent = new Intent(ProfileMenuActivity.this, EditProfileFormActivity.class);
         startActivity(mainIntent);
     }
 
-
     private void showTimetable() {
         Intent timetableIntent = new Intent(ProfileMenuActivity.this, WeekActivity.class);
         startActivity(timetableIntent);
     }
-
 
     private void showEnrolmentList() {
         Intent enrolmentIntent = new Intent(ProfileMenuActivity.this, EnrolmentActivity.class);

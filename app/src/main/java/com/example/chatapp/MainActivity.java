@@ -79,6 +79,16 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
+        loadProfileCache();
+    }
+
+    private void loadProfileCache() {
+        SharedPreferences sharedPreferences = getSharedPreferences
+                (getString(R.string.shared_pref_file_key), Context.MODE_PRIVATE);
+        String json = sharedPreferences.getString(getString(R.string.shared_pref_profile_key), null);
+        Gson gson = new Gson();
+        userProfile = gson.fromJson(json, Profile.class);
+        Log.d(TAG, "Updated profile from cache!");
     }
 
     @Override
@@ -89,6 +99,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
+        updateUserOnlineStatus(getString(R.string.status_offline));
     }
 
     @Override
@@ -162,7 +173,7 @@ public class MainActivity extends AppCompatActivity {
         Log.d(TAG, json);
         editor.putString
                 (getString(R.string.shared_pref_profile_key), json);
-        editor.commit();
+        editor.apply();
     }
 
     private void updateUserOnlineStatus(final String state) {
