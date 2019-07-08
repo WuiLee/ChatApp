@@ -18,33 +18,33 @@
         <activity android:name=".ImageViewerActivity"></activity>
         <activity android:name=".SubjectDetails" />
         <activity android:name=".DayDetailActivity" />
-        <activity android:name=".WeekActivity" />
+        <activity
+            android:name=".ProfileMenuActivity"
+            android:parentActivityName=".MainActivity" />
+        <activity android:name=".WeekActivity"
+            android:parentActivityName=".ProfileMenuActivity"/>
         <activity
             android:name=".forms.EditProfileFormActivity"
-            android:parentActivityName=".RegisterActivity" />
+            android:parentActivityName=".ProfileMenuActivity" />
         <activity
             android:name=".UsefulContactList"
             android:parentActivityName=".ProfileMenuActivity" />
-        <activity android:name=".forms.AddPostFormActivity" />
         <activity
             android:name=".EnrolmentActivity"
             android:parentActivityName=".ProfileMenuActivity" />
         <activity
             android:name=".TimetableActivity"
             android:parentActivityName=".ProfileMenuActivity" />
+        <activity android:name=".forms.AddPostFormActivity" />
         <activity android:name=".MiniGame.ArcadeMenuActivity" />
         <activity android:name=".MainActivity" />
         <activity android:name=".forms.LoginFormActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity android:name=".RegisterActivity" />
-        <activity
-            android:name=".ProfileMenuActivity"
-            android:parentActivityName=".MainActivity" />
         <activity android:name=".GroupChat" />
         <activity
             android:name="com.theartofdev.edmodo.cropper.CropImageActivity"
