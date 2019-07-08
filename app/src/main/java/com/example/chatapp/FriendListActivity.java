@@ -25,14 +25,14 @@ public class FriendListActivity extends AppCompatActivity {
 
     private Toolbar mToolbar;
     private RecyclerView FindFriendsRecyclerList;
-    private DatabaseReference UsersRef;
+    private DatabaseReference usersRef;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_find_firends);
 
-        UsersRef = FirebaseDatabase.getInstance().getReference().child("Users");
+        usersRef = FirebaseDatabase.getInstance().getReference().child("Users");
 
         FindFriendsRecyclerList = (RecyclerView) findViewById(R.id.find_firends_recycle_list);
         FindFriendsRecyclerList.setLayoutManager(new LinearLayoutManager(this));
@@ -40,7 +40,6 @@ public class FriendListActivity extends AppCompatActivity {
         mToolbar = (Toolbar) findViewById(R.id.find_firends_toolbar);
         setSupportActionBar(mToolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setTitle("Find Friends");
     }
 
@@ -50,7 +49,7 @@ public class FriendListActivity extends AppCompatActivity {
 
         FirebaseRecyclerOptions<Contacts> options =
                 new FirebaseRecyclerOptions.Builder<Contacts>()
-                .setQuery(UsersRef, Contacts.class)
+                .setQuery(usersRef, Contacts.class)
                 .build();
 
         FirebaseRecyclerAdapter<Contacts, FindFriendViewHolder> adapter =
