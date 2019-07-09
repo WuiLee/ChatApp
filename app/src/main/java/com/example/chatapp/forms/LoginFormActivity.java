@@ -2,8 +2,10 @@ package com.example.chatapp.forms;
 
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -70,6 +72,10 @@ public class LoginFormActivity extends AppCompatActivity {
                 showRecoverPasswordDialog();
             }
         });
+
+        SharedPreferences sharedPreferences = getSharedPreferences
+                (getString(R.string.shared_pref_key), Context.MODE_PRIVATE);
+        sharedPreferences.edit().clear().apply();
     }
 
     private void AllowUserToLogin() {
