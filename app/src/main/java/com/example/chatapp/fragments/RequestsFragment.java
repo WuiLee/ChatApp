@@ -315,7 +315,7 @@ public class RequestsFragment extends Fragment {
             super(itemView);
 
             userName = itemView.findViewById(R.id.users_profile_name);
-            userStatus = itemView.findViewById(R.id.user_status);
+            userStatus = itemView.findViewById(R.id.user_profile_ID);
             profileImage = itemView.findViewById(R.id.users_profile_image);
             AcceptButton = itemView.findViewById(R.id.request_accept_btn);
             CancelButton = itemView.findViewById(R.id.request_cancel_btn);

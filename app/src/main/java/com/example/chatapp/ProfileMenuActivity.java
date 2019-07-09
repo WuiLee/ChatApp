@@ -16,8 +16,6 @@ import android.widget.TextView;
 import com.example.chatapp.forms.EditProfileFormActivity;
 import com.example.chatapp.models.Profile;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
 import com.google.gson.Gson;
 import com.squareup.picasso.Picasso;
 
@@ -97,7 +95,7 @@ public class ProfileMenuActivity extends AppCompatActivity{
 
     private void configureFields() {
         SharedPreferences sharedPreferences = getSharedPreferences
-                (getString(R.string.shared_pref_file_key), Context.MODE_PRIVATE);
+                (getString(R.string.shared_pref_key), Context.MODE_PRIVATE);
         String json = sharedPreferences.getString
                 (getString(R.string.shared_pref_profile_key), null);
         Gson gson = new Gson();

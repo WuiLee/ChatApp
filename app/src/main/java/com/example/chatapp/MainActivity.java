@@ -84,7 +84,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void loadProfileCache() {
         SharedPreferences sharedPreferences = getSharedPreferences
-                (getString(R.string.shared_pref_file_key), Context.MODE_PRIVATE);
+                (getString(R.string.shared_pref_key), Context.MODE_PRIVATE);
         String json = sharedPreferences.getString(getString(R.string.shared_pref_profile_key), null);
         Gson gson = new Gson();
         userProfile = gson.fromJson(json, Profile.class);
@@ -164,16 +164,18 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void cacheProfile() {
-        Log.d(TAG, "Cached Profile");
         SharedPreferences sharedPreferences = getSharedPreferences
-                (getString(R.string.shared_pref_file_key), Context.MODE_PRIVATE);
+                (getString(R.string.shared_pref_key), Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
         Gson gson = new Gson();
         String json = gson.toJson(userProfile);
         Log.d(TAG, json);
         editor.putString
+                (getString(R.string.shared_pref_currentUserUid_key), userProfile.uid);
+        editor.putString
                 (getString(R.string.shared_pref_profile_key), json);
         editor.apply();
+        Log.d(TAG, "Cached Profile");
     }
 
     private void updateUserOnlineStatus(final String state) {

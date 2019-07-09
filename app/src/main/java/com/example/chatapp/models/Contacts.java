@@ -21,7 +21,6 @@ public class Contacts {
         this.name = name;
     }
 
-
     public String getImageUrl() {
         return imageUrl;
     }

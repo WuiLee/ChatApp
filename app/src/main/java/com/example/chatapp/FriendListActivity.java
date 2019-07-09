@@ -12,7 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.example.chatapp.models.Contacts;
+import com.example.chatapp.models.Profile;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.firebase.database.DatabaseReference;
@@ -25,6 +25,7 @@ public class FriendListActivity extends AppCompatActivity {
 
     private Toolbar mToolbar;
     private RecyclerView FindFriendsRecyclerList;
+    private FirebaseRecyclerAdapter<Profile, FindFriendViewHolder> adapter;
     private DatabaseReference usersRef;
 
     @Override
@@ -34,10 +35,10 @@ public class FriendListActivity extends AppCompatActivity {
 
         usersRef = FirebaseDatabase.getInstance().getReference().child("Users");
 
-        FindFriendsRecyclerList = (RecyclerView) findViewById(R.id.find_firends_recycle_list);
+        FindFriendsRecyclerList = findViewById(R.id.find_firends_recycle_list);
         FindFriendsRecyclerList.setLayoutManager(new LinearLayoutManager(this));
 
-        mToolbar = (Toolbar) findViewById(R.id.find_firends_toolbar);
+        mToolbar = findViewById(R.id.find_firends_toolbar);
         setSupportActionBar(mToolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle("Find Friends");
@@ -47,27 +48,28 @@ public class FriendListActivity extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
 
-        FirebaseRecyclerOptions<Contacts> options =
-                new FirebaseRecyclerOptions.Builder<Contacts>()
-                .setQuery(usersRef, Contacts.class)
+        FirebaseRecyclerOptions<Profile> options =
+                new FirebaseRecyclerOptions.Builder<Profile>()
+                .setQuery(usersRef, Profile.class)
                 .build();
 
-        FirebaseRecyclerAdapter<Contacts, FindFriendViewHolder> adapter =
-                new FirebaseRecyclerAdapter<Contacts, FindFriendViewHolder>(options) {
+        adapter = new FirebaseRecyclerAdapter<Profile, FindFriendViewHolder>(options) {
                     @Override
-                    protected void onBindViewHolder(@NonNull FindFriendViewHolder holder, final int position, @NonNull Contacts model) {
-                        holder.userName.setText(model.getName());
-                        Picasso.get().load(model.getImageUrl()).placeholder(R.drawable.profile_image).into(holder.profileImage);
+                    protected void onBindViewHolder
+                            (@NonNull final FindFriendViewHolder holder, final int position, @NonNull Profile model) {
+                        holder.userName.setText(model.name);
+                        holder.userId.setText(model.userId);
+                        final String imageUrl = model.imageUrl;
+                        Picasso.get().load(imageUrl).placeholder(R.drawable.profile_image).into(holder.profileImage);
 
                         holder.itemView.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View v) {
-                                String visit_user_id = getRef(position).getKey();
-
+                                String selectedUid = getRef(position).getKey();
                                 Intent profileIntent = new Intent (FriendListActivity.this, ProfileActivity.class);
-                                profileIntent.putExtra("visit_user_id", visit_user_id);
+                                profileIntent.putExtra(getString(R.string.selected_profile_uid), selectedUid);
+                                profileIntent.putExtra(getString(R.string.selected_profile_image_url), imageUrl);
                                 startActivity(profileIntent);
-
                             }
                         });
                     }
@@ -75,25 +77,31 @@ public class FriendListActivity extends AppCompatActivity {
                     @NonNull
                     @Override
                     public FindFriendViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
-                        View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.user_display_layout, viewGroup, false);
+                        View view = LayoutInflater.from(viewGroup.getContext())
+                                .inflate(R.layout.user_display_layout, viewGroup, false);
                         FindFriendViewHolder viewHolder = new FindFriendViewHolder(view);
                         return viewHolder;
                     }
                 };
         FindFriendsRecyclerList.setAdapter(adapter);
-
         adapter.startListening();
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        adapter.stopListening();
     }
 
     public static class FindFriendViewHolder extends RecyclerView.ViewHolder{
         TextView userName;
+        TextView userId;
         CircleImageView profileImage;
 
         public FindFriendViewHolder(@NonNull View itemView) {
             super(itemView);
-
             userName = itemView.findViewById(R.id.users_profile_name);
-
+            userId = itemView.findViewById(R.id.user_profile_ID);
             profileImage = itemView.findViewById(R.id.users_profile_image);
         }
     }

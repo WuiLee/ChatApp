@@ -137,7 +137,7 @@ public class EditProfileFormActivity extends AppCompatActivity {
 
     private void configureFields() {
         SharedPreferences sharedPreferences = getSharedPreferences
-                (getString(R.string.shared_pref_file_key), Context.MODE_PRIVATE);
+                (getString(R.string.shared_pref_key), Context.MODE_PRIVATE);
         String json = sharedPreferences.getString(getString(R.string.shared_pref_profile_key), null);
         Gson gson = new Gson();
         userProfile = gson.fromJson(json, Profile.class);
@@ -250,7 +250,7 @@ public class EditProfileFormActivity extends AppCompatActivity {
     private void updateProfileCache(Profile profile) {
         this.userProfile = profile;
         SharedPreferences sharedPreferences = getSharedPreferences
-                (getString(R.string.shared_pref_file_key), Context.MODE_PRIVATE);
+                (getString(R.string.shared_pref_key), Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
         Gson gson = new Gson();
         String json = gson.toJson(profile);

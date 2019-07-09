@@ -150,7 +150,7 @@ public class ChatsFragment extends Fragment {
             super(itemView);
 
             profileImage = itemView.findViewById(R.id.users_profile_image);
-            userStatus = itemView.findViewById(R.id.user_status);
+            userStatus = itemView.findViewById(R.id.user_profile_ID);
             userName = itemView.findViewById(R.id.users_profile_name);
             onlineIcon = (ImageView) itemView.findViewById(R.id.user_online_status);
         }
