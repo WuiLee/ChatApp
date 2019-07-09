@@ -87,8 +87,10 @@ public class ProfileActivity extends AppCompatActivity {
                     String courseID = dataSnapshot.child("courseId").getValue().toString();
                     String phoneNo = dataSnapshot.child("phoneNumber").getValue().toString();
 
-                    Picasso.get().load(userImage)
-                            .placeholder(R.drawable.profile_image).into(userProfileImage);
+                    if (!userImage.isEmpty()) {
+                        Picasso.get().load(userImage)
+                                .placeholder(R.drawable.profile_image).into(userProfileImage);
+                    }
                     userProfileName.setText("Name : " + userName);
                     userProfileID.setText("ID : " + userID);
                     userProfileIdentity.setText(userIdentity);
