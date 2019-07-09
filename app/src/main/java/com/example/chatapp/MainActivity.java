@@ -91,6 +91,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
+        clearProfileCache();
         updateUserOnlineStatus(getString(R.string.status_offline));
     }
 

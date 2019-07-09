@@ -1,12 +1,15 @@
 package com.example.chatapp;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,16 +20,21 @@ import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.google.gson.Gson;
 import com.squareup.picasso.Picasso;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
 public class FriendListActivity extends AppCompatActivity {
 
+    private static String TAG = "Friend List Activity";
+
     private Toolbar mToolbar;
     private RecyclerView FindFriendsRecyclerList;
     private FirebaseRecyclerAdapter<Profile, FindFriendViewHolder> adapter;
     private DatabaseReference usersRef;
+    private Profile userProfile;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,15 +50,32 @@ public class FriendListActivity extends AppCompatActivity {
         setSupportActionBar(mToolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle("Find Friends");
+
+    }
+
+
+    private void loadProfileCache() {
+        SharedPreferences sharedPreferences = getSharedPreferences
+                (getString(R.string.shared_pref_key), Context.MODE_PRIVATE);
+        String json = sharedPreferences.getString(getString(R.string.shared_pref_profile_key), null);
+        Gson gson = new Gson();
+        userProfile = gson.fromJson(json, Profile.class);
+        Log.d(TAG, "Updated profile from cache!");
     }
 
     @Override
     protected void onStart() {
         super.onStart();
 
+        loadProfileCache();
+
+        Query query = usersRef
+                .orderByChild(getString(R.string.dbnode_users_courseId))
+                .equalTo(userProfile.courseId);
+
         FirebaseRecyclerOptions<Profile> options =
                 new FirebaseRecyclerOptions.Builder<Profile>()
-                .setQuery(usersRef, Profile.class)
+                .setQuery(query, Profile.class)
                 .build();
 
         adapter = new FirebaseRecyclerAdapter<Profile, FindFriendViewHolder>(options) {
@@ -60,7 +85,10 @@ public class FriendListActivity extends AppCompatActivity {
                         holder.userName.setText(model.name);
                         holder.userId.setText(model.userId);
                         final String imageUrl = model.imageUrl;
-                        Picasso.get().load(imageUrl).placeholder(R.drawable.profile_image).into(holder.profileImage);
+
+                        if (!imageUrl.isEmpty()) {
+                            Picasso.get().load(imageUrl).placeholder(R.drawable.profile_image).into(holder.profileImage);
+                        }
 
                         holder.itemView.setOnClickListener(new View.OnClickListener() {
                             @Override
