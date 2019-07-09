@@ -19,7 +19,7 @@ import android.widget.Toast;
 import com.example.chatapp.MainActivity;
 import com.example.chatapp.R;
 import com.example.chatapp.RegisterActivity;
-import com.example.chatapp.TabsAccessorAdapter;
+import com.example.chatapp.fragments.TabsAccessorAdapter;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;

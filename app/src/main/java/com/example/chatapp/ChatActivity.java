@@ -407,7 +407,7 @@ public class ChatActivity extends AppCompatActivity {
     }
 
     private void DisplayLastSeen(){
-        RootRef.child("Users").child(messageSenderID)
+        RootRef.child("Users").child(messageReceiverID)
                 .addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot)
@@ -416,16 +416,11 @@ public class ChatActivity extends AppCompatActivity {
                             String state = dataSnapshot.child("userState").child("state").getValue().toString();
                             String date = dataSnapshot.child("userState").child("date").getValue().toString();
                             String time = dataSnapshot.child("userState").child("time").getValue().toString();
-
-                            if (state.equals("online")){
-                                userLastSeen.setText("online");
+                            if (state.equals(getString(R.string.status_offline))) {
+                                userLastSeen.setText("Last seen: " + time + ", " + date);
+                            } else {
+                                userLastSeen.setText(state);
                             }
-                            else if (state.equals("offline")){
-                                userLastSeen.setText("Last Seen: " + date + " " + time);
-                            }
-                        }
-                        else{
-                            userLastSeen.setText("offline");
                         }
                     }
 
