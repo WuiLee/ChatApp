@@ -85,13 +85,14 @@ public class ChatsFragment extends Fragment {
             protected void onBindViewHolder
                     (@NonNull final ChatsViewHolder holder, int position, @NonNull Contacts model) {
                 chatterID = getRef(position).getKey();
-
+                Log.d(TAG, "On Bind VH called");
                 usersRef.child(chatterID).addValueEventListener(getConfiguredListener(holder, chatterID));
             }
 
             @NonNull
             @Override
             public ChatsViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
+                Log.d(TAG, "On Create VH called");
                 View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.user_display_layout, viewGroup, false);
                 return new ChatsViewHolder(view);
             }
@@ -156,6 +157,7 @@ public class ChatsFragment extends Fragment {
                 }
             };
         }
+        Log.d(TAG,"Returning a listener.");
         return listener;
     }
 
@@ -165,6 +167,7 @@ public class ChatsFragment extends Fragment {
         if (listener != null) {
             Log.d(TAG, "Listener not null, removing Listener");
             usersRef.child(chatterID).removeEventListener(listener);
+            listener = null;
         } else {
             Log.d(TAG, "Listener is null!");
         }
