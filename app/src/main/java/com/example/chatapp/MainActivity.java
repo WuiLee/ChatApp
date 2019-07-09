@@ -24,6 +24,7 @@ import android.widget.Toast;
 
 import com.example.chatapp.MiniGame.ArcadeMenuActivity;
 import com.example.chatapp.forms.AddPostFormActivity;
+import com.example.chatapp.forms.EditProfileFormActivity;
 import com.example.chatapp.forms.LoginFormActivity;
 import com.example.chatapp.fragments.TabsAccessorAdapter;
 import com.example.chatapp.models.Profile;
@@ -72,7 +73,6 @@ public class MainActivity extends AppCompatActivity {
         myViewPager = findViewById(R.id.main_tabs_pager);
         myTabsAccessorAdapter = new TabsAccessorAdapter(getSupportFragmentManager());
         myViewPager.setAdapter(myTabsAccessorAdapter);
-
         myTabLayout = findViewById(R.id.main_tabs);
         myTabLayout.setupWithViewPager(myViewPager);
     }
@@ -81,15 +81,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
         loadProfileCache();
-    }
-
-    private void loadProfileCache() {
-        SharedPreferences sharedPreferences = getSharedPreferences
-                (getString(R.string.shared_pref_key), Context.MODE_PRIVATE);
-        String json = sharedPreferences.getString(getString(R.string.shared_pref_profile_key), null);
-        Gson gson = new Gson();
-        userProfile = gson.fromJson(json, Profile.class);
-        Log.d(TAG, "Updated profile from cache!");
     }
 
     @Override
@@ -131,13 +122,22 @@ public class MainActivity extends AppCompatActivity {
                 showArcadeMenu();
                 break;
             case R.id.main_logout_option:
-                //Todo: Implement Firebase UI
+                clearProfileCache();
                 updateUserOnlineStatus(getString(R.string.status_offline));
                 firebaseAuth.signOut();
                 showLoginForm();
         }
 
         return true;
+    }
+
+    private void loadProfileCache() {
+        SharedPreferences sharedPreferences = getSharedPreferences
+                (getString(R.string.shared_pref_key), Context.MODE_PRIVATE);
+        String json = sharedPreferences.getString(getString(R.string.shared_pref_profile_key), null);
+        Gson gson = new Gson();
+        userProfile = gson.fromJson(json, Profile.class);
+        Log.d(TAG, "Updated profile from cache!");
     }
 
     private void loadUserProfile() {
@@ -151,9 +151,13 @@ public class MainActivity extends AppCompatActivity {
                     .addListenerForSingleValueEvent(new ValueEventListener() {
                         @Override
                         public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                            userProfile = dataSnapshot.getValue(Profile.class);
-                            cacheProfile();
-                            updateUserOnlineStatus(getString(R.string.status_online));
+                            if (dataSnapshot.child(getString(R.string.dbnode_users_uid)).getValue() != null) {
+                                userProfile = dataSnapshot.getValue(Profile.class);
+                                cacheProfile();
+                                updateUserOnlineStatus(getString(R.string.status_online));
+                            } else {
+                                showEditProfileForm();
+                            }
                         }
 
                         @Override
@@ -162,6 +166,12 @@ public class MainActivity extends AppCompatActivity {
                         }
                     });
         }
+    }
+
+    private void clearProfileCache() {
+        SharedPreferences sharedPreferences = getSharedPreferences
+                (getString(R.string.shared_pref_key), Context.MODE_PRIVATE);
+        sharedPreferences.edit().clear().apply();
     }
 
     private void cacheProfile() {
@@ -191,7 +201,7 @@ public class MainActivity extends AppCompatActivity {
 
         Calendar calendar = Calendar.getInstance();
 
-        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy.MM.dd");
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd MMM, yyyy");
         dateFormat.setTimeZone(timeZone);
         onlineDate = dateFormat.format(calendar.getTime());
 
@@ -278,6 +288,12 @@ public class MainActivity extends AppCompatActivity {
                         }
                     }
                 });
+    }
+
+    private void showEditProfileForm() {
+        Intent profileIntent = new Intent(MainActivity.this, EditProfileFormActivity.class) ;
+        startActivity(profileIntent);
+        finish();
     }
 
     private void showLoginForm() {
