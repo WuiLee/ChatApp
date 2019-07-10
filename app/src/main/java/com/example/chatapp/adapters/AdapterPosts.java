@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.text.format.DateFormat;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -21,11 +22,13 @@ import android.widget.Toast;
 import com.example.chatapp.forms.AddPostFormActivity;
 import com.example.chatapp.R;
 import com.example.chatapp.models.ModelPost;
+import com.example.chatapp.models.Profile;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
@@ -39,9 +42,11 @@ import java.util.Locale;
 
 public class AdapterPosts extends RecyclerView.Adapter<AdapterPosts.MyHolder>
 {
+    private static String TAG = "Adapter Posts";
 
     Context context;
     List<ModelPost> postList;
+    DatabaseReference userReference;
 
     String myUid;
 
@@ -65,6 +70,7 @@ public class AdapterPosts extends RecyclerView.Adapter<AdapterPosts.MyHolder>
     @Override
     public void onBindViewHolder(@NonNull final MyHolder myHolder, int i)
     {
+
         //get data
         final String uid = postList.get(i).getUid();
         String uEmail = postList.get(i).getuEmail();
@@ -81,46 +87,38 @@ public class AdapterPosts extends RecyclerView.Adapter<AdapterPosts.MyHolder>
         calendar.setTimeInMillis(Long.parseLong(pTimeStamp));
         String pTime = DateFormat.format("dd/MM/yyyy hh:mm aa", calendar).toString();
 
+        userReference = FirebaseDatabase.getInstance().getReference()
+                .child("Users").child(uid);
+
+        userReference.addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        if (dataSnapshot.child("name").getValue() != null) {
+                            Profile userProfile = dataSnapshot.getValue(Profile.class);
+                            myHolder.uNameTv.setText(userProfile.name);
+
+                            if (!userProfile.imageUrl.isEmpty()) {
+                                Picasso.get().load(userProfile.imageUrl).into(myHolder.uPictureIv);
+                            }
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                    }
+                });
 
         //set data
-        myHolder.uNameTv.setText(uName);
+
         myHolder.pTimeTv.setText(pTime);
         myHolder.pTitleTv.setText(pTitle);
         myHolder.pDescriptionTv.setText(pDescription);
 
-
-        //set user dp
-        try
-        {
-            Picasso.get().load(uDp).placeholder(R.drawable.profile_image).into(myHolder.uPictureIv);
-        }
-        catch (Exception e)
-        {
-
-        }
-
-        //set post image
-        //if there is no image i.e. pImage.equals("noImage") then hide ImageView
-        if (pImage.equals("noImage"))
-        {
-            //hide imageView
-            myHolder.pImageIv.setVisibility(View.GONE);
-        }
-        else
-        {
-            //show imageView
-            myHolder.pImageIv.setVisibility(View.VISIBLE);
-
-            try
-            {
-                Picasso.get().load(pImage).into(myHolder.pImageIv);
-            }
-            catch (Exception e)
-            {
-
-            }
-
-        }
+        Log.d(TAG, "uid: " + postList.get(i).getUid());
+        Log.d(TAG, "uName: " + postList.get(i).getuName());
+        Log.d(TAG, "uEmail: " + postList.get(i).getuEmail());
+        Log.d(TAG, "uDp: " + postList.get(i).getuDp());
 
         //handle button clicks
         myHolder.moreBtn.setOnClickListener(new View.OnClickListener() {
