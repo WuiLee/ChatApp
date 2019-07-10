@@ -24,8 +24,8 @@
     <!-- End Firebase Database Nodes -->
 
     <!-- Firebase Storage Related -->
-    <string name="storage_child_doc">Document Files</string>
-    <string name="storage_child_image">Image Files</string>
+    <string name="storage_child_doc">Document Files/</string>
+    <string name="storage_child_image">Image Files/</string>
     <string name="storage_type_image">image/*</string>
     <string name="storage_type_zip">application/zip</string>
     <string name="storage_type_text">text</string>

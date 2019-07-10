@@ -1,5 +1,6 @@
 package com.example.chatapp;
 
+import android.app.DownloadManager;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -20,10 +21,12 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.chatapp.models.Messages;
 import com.example.chatapp.models.Profile;
@@ -48,6 +51,7 @@ import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.TimeZone;
+import java.util.UUID;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
@@ -182,10 +186,16 @@ public class ChatActivity extends AppCompatActivity {
                             }
                         } else if (model.type.equals(getString(R.string.storage_type_zip))){
                             Log.d(TAG, "Got new zip");
+                            final String downloadableUrl = model.message;
                             senderMessageHolder.senderText.setVisibility(View.VISIBLE);
                             senderMessageHolder.senderText.setText(model.message);
-
-                            //TODO: On Click Implementation
+                            senderMessageHolder.itemView.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                    Toast.makeText(ChatActivity.this, "Downloading file...", Toast.LENGTH_SHORT).show();
+                                    downloadFile(downloadableUrl);
+                                }
+                            });
                         } else if (model.type.equals(getString(R.string.storage_type_text))) {
                             Log.d(TAG, "Got new text");
                             senderMessageHolder.senderText.setVisibility(View.VISIBLE);
@@ -214,9 +224,16 @@ public class ChatActivity extends AppCompatActivity {
                             }
                         } else if (model.type.equals(getString(R.string.storage_type_zip))){
                             Log.d(TAG, "Got new zip type");
+                            final String downloadableUrl = model.message;
                             recipientMessageHolder.recipientText.setVisibility(View.VISIBLE);
                             recipientMessageHolder.recipientText.setText(model.message);
-
+                            recipientMessageHolder.itemView.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                    Toast.makeText(ChatActivity.this, "Downloading file...", Toast.LENGTH_SHORT).show();
+                                    downloadFile(downloadableUrl);
+                                }
+                            });
                             //TODO: On Click Implementation
                         } else if (model.type.equals(getString(R.string.storage_type_text))) {
                             Log.d(TAG, "Got new Text");
@@ -224,8 +241,15 @@ public class ChatActivity extends AppCompatActivity {
                             recipientMessageHolder.recipientText.setText(model.message);
                         }
                         break;
-
                 }
+            }
+
+            private void downloadFile(String downloadableUrl) {
+                Uri downloadableUri = Uri.parse(downloadableUrl);
+                DownloadManager.Request request = new DownloadManager.Request(downloadableUri);
+                request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED);
+                DownloadManager manager = (DownloadManager) getSystemService(DOWNLOAD_SERVICE);
+                manager.enqueue(request);
             }
 
             @NonNull
@@ -364,7 +388,8 @@ public class ChatActivity extends AppCompatActivity {
         loadingProgress.setCanceledOnTouchOutside(false);
         loadingProgress.show();
 
-        storageRef.putFile(fileUri).addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
+        storageRef.child(UUID.randomUUID().toString())
+                .putFile(fileUri).addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
             @Override
             public void onComplete(@NonNull Task<UploadTask.TaskSnapshot> task) {
                 loadingProgress.dismiss();
@@ -513,6 +538,10 @@ public class ChatActivity extends AppCompatActivity {
             return;
         } else {
             MessageInputText.getText().clear();
+            InputMethodManager manager = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
+            if (manager.isAcceptingText()) {
+                manager.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), 0);
+            }
         }
 
         updateFirebaseMessageNode(messageText, getString(R.string.storage_type_text));
