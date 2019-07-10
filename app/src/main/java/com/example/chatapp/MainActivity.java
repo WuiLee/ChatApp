@@ -37,6 +37,8 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.iid.FirebaseInstanceId;
+import com.google.firebase.iid.InstanceIdResult;
 import com.google.gson.Gson;
 
 import java.text.SimpleDateFormat;
@@ -81,6 +83,33 @@ public class MainActivity extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
         loadProfileCache();
+    }
+
+    private void updateFCMUserToken() {
+        FirebaseInstanceId.getInstance()
+                .getInstanceId()
+                .addOnCompleteListener(new OnCompleteListener<InstanceIdResult>() {
+            @Override
+            public void onComplete(@NonNull Task<InstanceIdResult> task) {
+                if (task.isSuccessful()) {
+                    Log.d(TAG, "Successfully retrieved instance id result.");
+                    String token = task.getResult().getToken();
+                    Log.d(TAG, "Token: " + token);
+                    databaseReference.child(getString(R.string.dbnode_users))
+                            .child(userProfile.uid)
+                            .child(getString(R.string.dbnode_users_userToken))
+                            .setValue(token)
+                    .addOnCompleteListener(new OnCompleteListener<Void>() {
+                        @Override
+                        public void onComplete(@NonNull Task<Void> task) {
+                            if (task.isSuccessful()) {
+                                Log.d(TAG, "Successfully updated token.");
+                            }
+                        }
+                    });
+                }
+            }
+        });
     }
 
     @Override
@@ -138,7 +167,6 @@ public class MainActivity extends AppCompatActivity {
         String json = sharedPreferences.getString(getString(R.string.shared_pref_profile_key), null);
         Gson gson = new Gson();
         userProfile = gson.fromJson(json, Profile.class);
-        Log.d(TAG, "Updated profile from cache!");
     }
 
     private void loadUserProfile() {
@@ -156,6 +184,7 @@ public class MainActivity extends AppCompatActivity {
                                 userProfile = dataSnapshot.getValue(Profile.class);
                                 cacheProfile();
                                 updateUserOnlineStatus(getString(R.string.status_online));
+                                updateFCMUserToken();
                             } else {
                                 showEditProfileForm();
                             }
