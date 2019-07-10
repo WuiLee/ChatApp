@@ -16,7 +16,20 @@
     <string name="dbnode_users_courseId">courseId</string>
     <string name="dbnode_users_imageUrl">imageUrl</string>
     <!-- End Users Related -->
+
+    <!-- Messages Related -->
+    <string name="dbnode_messages">Messages</string>
+    <!-- End Messages Related -->
+
     <!-- End Firebase Database Nodes -->
+
+    <!-- Firebase Storage Related -->
+    <string name="storage_child_doc">Document Files</string>
+    <string name="storage_child_image">Image Files</string>
+    <string name="storage_type_image">image/*</string>
+    <string name="storage_type_zip">application/zip</string>
+    <string name="storage_type_text">text</string>
+    <!-- End Firebase Storage Related -->
 
     <!-- FCM and Notification Related -->
     <string name="fcm_data_type">data_type</string>
@@ -68,6 +81,7 @@
     <string name="heading">Heading</string>
     <string name="todo">TODO</string>
     <string name="type_message_here">type message here...</string>
+    <string name="image_attachment_here">image attachment here...</string>
 
 
     <string-array name="Week">

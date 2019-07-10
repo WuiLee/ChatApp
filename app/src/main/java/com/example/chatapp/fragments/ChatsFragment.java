@@ -93,7 +93,8 @@ public class ChatsFragment extends Fragment {
             @Override
             public ChatsViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
                 Log.d(TAG, "On Create VH called");
-                View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.user_display_layout, viewGroup, false);
+                View view = LayoutInflater.from(viewGroup.getContext())
+                        .inflate(R.layout.user_display_layout, viewGroup, false);
                 return new ChatsViewHolder(view);
             }
         };

@@ -1,5 +1,8 @@
 package com.example.chatapp.models;
 
+import com.google.firebase.database.IgnoreExtraProperties;
+
+@IgnoreExtraProperties
 public class Contacts {
 
     public String name, imageUrl;

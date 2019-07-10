@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/sender_profile_image"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="20dp"
+        android:src="@drawable/profile_image"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/sender_message_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="20dp"
+        android:maxWidth="240dp"
+        android:padding="16dp"
+        android:textColor="@color/colorWhite"
+        android:background="@drawable/sender_messages_layout"
+        android:textStyle="bold"
+        android:text="@string/type_message_here"
+        app:layout_constraintEnd_toStartOf="@+id/sender_profile_image"
+        app:layout_constraintTop_toTopOf="@+id/sender_profile_image" />
+
+    <ImageView
+        android:id="@+id/sender_message_image"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:contentDescription="@string/image_attachment_here"
+        app:layout_constraintEnd_toEndOf="@+id/sender_message_text"
+        app:layout_constraintTop_toTopOf="@+id/sender_message_text" />
+</android.support.constraint.ConstraintLayout>

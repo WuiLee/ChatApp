@@ -50,10 +50,9 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.MessageV
         public MessageViewHolder(@NonNull View itemView) {
             super(itemView);
 
-            //isSeenTv = (TextView) itemView.findViewById(R.id.isSeenTv);
-            senderMessageText = (TextView) itemView.findViewById(R.id.sender_message_text);
-            receiverMessageText = (TextView) itemView.findViewById(R.id.receiver_message_text);
-            receiverProfileImage = (CircleImageView) itemView.findViewById(R.id.message_profile_image);
+            senderMessageText = itemView.findViewById(R.id.recipient_message_text);
+            receiverMessageText = itemView.findViewById(R.id.receiver_message_text);
+            receiverProfileImage = itemView.findViewById(R.id.message_profile_image);
 
             messageReceiverPicture = itemView.findViewById(R.id.message_receiver_image_view);
             messageSenderPicture = itemView.findViewById(R.id.message_sender_image_view);
@@ -76,8 +75,8 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.MessageV
         String messageSenderId = mAuth.getCurrentUser().getUid();
         Messages messages = userMessageList.get(position);
 
-        String fromUserID = messages.getFrom();
-        String fromMessageType = messages.getType();
+        String fromUserID = messages.from;
+        String fromMessageType = messages.type;
 
         usersRef = FirebaseDatabase.getInstance().getReference().child("Users").child(fromUserID);
 
@@ -129,7 +128,7 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.MessageV
                 messageViewHolder.senderMessageText.setVisibility(View.VISIBLE);
                 messageViewHolder.senderMessageText.setBackgroundResource(R.drawable.sender_messages_layout);
                 messageViewHolder.senderMessageText.setTextColor(Color.BLACK);
-                messageViewHolder.senderMessageText.setText(messages.getMessage());
+                messageViewHolder.senderMessageText.setText(messages.message);
             }
             else {
                 messageViewHolder.receiverMessageText.setVisibility(View.VISIBLE);
@@ -137,7 +136,7 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.MessageV
 
                 messageViewHolder.receiverMessageText.setBackgroundResource(R.drawable.receiver_messages_layout);
                 messageViewHolder.receiverMessageText.setTextColor(Color.BLACK);
-                messageViewHolder.receiverMessageText.setText(messages.getMessage());
+                messageViewHolder.receiverMessageText.setText(messages.message);
             }
         }
         else if (fromMessageType.equals("image"))
@@ -146,14 +145,14 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.MessageV
             {
                 messageViewHolder.messageSenderPicture.setVisibility(View.VISIBLE);
 
-                Picasso.get().load(messages.getMessage()).resize(1000,1000).centerInside().into(messageViewHolder.messageSenderPicture);
+                Picasso.get().load(messages.message).resize(1000,1000).centerInside().into(messageViewHolder.messageSenderPicture);
             }
             else
             {
                 messageViewHolder.receiverProfileImage.setVisibility(View.VISIBLE);
                 messageViewHolder.messageReceiverPicture.setVisibility(View.VISIBLE);
 
-                Picasso.get().load(messages.getMessage()).resize(1000,1000).centerInside().into(messageViewHolder.messageReceiverPicture);
+                Picasso.get().load(messages.message).resize(1000,1000).centerInside().into(messageViewHolder.messageReceiverPicture);
             }
         }
         else if (fromMessageType.equals("pdf") || (fromMessageType.equals("docx")))
@@ -184,7 +183,7 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.MessageV
                 @Override
                 public void onClick(View view)
                 {
-                    if (userMessageList.get(position).getType().equals("pdf") || userMessageList.get(position).getType().equals("docx"))
+                    if (userMessageList.get(position).type.equals("pdf") || userMessageList.get(position).type.equals("docx"))
                     {
                         CharSequence options[] = new CharSequence[]
                                 {
@@ -211,7 +210,7 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.MessageV
                                 }
                                 else if (i == 1)
                                 {
-                                    Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(userMessageList.get(position).getMessage()));
+                                    Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(userMessageList.get(position).message));
                                     messageViewHolder.itemView.getContext().startActivity(intent);
                                 }
                                 else if (i == 3)
@@ -225,7 +224,7 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.MessageV
                         });
                         builder.show();
                     }
-                    else if (userMessageList.get(position).getType().equals("text"))
+                    else if (userMessageList.get(position).type.equals("text"))
                     {
                         CharSequence options[] = new CharSequence[]
                                 {
@@ -261,7 +260,7 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.MessageV
                         builder.show();
                     }
 
-                    else if (userMessageList.get(position).getType().equals("image"))
+                    else if (userMessageList.get(position).type.equals("image"))
                     {
                         CharSequence options[] = new CharSequence[]
                                 {
@@ -289,7 +288,7 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.MessageV
                                 else if (i == 1)
                                 {
                                     Intent intent = new Intent(messageViewHolder.itemView.getContext(), ImageViewerActivity.class);
-                                    intent.putExtra("url",userMessageList.get(position).getMessage());
+                                    intent.putExtra("url",userMessageList.get(position).type);
                                     messageViewHolder.itemView.getContext().startActivity(intent);
                                 }
                                 else if (i == 3)
@@ -312,7 +311,7 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.MessageV
                 @Override
                 public void onClick(View view)
                 {
-                    if (userMessageList.get(position).getType().equals("pdf") || userMessageList.get(position).getType().equals("docx"))
+                    if (userMessageList.get(position).type.equals("pdf") || userMessageList.get(position).type.equals("docx"))
                     {
                         CharSequence options[] = new CharSequence[]
                                 {
@@ -338,14 +337,14 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.MessageV
                                 }
                                 else if (i == 1)
                                 {
-                                    Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(userMessageList.get(position).getMessage()));
+                                    Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(userMessageList.get(position).message));
                                     messageViewHolder.itemView.getContext().startActivity(intent);
                                 }
                             }
                         });
                         builder.show();
                     }
-                    else if (userMessageList.get(position).getType().equals("text"))
+                    else if (userMessageList.get(position).type.equals("text"))
                     {
                         CharSequence options[] = new CharSequence[]
                                 {
@@ -373,7 +372,7 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.MessageV
                         builder.show();
                     }
 
-                    else if (userMessageList.get(position).getType().equals("image"))
+                    else if (userMessageList.get(position).type.equals("image"))
                     {
                         CharSequence options[] = new CharSequence[]
                                 {
@@ -399,7 +398,7 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.MessageV
                                 else if (i == 1)
                                 {
                                     Intent intent = new Intent(messageViewHolder.itemView.getContext(),ImageViewerActivity.class);
-                                    intent.putExtra("url",userMessageList.get(position).getMessage());
+                                    intent.putExtra("url",userMessageList.get(position).message);
                                     messageViewHolder.itemView.getContext().startActivity(intent);
                                 }
                             }
@@ -420,9 +419,9 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.MessageV
     {
         DatabaseReference rootRef = FirebaseDatabase.getInstance().getReference();
         rootRef.child("Messages")
-                .child(userMessageList.get(position).getFrom())
-                .child(userMessageList.get(position).getTo())
-                .child(userMessageList.get(position).getMessageID())
+                .child(userMessageList.get(position).from)
+                .child(userMessageList.get(position).to)
+                .child(userMessageList.get(position).messageID)
                 .removeValue().addOnCompleteListener(new OnCompleteListener<Void>() 
         {
             @Override
@@ -444,9 +443,9 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.MessageV
     {
         DatabaseReference rootRef = FirebaseDatabase.getInstance().getReference();
         rootRef.child("Messages")
-                .child(userMessageList.get(position).getTo())
-                .child(userMessageList.get(position).getFrom())
-                .child(userMessageList.get(position).getMessageID())
+                .child(userMessageList.get(position).to)
+                .child(userMessageList.get(position).from)
+                .child(userMessageList.get(position).messageID)
                 .removeValue().addOnCompleteListener(new OnCompleteListener<Void>()
         {
             @Override
@@ -470,9 +469,9 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.MessageV
     {
         final DatabaseReference rootRef = FirebaseDatabase.getInstance().getReference();
         rootRef.child("Messages")
-                .child(userMessageList.get(position).getTo())
-                .child(userMessageList.get(position).getFrom())
-                .child(userMessageList.get(position).getMessageID())
+                .child(userMessageList.get(position).to)
+                .child(userMessageList.get(position).from)
+                .child(userMessageList.get(position).messageID)
                 .removeValue().addOnCompleteListener(new OnCompleteListener<Void>()
         {
             @Override
@@ -481,9 +480,9 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.MessageV
                 if (task.isSuccessful())
                 {
                     rootRef.child("Messages")
-                            .child(userMessageList.get(position).getFrom())
-                            .child(userMessageList.get(position).getTo())
-                            .child(userMessageList.get(position).getMessageID())
+                            .child(userMessageList.get(position).from)
+                            .child(userMessageList.get(position).to)
+                            .child(userMessageList.get(position).messageID)
                             .removeValue().addOnCompleteListener(new OnCompleteListener<Void>() {
                         @Override
                         public void onComplete(@NonNull Task<Void> task) {

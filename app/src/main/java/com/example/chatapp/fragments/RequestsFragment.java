@@ -1,6 +1,5 @@
 package com.example.chatapp.fragments;
 
-
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
@@ -65,7 +64,7 @@ public class RequestsFragment extends Fragment {
         myRequestsList = (RecyclerView) RequestsFragmentView.findViewById(R.id.chat_requests_list);
         myRequestsList.setLayoutManager(new LinearLayoutManager(getContext()));
 
-        return  RequestsFragmentView;
+        return RequestsFragmentView;
     }
 
     @Override
@@ -80,7 +79,8 @@ public class RequestsFragment extends Fragment {
         FirebaseRecyclerAdapter<Contacts, RequestsViewHolder> adapter =
                 new FirebaseRecyclerAdapter<Contacts, RequestsViewHolder>(options) {
                     @Override
-                    protected void onBindViewHolder(@NonNull final RequestsViewHolder holder, int position, @NonNull Contacts model) {
+                    protected void onBindViewHolder
+                            (@NonNull final RequestsViewHolder holder, int position, @NonNull Contacts model) {
                         holder.itemView.findViewById(R.id.request_accept_btn).setVisibility(View.VISIBLE);
                         holder.itemView.findViewById(R.id.request_cancel_btn).setVisibility(View.VISIBLE);
 
@@ -98,15 +98,18 @@ public class RequestsFragment extends Fragment {
                                         UserRef.child(list_user_id).addValueEventListener(new ValueEventListener() {
                                             @Override
                                             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                                                if (dataSnapshot.hasChild("image")){
+                                                if (dataSnapshot.hasChild("imageUrl")){
 
-                                                    final String requestProfileImage = dataSnapshot.child("image").getValue().toString();
+                                                    final String requestProfileImage = dataSnapshot.child("imageUrl").getValue().toString();
 
-                                                    Picasso.get().load(requestProfileImage).into(holder.profileImage);
+                                                    if (!requestProfileImage.isEmpty()) {
+                                                        Picasso.get().load(requestProfileImage).into(holder.profileImage);
+                                                    }
                                                 }
 
-
-                                                final String requestUserName = dataSnapshot.child("name").getValue().toString();
+                                                final String requestUserName = dataSnapshot
+                                                        .child(getString(R.string.dbnode_users_name))
+                                                        .getValue().toString();
 
                                                 holder.userName.setText(requestUserName);
                                                 holder.userStatus.setText("wants to connect with you");
