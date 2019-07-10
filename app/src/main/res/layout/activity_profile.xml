@@ -19,7 +19,7 @@
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="80dp"
-        android:src="@drawable/profile_icon"
+        android:src="@drawable/profile_image"
         android:layout_below="@+id/view_profile_toolbar"/>
 
     <TextView

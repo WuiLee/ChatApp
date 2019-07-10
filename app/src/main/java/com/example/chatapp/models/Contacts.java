@@ -1,17 +1,19 @@
 package com.example.chatapp.models;
 
+import com.google.firebase.database.IgnoreExtraProperties;
+
+@IgnoreExtraProperties
 public class Contacts {
 
-    public String name, image;
+    public String name, imageUrl;
 
     public Contacts() {
 
     }
 
-    public Contacts(String name, String image) {
+    public Contacts(String name, String imageUrl) {
         this.name = name;
-
-        this.image = image;
+        this.imageUrl = imageUrl;
     }
 
     public String getName() {
@@ -22,13 +24,12 @@ public class Contacts {
         this.name = name;
     }
 
-
-    public String getImage() {
-        return image;
+    public String getImageUrl() {
+        return imageUrl;
     }
 
-    public void setImage(String image) {
-        this.image = image;
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
     }
 }
 

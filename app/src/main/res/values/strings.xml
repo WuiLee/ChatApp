@@ -14,8 +14,22 @@
     <string name="dbnode_users_identity_lecturer">Lecturer</string>
     <string name="dbnode_users_phoneNo">phoneNumber</string>
     <string name="dbnode_users_courseId">courseId</string>
+    <string name="dbnode_users_imageUrl">imageUrl</string>
     <!-- End Users Related -->
+
+    <!-- Messages Related -->
+    <string name="dbnode_messages">Messages</string>
+    <!-- End Messages Related -->
+
     <!-- End Firebase Database Nodes -->
+
+    <!-- Firebase Storage Related -->
+    <string name="storage_child_doc">Document Files/</string>
+    <string name="storage_child_image">Image Files/</string>
+    <string name="storage_type_image">image/*</string>
+    <string name="storage_type_zip">application/zip</string>
+    <string name="storage_type_text">text</string>
+    <!-- End Firebase Storage Related -->
 
     <!-- FCM and Notification Related -->
     <string name="fcm_data_type">data_type</string>
@@ -50,9 +64,15 @@
     <!-- End Main Activity -->
 
     <!-- Shared Preferences Related -->
-    <string name="shared_pref_file_key">com.example.ChatApp.PREFERENCE_FILE_KEY</string>
+    <string name="shared_pref_key">com.example.ChatApp.PREFERENCE_FILE_KEY</string>
+    <string name="shared_pref_currentUserUid_key">CurrentUserUid</string>
     <string name="shared_pref_profile_key">Profile</string>
     <!-- End Shared Preferences Related -->
+
+    <!-- FriendListActivity and ProfileActivity Related -->
+    <string name="selected_profile_uid">profileUid</string>
+    <string name="selected_profile_image_url">profileImageUrl</string>
+    <!-- End FriendListActivity and ProfileActivity Related -->
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
@@ -61,6 +81,7 @@
     <string name="heading">Heading</string>
     <string name="todo">TODO</string>
     <string name="type_message_here">type message here...</string>
+    <string name="image_attachment_here">image attachment here...</string>
 
 
     <string-array name="Week">

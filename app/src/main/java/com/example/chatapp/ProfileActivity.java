@@ -24,7 +24,7 @@ import de.hdodenhof.circleimageview.CircleImageView;
 
 public class ProfileActivity extends AppCompatActivity {
 
-    private String receiverUserID, senderUserID, Current_State;
+    private String receiverUserID, receiverImageUrl, senderUserID, Current_State;
 
     private CircleImageView userProfileImage;
     private TextView userProfileName, userProfileID, userProfileIdentity, userProfileCourse, userPhoneNo;
@@ -49,7 +49,8 @@ public class ProfileActivity extends AppCompatActivity {
         ContactRef = FirebaseDatabase.getInstance().getReference().child("Contacts");
         NotificationRef = FirebaseDatabase.getInstance().getReference().child("Notifications");
 
-        receiverUserID = getIntent().getExtras().get("visit_user_id").toString();
+        receiverUserID = getIntent().getExtras().getString(getString(R.string.selected_profile_uid));
+        receiverImageUrl = getIntent().getExtras().getString(getString(R.string.selected_profile_image_url));
         senderUserID = mAuth.getCurrentUser().getUid();
 
         userProfileImage = (CircleImageView) findViewById(R.id.visit_profile_image);
@@ -71,34 +72,25 @@ public class ProfileActivity extends AppCompatActivity {
     }
 
     private void RetrieveUserInfo() {
+        if (!receiverImageUrl.isEmpty()) {
+            Picasso.get().load(receiverImageUrl)
+                    .placeholder(R.drawable.profile_image).into(userProfileImage);
+        }
         UserRef.child(receiverUserID).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                if ((dataSnapshot.exists()) && (dataSnapshot.hasChild("image"))){
-
-                    String userImage = dataSnapshot.child("image").getValue().toString();
+                if ((dataSnapshot.exists())){
+                    String userImage = dataSnapshot.child("imageUrl").getValue().toString();
                     String userName = dataSnapshot.child("name").getValue().toString();
                     String userID = dataSnapshot.child("userId").getValue().toString();
                     String userIdentity = dataSnapshot.child("identity").getValue().toString();
                     String courseID = dataSnapshot.child("courseId").getValue().toString();
                     String phoneNo = dataSnapshot.child("phoneNumber").getValue().toString();
 
-                    Picasso.get().load(userImage).placeholder(R.drawable.profile_image).into(userProfileImage);
-                    userProfileName.setText("Name : " + userName);
-                    userProfileID.setText("ID : " + userID);
-                    userProfileIdentity.setText(userIdentity);
-                    userProfileCourse.setText("Department : " + courseID);
-                    userPhoneNo.setText("Phone No :" + phoneNo);
-
-                    ManageChatRequest();
-                }
-                else{
-                    String userName = dataSnapshot.child("name").getValue().toString();
-                    String userID = dataSnapshot.child("userId").getValue().toString();
-                    String userIdentity = dataSnapshot.child("identity").getValue().toString();
-                    String courseID = dataSnapshot.child("courseId").getValue().toString();
-                    String phoneNo = dataSnapshot.child("phoneNumber").getValue().toString();
-
+                    if (!userImage.isEmpty()) {
+                        Picasso.get().load(userImage)
+                                .placeholder(R.drawable.profile_image).into(userProfileImage);
+                    }
                     userProfileName.setText("Name : " + userName);
                     userProfileID.setText("ID : " + userID);
                     userProfileIdentity.setText(userIdentity);

@@ -28,14 +28,12 @@ public class TimetableActivity extends AppCompatActivity {
         RootRef = FirebaseDatabase.getInstance().getReference();
 
         InitializeFields();
-
     }
 
     private void InitializeFields() {
         mToolbar = (Toolbar) findViewById(R.id.timetable_toolbar);
         setSupportActionBar(mToolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setDisplayShowCustomEnabled(true);
         getSupportActionBar().setTitle("Enrolment");
     }
 }

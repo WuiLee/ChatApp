@@ -2,8 +2,10 @@ package com.example.chatapp.forms;
 
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -19,7 +21,7 @@ import android.widget.Toast;
 import com.example.chatapp.MainActivity;
 import com.example.chatapp.R;
 import com.example.chatapp.RegisterActivity;
-import com.example.chatapp.TabsAccessorAdapter;
+import com.example.chatapp.fragments.TabsAccessorAdapter;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
@@ -70,6 +72,10 @@ public class LoginFormActivity extends AppCompatActivity {
                 showRecoverPasswordDialog();
             }
         });
+
+        SharedPreferences sharedPreferences = getSharedPreferences
+                (getString(R.string.shared_pref_key), Context.MODE_PRIVATE);
+        sharedPreferences.edit().clear().apply();
     }
 
     private void AllowUserToLogin() {

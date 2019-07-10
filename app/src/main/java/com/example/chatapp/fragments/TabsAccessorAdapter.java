@@ -1,4 +1,4 @@
-package com.example.chatapp;
+package com.example.chatapp.fragments;
 
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;

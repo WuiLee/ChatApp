@@ -20,6 +20,7 @@
         android:layout_height="match_parent"
         android:layout_below="@+id/chat_toolbar"
         android:layout_above="@+id/chat_linear_layout"
+        android:paddingBottom="20dp"
         android:background="@drawable/main_background"
         >
     </android.support.v7.widget.RecyclerView>
