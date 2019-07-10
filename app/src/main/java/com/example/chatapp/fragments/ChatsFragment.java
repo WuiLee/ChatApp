@@ -27,6 +27,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
 
+import java.util.ArrayList;
 import java.util.EventListener;
 
 import de.hdodenhof.circleimageview.CircleImageView;
@@ -48,7 +49,8 @@ public class ChatsFragment extends Fragment {
 
     FirebaseRecyclerAdapter<Contacts, ChatsViewHolder> adapter;
     private String chatterID;
-    private ValueEventListener listener;
+    private ArrayList<String> chattersID;
+    private ArrayList<ValueEventListener> listeners;
 
     public ChatsFragment() {
         // Required empty public constructor
@@ -68,6 +70,8 @@ public class ChatsFragment extends Fragment {
         chatsList = (RecyclerView) PrivateChatsView.findViewById(R.id.chats_list);
         chatsList.setLayoutManager(new LinearLayoutManager(getContext()));
 
+        chattersID = new ArrayList<>();
+        listeners = new ArrayList<>();
         return PrivateChatsView;
     }
 
@@ -85,7 +89,8 @@ public class ChatsFragment extends Fragment {
             protected void onBindViewHolder
                     (@NonNull final ChatsViewHolder holder, int position, @NonNull Contacts model) {
                 chatterID = getRef(position).getKey();
-                Log.d(TAG, "On Bind VH called");
+                chattersID.add(chatterID);
+                Log.d(TAG, "Chatter ID retrieved on the " + position + " time: " + chatterID);
                 usersRef.child(chatterID).addValueEventListener(getConfiguredListener(holder, chatterID));
             }
 
@@ -104,12 +109,12 @@ public class ChatsFragment extends Fragment {
 
     private ValueEventListener getConfiguredListener
             (final ChatsViewHolder holder, final String usersIDs) {
-        if (listener == null) {
-            listener = new ValueEventListener() {
+            ValueEventListener listener = new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                     if (dataSnapshot.exists())
                     {
+                        Log.d(TAG, dataSnapshot.toString());
                         final String retName = dataSnapshot.child("name").getValue().toString();
                         final String imageUrl = dataSnapshot.child(getString(R.string.dbnode_users_imageUrl))
                                 .getValue().toString();
@@ -138,7 +143,6 @@ public class ChatsFragment extends Fragment {
                             holder.userStatus.setText("offline");
                         }
 
-
                         holder.itemView.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View v) {
@@ -157,22 +161,26 @@ public class ChatsFragment extends Fragment {
 
                 }
             };
-        }
-        Log.d(TAG,"Returning a listener.");
+            Log.d(TAG, "Listener added to array list.");
+            listeners.add(listener);
         return listener;
     }
 
     @Override
     public void onStop() {
         super.onStop();
-        if (listener != null) {
-            Log.d(TAG, "Listener not null, removing Listener");
-            usersRef.child(chatterID).removeEventListener(listener);
-            listener = null;
-        } else {
-            Log.d(TAG, "Listener is null!");
-        }
+        removeListeners();
         adapter.stopListening();
+    }
+
+    private void removeListeners() {
+        if (!chattersID.isEmpty() && !listeners.isEmpty()) {
+            for (String chatterID: chattersID) {
+                int index = chattersID.indexOf(chatterID);
+                usersRef.child(chatterID).removeEventListener(listeners.get(index));
+                Log.d(TAG, "Removed " + index + "listener");
+            }
+        }
     }
 
     public static class ChatsViewHolder extends RecyclerView.ViewHolder {
