@@ -2,6 +2,7 @@ package com.example.chatapp.fragments;
 
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
@@ -11,6 +12,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.example.chatapp.GroupChat;
 import com.example.chatapp.R;
@@ -92,7 +94,14 @@ public class GroupsFragment extends Fragment {
 
     private void InitializeFields() {
         list_view = (ListView) groupFragmentView.findViewById(R.id.list_view);
-        arrayAdapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_list_item_1, list_of_groups);
+        arrayAdapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_list_item_1, list_of_groups) {
+            @Override
+            public View getView(int position, View convertView, ViewGroup parent) {
+                TextView textView =  (TextView) super.getView(position, convertView, parent);
+                textView.setTextColor(Color.WHITE);
+                return textView;
+            }
+        };
         list_view.setAdapter(arrayAdapter);
     }
 
