@@ -163,24 +163,31 @@ public class ChatActivity extends AppCompatActivity {
                 switch (holder.getItemViewType()) {
                     case SENDER_MESSAGE_VH:
                         SenderMessageHolder senderMessageHolder = (SenderMessageHolder) holder;
-                        senderMessageHolder.senderImage.setVisibility(View.INVISIBLE);
-                        senderMessageHolder.senderText.setVisibility(View.INVISIBLE);
+
+                        senderMessageHolder.senderProfileImage.setVisibility(View.GONE);
+                        senderMessageHolder.senderImage.setVisibility(View.GONE);
+                        senderMessageHolder.senderText.setVisibility(View.GONE);
+
                         if (!currentUser.imageUrl.isEmpty()) {
+                            senderMessageHolder.senderProfileImage.setVisibility(View.VISIBLE);
                             Picasso.get().load(currentUser.imageUrl)
                                     .into(senderMessageHolder.senderProfileImage);
                         }
 
                         if (model.type.equals(getString(R.string.storage_type_image))) {
+                            Log.d(TAG, "Got new image");
                             if (!model.message.isEmpty()) {
                                 senderMessageHolder.senderImage.setVisibility(View.VISIBLE);
                                 Picasso.get().load(model.message).into(senderMessageHolder.senderImage);
                             }
                         } else if (model.type.equals(getString(R.string.storage_type_zip))){
+                            Log.d(TAG, "Got new zip");
                             senderMessageHolder.senderText.setVisibility(View.VISIBLE);
                             senderMessageHolder.senderText.setText(model.message);
 
                             //TODO: On Click Implementation
                         } else if (model.type.equals(getString(R.string.storage_type_text))) {
+                            Log.d(TAG, "Got new text");
                             senderMessageHolder.senderText.setVisibility(View.VISIBLE);
                             senderMessageHolder.senderText.setText(model.message);
                         }
@@ -188,24 +195,31 @@ public class ChatActivity extends AppCompatActivity {
 
                     case RECIPIENT_MESSAGE_VH:
                         RecipientMessageHolder recipientMessageHolder = (RecipientMessageHolder) holder;
+
+                        recipientMessageHolder.recipientProfileImage.setVisibility(View.GONE);
                         recipientMessageHolder.recipientImage.setVisibility(View.GONE);
                         recipientMessageHolder.recipientText.setVisibility(View.GONE);
+
                         if (!messageReceiverImage.isEmpty()) {
+                            recipientMessageHolder.recipientProfileImage.setVisibility(View.VISIBLE);
                             Picasso.get().load(messageReceiverImage)
                                     .into(recipientMessageHolder.recipientProfileImage);
                         }
 
                         if (model.type.equals(getString(R.string.storage_type_image))) {
+                            Log.d(TAG, "GOT NEW IMAGE TYPE");
                             if (!model.message.isEmpty()) {
                                 recipientMessageHolder.recipientImage.setVisibility(View.VISIBLE);
                                 Picasso.get().load(model.message).into(recipientMessageHolder.recipientImage);
                             }
                         } else if (model.type.equals(getString(R.string.storage_type_zip))){
+                            Log.d(TAG, "Got new zip type");
                             recipientMessageHolder.recipientText.setVisibility(View.VISIBLE);
                             recipientMessageHolder.recipientText.setText(model.message);
 
                             //TODO: On Click Implementation
                         } else if (model.type.equals(getString(R.string.storage_type_text))) {
+                            Log.d(TAG, "Got new Text");
                             recipientMessageHolder.recipientText.setVisibility(View.VISIBLE);
                             recipientMessageHolder.recipientText.setText(model.message);
                         }
@@ -458,8 +472,30 @@ public class ChatActivity extends AppCompatActivity {
         messageAdapter = getConfiguredAdapter();
         userMessageList.setLayoutManager(linearLayoutManager);
         userMessageList.setAdapter(messageAdapter);
+        messageAdapter.registerAdapterDataObserver(getObserver());
         messageAdapter.startListening();
         displayLastSeen();
+    }
+
+    private RecyclerView.AdapterDataObserver getObserver() {
+        RecyclerView.AdapterDataObserver observer = new RecyclerView.AdapterDataObserver() {
+            @Override
+            public void onItemRangeInserted(int positionStart, int itemCount) {
+//                super.onItemRangeInserted(positionStart, itemCount);
+//                int messageCount = messageAdapter.getItemCount();
+//                Log.d(TAG, "Message Count " + messageCount);
+//
+//                int lastVisiblePosition = linearLayoutManager.findLastCompletelyVisibleItemPosition();
+//
+//                if (lastVisiblePosition == -1 ||
+//                        (positionStart >= (messageCount - 1)) &&
+//                                lastVisiblePosition == (positionStart -1)) {
+//                    userMessageList.smoothScrollToPosition(positionStart);
+//                }
+                userMessageList.smoothScrollToPosition(positionStart);
+            }
+        };
+        return observer;
     }
 
     /*

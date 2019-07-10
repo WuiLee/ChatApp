@@ -35,7 +35,9 @@
         android:id="@+id/recipient_message_image"
         android:layout_width="150dp"
         android:layout_height="150dp"
+        android:scaleType="centerCrop"
+        android:layout_marginStart="20dp"
         android:contentDescription="@string/image_attachment_here"
-        app:layout_constraintStart_toStartOf="@+id/recipient_message_text"
+        app:layout_constraintStart_toEndOf="@+id/recipient_profile_image"
         app:layout_constraintTop_toTopOf="@+id/recipient_message_text" />
 </android.support.constraint.ConstraintLayout>
