@@ -26,6 +26,7 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
@@ -42,6 +43,7 @@ public class AdapterPosts extends RecyclerView.Adapter<AdapterPosts.MyHolder>
 
     Context context;
     List<ModelPost> postList;
+    DatabaseReference userRef;
 
     String myUid;
 
@@ -65,6 +67,7 @@ public class AdapterPosts extends RecyclerView.Adapter<AdapterPosts.MyHolder>
     @Override
     public void onBindViewHolder(@NonNull final MyHolder myHolder, int i)
     {
+
         //get data
         final String uid = postList.get(i).getUid();
         String uEmail = postList.get(i).getuEmail();
@@ -83,21 +86,33 @@ public class AdapterPosts extends RecyclerView.Adapter<AdapterPosts.MyHolder>
 
 
         //set data
-        myHolder.uNameTv.setText(uName);
+
         myHolder.pTimeTv.setText(pTime);
         myHolder.pTitleTv.setText(pTitle);
         myHolder.pDescriptionTv.setText(pDescription);
 
 
-        //set user dp
-        try
-        {
-            Picasso.get().load(uDp).placeholder(R.drawable.profile_image).into(myHolder.uPictureIv);
-        }
-        catch (Exception e)
-        {
+        userRef = FirebaseDatabase.getInstance().getReference()
+                .child("Users").child(uid);
+        userRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                String imageUrl = dataSnapshot.child("imageUrl").getValue().toString();
+                String name = dataSnapshot.child("name").getValue().toString();
 
-        }
+                if (!imageUrl.isEmpty()) {
+                    Picasso.get().load(imageUrl).into(myHolder.uPictureIv);
+                }
+                myHolder.uNameTv.setText(name);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+        //set user dp
+
 
         //set post image
         //if there is no image i.e. pImage.equals("noImage") then hide ImageView
