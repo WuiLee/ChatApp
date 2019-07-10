@@ -138,6 +138,47 @@ public class ChatActivity extends AppCompatActivity {
         Log.d(TAG, "Updated profile from cache!");
     }
 
+    private void showDeleteMessageDialog(final String messageId) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(ChatActivity.this);
+        builder.setTitle("Delete Message")
+                .setMessage("Do you want to delete this message? " +
+                "This action cannot be undone.")
+                .setPositiveButton("Confirm", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        deleteMessageInDatabase(messageId);
+                    }
+                })
+                .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                    }
+                });
+
+        AlertDialog dialog = builder.create();
+        dialog.show();
+    }
+
+    private void deleteMessageInDatabase(final String messageId) {
+        Map<String, Object> childDeletion = new HashMap<>();
+        childDeletion.put(currentUser.uid + "/" + messageReceiverID + "/" + messageId, null);
+        childDeletion.put(messageReceiverID + "/" + currentUser.uid + "/" + messageId, null);
+
+        databaseRef.child(getString(R.string.dbnode_messages))
+                .updateChildren(childDeletion)
+                .addOnCompleteListener(new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete(@NonNull Task<Void> task) {
+                if (task.isSuccessful()) {
+                    Log.d(TAG, "Successfully deleted children.");
+                } else {
+                    Log.d(TAG, "Failed to delete children!");
+                }
+            }
+        });
+    }
+
     private FirebaseRecyclerAdapter<Messages, RecyclerView.ViewHolder> getConfiguredAdapter() {
         Query query = databaseRef
                 .child(getString(R.string.dbnode_messages))
@@ -164,6 +205,14 @@ public class ChatActivity extends AppCompatActivity {
             @Override
             protected void onBindViewHolder
                     (@NonNull RecyclerView.ViewHolder holder, int position, @NonNull Messages model) {
+                final String messageUid = model.messageID;
+                holder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
+                    @Override
+                    public boolean onLongClick(View v) {
+                        showDeleteMessageDialog(messageUid);
+                        return true;
+                    }
+                });
                 switch (holder.getItemViewType()) {
                     case SENDER_MESSAGE_VH:
                         SenderMessageHolder senderMessageHolder = (SenderMessageHolder) holder;
